@@ -1,9 +1,7 @@
 # Cloudflare Pages SPA fallback
-# This ensures that all routes serve their pre-rendered HTML
-# and fall back to client-side routing if needed
+# Serve pre-rendered HTML for known routes, fallback to SPA routing
 
-# Serve pre-rendered HTML for known routes
-/                          /index.html                        200
+# Exact routes without trailing slash - serve pre-rendered HTML
 /community                 /community/index.html              200
 /pricing                   /pricing/index.html                200
 /spaces                    /spaces/index.html                 200
@@ -11,5 +9,5 @@
 /announcement/pricing-update-nov-2025  /announcement/pricing-update-nov-2025/index.html  200
 /account                   /account/index.html                200
 
-# Fallback for any other routes (SPA client-side routing)
-/*                         /index.html                        200
+# Fallback: if file doesn't exist, serve root index.html for SPA routing
+/*    /index.html   404
