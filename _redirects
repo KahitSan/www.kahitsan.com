@@ -1,8 +1,8 @@
 # Cloudflare Pages SPA fallback
 # Serve pre-rendered HTML for known routes, fallback to SPA routing
 
-# Redirect non-www to www (use domain-only format for Cloudflare Pages)
-kahitsan.com/*    https://www.kahitsan.com/:splat    301!
+# Redirect non-www to www
+https://kahitsan.com/*    https://www.kahitsan.com/:splat    301
 
 # Exact routes without trailing slash - serve pre-rendered HTML
 /community                 /community/index.html              200
