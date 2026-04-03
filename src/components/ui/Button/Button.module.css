@@ -1,0 +1,50 @@
+/* Button.module.css */
+@import "./effects.module.css";
+
+.ks-btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ks-btn-ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0.1);
+  opacity: 0.8;
+  animation: ksButtonRippleExpand 0.4s ease-out forwards;
+  pointer-events: none;
+  z-index: 0;
+  background-color: var(--ks-ripple-color, rgba(255, 255, 255, 0.3));
+}
+
+.ks-btn-ripple-fade {
+  animation: ksButtonRippleFadeOnly 0.3s ease-out forwards;
+}
+
+@keyframes ksButtonRippleExpand {
+  0% { transform: scale(0.1); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 0.25; }
+}
+
+@keyframes ksButtonRippleFadeOnly {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.1); }
+}
+
+.ks-btn-ripple > *:not(.ks-btn-ripple-effect) {
+  position: relative;
+  z-index: 2;
+}
+
+.ks-interactive {
+  transition: all 0.15s ease;
+}
+
+.ks-interactive:active:not(:disabled) {
+  transform: scale(0.97);
+  opacity: 0.8;
+}
+
+.ks-interactive:hover:not(:disabled) {
+  transform: scale(1.02);
+}

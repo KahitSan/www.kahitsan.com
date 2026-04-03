@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects
+
+# Redirect non-www to www
+https://kahitsan.com/*    https://www.kahitsan.com/:splat    301
+
+# Fallback: serve 404 page for unknown routes
+/*    /404/index.html   404

@@ -1,0 +1,68 @@
+/* Page transitions - smooth fade for web */
+
+.fade-enter-active,
+.fade-exit-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-to {
+  opacity: 0;
+}
+
+/* Slide up on enter, slide down on exit */
+.slide-up-enter-active,
+.slide-up-exit-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.slide-up-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.slide-up-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-up-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-up-exit-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Page transition container */
+.page-transition-container {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.page-transition-container > .fade-enter-active,
+.page-transition-container > .fade-exit-active,
+.page-transition-container > .slide-up-enter-active,
+.page-transition-container > .slide-up-exit-active {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+}
