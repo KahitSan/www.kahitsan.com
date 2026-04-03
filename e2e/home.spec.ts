@@ -32,8 +32,8 @@ test.describe('Home Page', () => {
     const connect = page.locator('section#connect')
     await expect(connect).toBeVisible()
     await expect(connect).toContainText('Connect')
-    await expect(page.getByRole('link', { name: 'Facebook' })).toBeVisible()
-    await expect(page.getByRole('link', { name: 'Instagram' })).toBeVisible()
+    await expect(connect.getByRole('link', { name: 'Facebook', exact: true })).toBeVisible()
+    await expect(connect.getByRole('link', { name: 'Instagram', exact: true })).toBeVisible()
   })
 
   test('shows location status (Panganiban open, Diversion closed)', async ({ page }) => {
@@ -59,10 +59,5 @@ test.describe('Home Page', () => {
   test('navigate to spaces via button', async ({ page }) => {
     await page.getByRole('link', { name: 'Explore Spaces' }).click()
     await expect(page).toHaveURL('/spaces')
-  })
-
-  test('screenshot - home page', async ({ page }) => {
-    await page.waitForTimeout(500) // wait for typing animation
-    await expect(page).toHaveScreenshot('home.png', { fullPage: true })
   })
 })

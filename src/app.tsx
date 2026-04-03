@@ -1,16 +1,30 @@
-import { Router } from "@solidjs/router";
+import { Router, useLocation } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-import { type JSX, Suspense } from "solid-js";
+import { type JSX, Suspense, createEffect } from "solid-js";
 import { MetaProvider } from "@solidjs/meta";
-import { Transition } from "solid-transition-group";
 import "./assets/css/app.css";
 
 function AppLayout(props: { children: JSX.Element }) {
+  const location = useLocation();
+  let pageRef: HTMLDivElement | undefined;
+
+  // Re-trigger the CSS animation on every route change
+  createEffect(() => {
+    location.pathname; // track as dependency
+    if (pageRef) {
+      pageRef.style.animation = "none";
+      pageRef.offsetHeight; // force reflow
+      pageRef.style.animation = "";
+    }
+  });
+
   return (
     <div class="page-transition-container relative min-h-screen">
-      <Transition name="slide-up" mode="outin">
-        <Suspense>{props.children}</Suspense>
-      </Transition>
+      <Suspense>
+        <div class="page-enter" ref={pageRef}>
+          {props.children}
+        </div>
+      </Suspense>
     </div>
   );
 }

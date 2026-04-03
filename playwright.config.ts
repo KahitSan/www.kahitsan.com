@@ -7,7 +7,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:3457',
+    baseURL: 'http://localhost:3458',
     trace: 'on-first-retry',
   },
   projects: [
@@ -21,8 +21,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3457',
+    command: 'npx serve .output/public -p 3458',
+    url: 'http://localhost:3458',
     reuseExistingServer: !process.env.CI,
     timeout: 30000,
   },

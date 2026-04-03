@@ -1,6 +1,20 @@
 import { splitProps, createSignal, onCleanup, createMemo, mergeProps } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
-import styles from './Button.module.css'
+
+// CSS class name constants (global CSS via app.css → button.css)
+const styles = {
+  'ks-hud-scan-line': 'ks-hud-scan-line',
+  'ks-hud-clip-top-left-bottom-right': 'ks-hud-clip-top-left-bottom-right',
+  'ks-hud-clip-top-right-bottom-left': 'ks-hud-clip-top-right-bottom-left',
+  'ks-hud-clip-minimal-top-left-bottom-right': 'ks-hud-clip-minimal-top-left-bottom-right',
+  'ks-hud-clip-minimal-top-right-bottom-left': 'ks-hud-clip-minimal-top-right-bottom-left',
+  'ks-hud-glow': 'ks-hud-glow',
+  'ks-hud-pulse': 'ks-hud-pulse',
+  'ks-btn-ripple': 'ks-btn-ripple',
+  'ks-btn-ripple-effect': 'ks-btn-ripple-effect',
+  'ks-btn-ripple-fade': 'ks-btn-ripple-fade',
+  'ks-interactive': 'ks-interactive',
+}
 
 type ButtonIntent = 'primary' | 'danger' | 'secondary'
 type ButtonVariant = 'clip1' | 'clip2' | 'ghost' | 'link'

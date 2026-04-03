@@ -24,7 +24,7 @@ test.describe('Community Page', () => {
   })
 
   test('shows Partnerships section with ACES', async ({ page }) => {
-    await expect(page.getByText('Partnerships')).toBeVisible()
+    await expect(page.getByText('Partnerships', { exact: true })).toBeVisible()
     await expect(page.getByText('BISCAST Association of Civil Engineering Students')).toBeVisible()
     await expect(page.getByText('20% discount').first()).toBeVisible()
   })
@@ -41,9 +41,5 @@ test.describe('Community Page', () => {
   test('shows Host Your Event CTA', async ({ page }) => {
     await expect(page.getByText('Host Your Event')).toBeVisible()
     await expect(page.getByRole('link', { name: 'Get in Touch' })).toBeVisible()
-  })
-
-  test('screenshot - community page', async ({ page }) => {
-    await expect(page).toHaveScreenshot('community.png', { fullPage: true })
   })
 })

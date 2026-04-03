@@ -1,0 +1,131 @@
+/* Button effects — global CSS replacing Button.module.css + effects.module.css */
+
+/* --- HUD effects --- */
+
+.ks-hud-scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.ks-hud-scan-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.2s ease;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ks-effect-color, rgba(201, 169, 97, 0.4)),
+    transparent
+  );
+}
+
+.ks-hud-scan-line:hover::before {
+  left: 100%;
+  opacity: 1;
+  transition: all 0.8s ease;
+}
+
+.ks-hud-clip-top-left-bottom-right {
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.ks-hud-clip-top-right-bottom-left {
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.ks-hud-clip-minimal-top-left-bottom-right {
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.ks-hud-clip-minimal-top-right-bottom-left {
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.ks-hud-glow {
+  transition: box-shadow 0.2s ease;
+  box-shadow: 0 0 8px var(--ks-effect-glow, rgba(201, 169, 97, 0.3));
+}
+
+.ks-hud-glow:hover:not(:disabled) {
+  box-shadow: 0 0 15px var(--ks-effect-glow-hover, rgba(201, 169, 97, 0.5));
+}
+
+.ks-hud-pulse {
+  animation: ksHudPulse 2s infinite ease-in-out;
+}
+
+@keyframes ksHudPulse {
+  0%, 100% {
+    background-color: var(--ks-effect-pulse-bg, rgba(201, 169, 97, 0.1));
+    box-shadow: 0 0 5px var(--ks-effect-pulse-glow, rgba(201, 169, 97, 0.2));
+  }
+  50% {
+    background-color: var(--ks-effect-pulse-bg-mid, rgba(201, 169, 97, 0.2));
+    box-shadow: 0 0 10px var(--ks-effect-pulse-glow-mid, rgba(201, 169, 97, 0.4));
+  }
+}
+
+/* --- Button ripple --- */
+
+.ks-btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ks-btn-ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0.1);
+  opacity: 0.8;
+  animation: ksButtonRippleExpand 0.4s ease-out forwards;
+  pointer-events: none;
+  z-index: 0;
+  background-color: var(--ks-ripple-color, rgba(255, 255, 255, 0.3));
+}
+
+.ks-btn-ripple-fade {
+  animation: ksButtonRippleFadeOnly 0.3s ease-out forwards;
+}
+
+@keyframes ksButtonRippleExpand {
+  0% { transform: scale(0.1); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 0.25; }
+}
+
+@keyframes ksButtonRippleFadeOnly {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.1); }
+}
+
+.ks-btn-ripple > *:not(.ks-btn-ripple-effect) {
+  position: relative;
+  z-index: 2;
+}
+
+.ks-interactive {
+  transition: all 0.15s ease;
+}
+
+.ks-interactive:active:not(:disabled) {
+  transform: scale(0.97);
+  opacity: 0.8;
+}
+
+.ks-interactive:hover:not(:disabled) {
+  transform: scale(1.02);
+}

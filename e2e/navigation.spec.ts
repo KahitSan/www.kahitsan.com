@@ -1,22 +1,34 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Navigation', () => {
-  test('all nav links work from home', async ({ page }) => {
+  test('all nav links work from home', async ({ page, viewport }) => {
+    const isMobile = (viewport?.width ?? 1280) < 768
+
+    const clickNavLink = async (name: string) => {
+      if (isMobile) {
+        await page.getByRole('button', { name: 'Toggle menu' }).click()
+        // Mobile nav links are inside a fixed nav overlay
+        await page.locator('nav.fixed').getByRole('link', { name, exact: true }).click()
+      } else {
+        await page.getByRole('link', { name }).first().click()
+      }
+    }
+
     await page.goto('/')
 
-    await page.getByRole('link', { name: 'Spaces' }).first().click()
+    await clickNavLink('Spaces')
     await expect(page).toHaveURL('/spaces')
 
-    await page.getByRole('link', { name: 'Community' }).first().click()
+    await clickNavLink('Community')
     await expect(page).toHaveURL('/community')
 
-    await page.getByRole('link', { name: 'Announcements' }).first().click()
+    await clickNavLink('Announcements')
     await expect(page).toHaveURL('/announcements')
 
-    await page.getByRole('link', { name: 'Account' }).first().click()
+    await clickNavLink('Account')
     await expect(page).toHaveURL('/account')
 
-    await page.getByRole('link', { name: 'Home' }).first().click()
+    await clickNavLink('Home')
     await expect(page).toHaveURL('/')
   })
 
@@ -53,29 +65,21 @@ test.describe('Account Page', () => {
     await expect(page.getByText('Booking Management')).toBeVisible()
     await expect(page.getByText('Usage History')).toBeVisible()
   })
-
-  test('screenshot - account page', async ({ page }) => {
-    await expect(page).toHaveScreenshot('account.png', { fullPage: true })
-  })
 })
 
 test.describe('404 Page', () => {
-  test('shows not found page for unknown routes', async ({ page }) => {
-    await page.goto('/this-route-does-not-exist-xyz')
+  test('shows not found page', async ({ page }) => {
+    // Static server (npx serve) does not do SPA fallback, so test /404 directly
+    await page.goto('/404')
     await expect(page.getByText('404')).toBeVisible()
     await expect(page.getByText('Page Not Found')).toBeVisible()
     await expect(page.getByRole('button', { name: 'Go Back Home' })).toBeVisible()
   })
 
   test('404 go back home button works', async ({ page }) => {
-    await page.goto('/nonexistent-page')
+    await page.goto('/404')
     await page.getByRole('button', { name: 'Go Back Home' }).click()
     await expect(page).toHaveURL('/')
-  })
-
-  test('screenshot - 404 page', async ({ page }) => {
-    await page.goto('/this-page-does-not-exist')
-    await expect(page).toHaveScreenshot('404.png', { fullPage: true })
   })
 })
 

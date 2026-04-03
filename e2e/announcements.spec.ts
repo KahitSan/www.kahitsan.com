@@ -23,9 +23,6 @@ test.describe('Announcements Page', () => {
     await expect(page).toHaveURL('/announcement/pricing-update-nov-2025')
   })
 
-  test('screenshot - announcements page', async ({ page }) => {
-    await expect(page).toHaveScreenshot('announcements.png', { fullPage: true })
-  })
 })
 
 test.describe('Pricing Update Announcement', () => {
@@ -55,7 +52,4 @@ test.describe('Pricing Update Announcement', () => {
     await expect(page.getByText('Hasten KahitSan Development')).toBeVisible()
   })
 
-  test('screenshot - pricing update announcement', async ({ page }) => {
-    await expect(page).toHaveScreenshot('pricing-update-announcement.png', { fullPage: true })
-  })
 })

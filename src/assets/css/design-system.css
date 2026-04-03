@@ -1,4 +1,9 @@
 @layer base {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-zinc-950 text-zinc-200;
   }
