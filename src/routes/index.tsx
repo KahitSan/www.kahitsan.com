@@ -151,11 +151,16 @@ const HomePage: Component = () => {
                 <img
                   src={org.icon}
                   alt={org.name}
-                  class="h-16 w-auto object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+                  class="h-24 w-auto object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
                   title={org.name}
                 />
               )}
             </For>
+          </div>
+          <div class="text-center mt-8">
+            <A href="/community" class="text-amber-400 hover:text-amber-300 text-sm font-bold tracking-widest uppercase transition-colors">
+              View Community &rarr;
+            </A>
           </div>
         </section>
 
