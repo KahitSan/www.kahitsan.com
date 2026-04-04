@@ -1,4 +1,5 @@
 import { Title, Meta, Link } from "@solidjs/meta";
+import { For, Show } from 'solid-js'
 import type { Component } from 'solid-js'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
@@ -54,7 +55,7 @@ const PricingUpdateAnnouncementPage: Component = () => {
                 New Pricing Structure
               </h2>
 
-              {[
+              <For each={[
                 {
                   title: 'Entrance Area',
                   cols: ['4 hrs', '8 hrs', '1hr ext'],
@@ -103,7 +104,7 @@ const PricingUpdateAnnouncementPage: Component = () => {
                   ],
                   note: 'All current members renewing their subscription will maintain the same pricing—no increase.',
                 },
-              ].map((section) => (
+              ]}>{(section) => (
                 <div class="mb-12">
                   <h3 class="text-lg font-semibold text-amber-500 mb-4">{section.title}</h3>
                   <div class="overflow-x-auto rounded-lg border border-amber-500/30 mb-4">
@@ -111,32 +112,32 @@ const PricingUpdateAnnouncementPage: Component = () => {
                       <thead>
                         <tr class="border-b border-amber-500/30 bg-amber-500/10">
                           <th class="px-3 py-2 text-left text-xs md:text-sm font-semibold text-amber-500" />
-                          {section.cols.map((col) => (
+                          <For each={section.cols}>{(col) => (
                             <th class="px-3 py-2 text-left text-xs md:text-sm font-semibold text-amber-500">{col}</th>
-                          ))}
+                          )}</For>
                         </tr>
                       </thead>
                       <tbody>
-                        {section.rows.map((row) => (
+                        <For each={section.rows}>{(row) => (
                           <tr class={`border-b border-amber-500/20 ${(row as any).partner ? 'bg-amber-500/5' : ''}`}>
                             <td class={`px-3 py-2 text-xs md:text-sm text-zinc-300 ${(row as any).bold ? 'font-bold' : (row as any).partner ? 'font-semibold' : ''}`}>
                               {row.label}
                             </td>
-                            {row.vals.map((val, i) => (
-                              <td class={`px-3 py-2 text-xs md:text-sm ${(row as any).bold ? 'text-amber-400 font-bold' : (row as any).partner ? 'text-zinc-200 font-semibold' : `text-zinc-500 ${(row as any).old?.[i] ? 'line-through' : ''}`}`}>
+                            <For each={row.vals}>{(val, i) => (
+                              <td class={`px-3 py-2 text-xs md:text-sm ${(row as any).bold ? 'text-amber-400 font-bold' : (row as any).partner ? 'text-zinc-200 font-semibold' : `text-zinc-500 ${(row as any).old?.[i()] ? 'line-through' : ''}`}`}>
                                 {val}
                               </td>
-                            ))}
+                            )}</For>
                           </tr>
-                        ))}
+                        )}</For>
                       </tbody>
                     </table>
                   </div>
-                  {(section as any).note && (
+                  <Show when={(section as any).note}>
                     <p class="text-xs md:text-sm text-zinc-400 leading-relaxed">{(section as any).note}</p>
-                  )}
+                  </Show>
                 </div>
-              ))}
+              )}</For>
             </div>
 
             <div class="bg-zinc-900/50 rounded-lg p-6 md:p-8 border border-amber-500/20 backdrop-blur-sm">
@@ -144,18 +145,18 @@ const PricingUpdateAnnouncementPage: Component = () => {
                 Why This Change?
               </h2>
               <div class="space-y-6">
-                {[
+                <For each={[
                   { title: '1. Hasten KahitSan Development', body: 'Revenue increases directly support facility expansion and improvements.' },
                   { title: '2. Competitive & Affordable', body: "Our pricing remains competitive within Naga City's coworking market—even below many alternatives—keeping KahitSan accessible to students." },
                   { title: '3. Sustainable Model', body: 'Revenue is pooled to balance company profitability with community affordability. This ensures KahitSan remains operational long-term.' },
                   { title: '4. Service Excellence & Future Improvements', body: 'Management remains the same with continued focus on customer satisfaction. 24/7 operations maintained.' },
                   { title: '5. Future Adjustments', body: 'Pricing may adjust based on growth and availability to maintain this balance.' },
-                ].map((item) => (
+                ]}>{(item) => (
                   <div class="border-l-2 border-amber-500/40 pl-4">
                     <h3 class="font-semibold text-amber-500 mb-2">{item.title}</h3>
                     <p class="text-zinc-400 text-sm font-light">{item.body}</p>
                   </div>
-                ))}
+                )}</For>
               </div>
             </div>
 

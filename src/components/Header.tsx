@@ -1,9 +1,9 @@
 import type { Component } from 'solid-js'
-import { createSignal } from 'solid-js'
+import { createSignal, For, Show } from 'solid-js'
 import { A } from '@solidjs/router'
 import Home from 'lucide-solid/icons/home'
 import Users from 'lucide-solid/icons/users'
-import MapPin from 'lucide-solid/icons/map-pin'
+import Lightbulb from 'lucide-solid/icons/lightbulb'
 import Bell from 'lucide-solid/icons/bell'
 import UserCircle from 'lucide-solid/icons/user-circle'
 import Menu from 'lucide-solid/icons/menu'
@@ -19,7 +19,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { icon: Home, label: 'Home', href: '/' },
-  { icon: MapPin, label: 'Spaces', href: '/spaces' },
+  { icon: Lightbulb, label: 'Solutions', href: '/solutions' },
   { icon: Users, label: 'Community', href: '/community' },
   { icon: Bell, label: 'Announcements', href: '/announcements' },
   { icon: UserCircle, label: 'Account', href: '/account' },
@@ -39,22 +39,24 @@ const Header: Component = () => {
             </A>
 
             <nav class="hidden md:flex items-center gap-1">
-              {navItems.map((item) => (
-                <Button
-                  as={A}
-                  href={item.href}
-                  end={item.href === '/'}
-                  variant="clip1"
-                  intent="secondary"
-                  icon={item.icon}
-                  iconPosition="left"
-                  activeClass="!bg-amber-600/20 !border-amber-600/60 !text-amber-400"
-                  inactiveClass="!bg-transparent !border-transparent"
-                  class="px-4 py-2 transition-all duration-200"
-                >
-                  <span class="text-sm font-medium">{item.label}</span>
-                </Button>
-              ))}
+              <For each={navItems}>
+                {(item) => (
+                  <Button
+                    as={A}
+                    href={item.href}
+                    end={item.href === '/'}
+                    variant="clip1"
+                    intent="secondary"
+                    icon={item.icon}
+                    iconPosition="left"
+                    activeClass="!bg-amber-600/20 !border-amber-600/60 !text-amber-400"
+                    inactiveClass="!bg-transparent !border-transparent"
+                    class="px-4 py-2 transition-all duration-200"
+                  >
+                    <span class="text-sm font-medium">{item.label}</span>
+                  </Button>
+                )}
+              </For>
             </nav>
 
             <button
@@ -68,12 +70,12 @@ const Header: Component = () => {
         </div>
       </header>
 
-      {mobileMenuOpen() && (
+      <Show when={mobileMenuOpen()}>
         <div
           class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
           onClick={closeMobileMenu}
         />
-      )}
+      </Show>
 
       <nav
         class={`fixed top-16 right-0 bottom-0 w-64 z-40 bg-zinc-900/95 backdrop-blur-xl border-l border-zinc-800/50 transform transition-transform duration-300 md:hidden ${
@@ -81,23 +83,25 @@ const Header: Component = () => {
         }`}
       >
         <div class="flex flex-col p-4 gap-2">
-          {navItems.map((item) => (
-            <Button
-              as={A}
-              href={item.href}
-              end={item.href === '/'}
-              variant="clip1"
-              intent="secondary"
-              icon={item.icon}
-              iconPosition="left"
-              activeClass="!bg-amber-600/20 !border-amber-600/60 !text-amber-400"
-              inactiveClass="!bg-transparent !border-transparent"
-              class="w-full justify-start px-4 py-3 transition-all duration-200"
-              onClick={closeMobileMenu}
-            >
-              <span class="text-base font-medium">{item.label}</span>
-            </Button>
-          ))}
+          <For each={navItems}>
+            {(item) => (
+              <Button
+                as={A}
+                href={item.href}
+                end={item.href === '/'}
+                variant="clip1"
+                intent="secondary"
+                icon={item.icon}
+                iconPosition="left"
+                activeClass="!bg-amber-600/20 !border-amber-600/60 !text-amber-400"
+                inactiveClass="!bg-transparent !border-transparent"
+                class="w-full justify-start px-4 py-3 transition-all duration-200"
+                onClick={closeMobileMenu}
+              >
+                <span class="text-base font-medium">{item.label}</span>
+              </Button>
+            )}
+          </For>
         </div>
       </nav>
     </>

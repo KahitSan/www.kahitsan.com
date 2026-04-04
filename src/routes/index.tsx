@@ -1,6 +1,6 @@
 import { Title, Meta, Link } from "@solidjs/meta";
 import type { Component } from 'solid-js'
-import { createSignal, onMount, onCleanup } from 'solid-js'
+import { createSignal, onMount, onCleanup, For } from 'solid-js'
 import { A } from '@solidjs/router'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
@@ -101,8 +101,8 @@ const HomePage: Component = () => {
               Your comfy study tambayan. KahitSan man pinanggalingan mo.
             </p>
             <div class="flex flex-wrap justify-center gap-3">
-              <Button as={A} href="/spaces" intent="primary" size="lg">
-                Explore Spaces
+              <Button as={A} href="/solutions" intent="primary" size="lg">
+                Explore Solutions
               </Button>
               <Button as={A} href="/community" intent="secondary" size="lg">
                 View Community
@@ -160,21 +160,23 @@ const HomePage: Component = () => {
                     Premium workspace solutions designed for productivity and comfort
                   </p>
                   <div class="space-y-4 mb-8">
-                    {[
+                    <For each={[
                       { icon: '🏢', text: '4 areas: Entrance, Inner, Call Booth & Whole Inner' },
                       { icon: '💰', text: 'Partner discounts available (20% off)' },
                       { icon: '📶', text: 'High-speed fiber internet connection' },
                       { icon: '☕', text: 'Free pantry access with coffee & water' },
                       { icon: '⏰', text: 'Flexible 4-hour, 8-hour & extension rates' },
-                    ].map((feature) => (
-                      <div class="flex items-center gap-3">
-                        <span class="text-2xl flex-shrink-0">{feature.icon}</span>
-                        <span class="text-zinc-300 text-sm">{feature.text}</span>
-                      </div>
-                    ))}
+                    ]}>
+                      {(feature) => (
+                        <div class="flex items-center gap-3">
+                          <span class="text-2xl flex-shrink-0">{feature.icon}</span>
+                          <span class="text-zinc-300 text-sm">{feature.text}</span>
+                        </div>
+                      )}
+                    </For>
                   </div>
-                  <Button as={A} href="/spaces" intent="primary" size="lg" class="w-full">
-                    View Spaces & Pricing
+                  <Button as={A} href="/solutions" intent="primary" size="lg" class="w-full">
+                    View Solutions & Pricing
                   </Button>
                 </div>
               </div>
@@ -200,17 +202,19 @@ const HomePage: Component = () => {
                     Expanding our network to bring you more comprehensive business solutions
                   </p>
                   <div class="space-y-4 mb-8">
-                    {[
+                    <For each={[
                       { icon: '📋', text: 'Business registration & legal support' },
                       { icon: '🎉', text: 'Event management & coordination' },
                       { icon: '💻', text: 'Custom software development' },
                       { icon: '🏢', text: 'Real estate consultation services' },
-                    ].map((feature) => (
-                      <div class="flex items-center gap-3">
-                        <span class="text-2xl flex-shrink-0">{feature.icon}</span>
-                        <span class="text-zinc-300 text-sm">{feature.text}</span>
-                      </div>
-                    ))}
+                    ]}>
+                      {(feature) => (
+                        <div class="flex items-center gap-3">
+                          <span class="text-2xl flex-shrink-0">{feature.icon}</span>
+                          <span class="text-zinc-300 text-sm">{feature.text}</span>
+                        </div>
+                      )}
+                    </For>
                   </div>
                   <Button
                     as="a"
@@ -240,21 +244,23 @@ const HomePage: Component = () => {
               Connect <span class="gradient-text">With Us</span>
             </h2>
             <div class="flex justify-center gap-8">
-              {[
+              <For each={[
                 { href: 'https://www.facebook.com/KahitSan', icon: Facebook, label: 'Facebook' },
                 { href: 'https://www.instagram.com/kahitsan_com/', icon: Instagram, label: 'Instagram' },
                 { href: 'https://www.tiktok.com/@kahitsan21', icon: Music, label: 'TikTok' },
-              ].map((social) => (
-                <a
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center justify-center w-20 h-20 rounded-full bg-zinc-900/30 border border-zinc-800/50 hover:scale-110 hover:bg-zinc-900/50 hover:border-zinc-700/50 transition-all"
-                  aria-label={social.label}
-                >
-                  <social.icon size={32} class="text-zinc-400" />
-                </a>
-              ))}
+              ]}>
+                {(social) => (
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-center w-20 h-20 rounded-full bg-zinc-900/30 border border-zinc-800/50 hover:scale-110 hover:bg-zinc-900/50 hover:border-zinc-700/50 transition-all"
+                    aria-label={social.label}
+                  >
+                    <social.icon size={32} class="text-zinc-400" />
+                  </a>
+                )}
+              </For>
             </div>
             <div class="mt-12 text-center">
               <p class="text-zinc-400 mb-2">Visit our locations:</p>

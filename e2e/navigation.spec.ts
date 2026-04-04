@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from './fixtures'
 
 test.describe('Navigation', () => {
   test('all nav links work from home', async ({ page, viewport }) => {
@@ -16,8 +16,8 @@ test.describe('Navigation', () => {
 
     await page.goto('/')
 
-    await clickNavLink('Spaces')
-    await expect(page).toHaveURL('/spaces')
+    await clickNavLink('Solutions')
+    await expect(page).toHaveURL('/solutions')
 
     await clickNavLink('Community')
     await expect(page).toHaveURL('/community')

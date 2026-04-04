@@ -1,4 +1,5 @@
 import { Title, Meta, Link } from "@solidjs/meta";
+import { For } from 'solid-js'
 import type { Component } from 'solid-js'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
@@ -32,19 +33,21 @@ const AccountPage: Component = () => {
                   User accounts and authentication are currently under development.
                 </p>
                 <div class="space-y-4 text-left">
-                  {[
+                  <For each={[
                     { title: 'User Registration & Login', desc: 'Create accounts and manage your bookings' },
                     { title: 'Booking Management', desc: 'View and manage your coworking space reservations' },
                     { title: 'Usage History', desc: 'Track your workspace usage and billing' },
-                  ].map((item) => (
-                    <div class="flex items-start gap-3">
-                      <span class="text-amber-500 mt-1">→</span>
-                      <div>
-                        <p class="text-white font-medium">{item.title}</p>
-                        <p class="text-sm text-zinc-400">{item.desc}</p>
+                  ]}>
+                    {(item) => (
+                      <div class="flex items-start gap-3">
+                        <span class="text-amber-500 mt-1">→</span>
+                        <div>
+                          <p class="text-white font-medium">{item.title}</p>
+                          <p class="text-sm text-zinc-400">{item.desc}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )}
+                  </For>
                 </div>
                 <div class="mt-8 pt-8 border-t border-zinc-800">
                   <p class="text-sm text-zinc-500">

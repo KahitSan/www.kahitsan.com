@@ -1,4 +1,5 @@
 import { Title, Meta, Link } from "@solidjs/meta";
+import { For, Show } from 'solid-js'
 import type { Component } from 'solid-js'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
@@ -43,29 +44,32 @@ const CommunityPage: Component = () => {
     }
     return (
       <div class="flex flex-wrap gap-2 mt-4">
-        {Object.entries(props.socialLinks).map(([platform, url]) => {
-          if (!url) return null
-          const styling = getPlatformStyling(platform)
-          return (
-            <Button
-              as="a"
-              href={url as string}
-              target="_blank"
-              rel="noopener noreferrer"
-              intent={styling.intent}
-              variant="clip1"
-              size="sm"
-              icon={getSocialIcon(platform)}
-              iconPosition="left"
-              class={`text-xs ${styling.class}`}
-              noPulse
-              noGlow
-              title={platform.charAt(0).toUpperCase() + platform.slice(1)}
-            >
-              {platform.charAt(0).toUpperCase() + platform.slice(1)}
-            </Button>
-          )
-        })}
+        <For each={Object.entries(props.socialLinks)}>{([platform, url]) => (
+          <Show when={url}>
+            {(() => {
+              const styling = getPlatformStyling(platform)
+              return (
+                <Button
+                  as="a"
+                  href={url as string}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  intent={styling.intent}
+                  variant="clip1"
+                  size="sm"
+                  icon={getSocialIcon(platform)}
+                  iconPosition="left"
+                  class={`text-xs ${styling.class}`}
+                  noPulse
+                  noGlow
+                  title={platform.charAt(0).toUpperCase() + platform.slice(1)}
+                >
+                  {platform.charAt(0).toUpperCase() + platform.slice(1)}
+                </Button>
+              )
+            })()}
+          </Show>
+        )}</For>
       </div>
     )
   }
@@ -110,7 +114,7 @@ const CommunityPage: Component = () => {
                 <span><span class="gradient-text">Featured</span> Events</span>
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {community.featuredEvents.map((event: FeaturedEvent) => (
+                <For each={community.featuredEvents}>{(event: FeaturedEvent) => (
                   <div class="backdrop-blur-sm border border-zinc-800/50 clip-corner p-6 relative overflow-hidden group hover:border-zinc-700/50 hover:scale-[1.02] transition-all" style={{ background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%)' }}>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     <div class="relative z-10">
@@ -140,7 +144,7 @@ const CommunityPage: Component = () => {
                       <SocialMediaButtons socialLinks={event.socialLinks} />
                     </div>
                   </div>
-                ))}
+                )}</For>
               </div>
             </div>
 
@@ -151,7 +155,7 @@ const CommunityPage: Component = () => {
                 <span class="gradient-text">Partnerships</span>
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {community.partnerships.map((partner: Partnership) => (
+                <For each={community.partnerships}>{(partner: Partnership) => (
                   <div class="backdrop-blur-sm border border-zinc-800/50 clip-corner p-6 relative overflow-hidden group hover:border-zinc-700/50 hover:scale-[1.02] transition-all" style={{ background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%)' }}>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     <div class="relative z-10">
@@ -173,7 +177,7 @@ const CommunityPage: Component = () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                )}</For>
               </div>
             </div>
 
@@ -184,7 +188,7 @@ const CommunityPage: Component = () => {
                 <span class="gradient-text">Sponsorships</span>
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {community.sponsorships.map((sponsorship: Sponsorship) => (
+                <For each={community.sponsorships}>{(sponsorship: Sponsorship) => (
                   <div class="backdrop-blur-sm border border-zinc-800/50 clip-corner p-6 relative overflow-hidden group hover:border-zinc-700/50 hover:scale-[1.02] transition-all" style={{ background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%)' }}>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     <div class="relative z-10">
@@ -197,9 +201,9 @@ const CommunityPage: Component = () => {
                           <div class="mb-3 space-y-1">
                             <p class="text-sm font-bold text-white">{sponsorship.event}</p>
                             <p class="text-xs text-zinc-400">{sponsorship.eventDate}</p>
-                            {sponsorship.theme && (
+                            <Show when={sponsorship.theme}>
                               <p class="text-xs text-amber-400 italic">"{sponsorship.theme}"</p>
-                            )}
+                            </Show>
                           </div>
                           <p class="text-sm text-zinc-300 leading-relaxed">{sponsorship.description}</p>
                           <SocialMediaButtons socialLinks={sponsorship.socialLinks} />
@@ -207,7 +211,7 @@ const CommunityPage: Component = () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                )}</For>
               </div>
             </div>
 

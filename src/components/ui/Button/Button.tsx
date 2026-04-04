@@ -1,4 +1,4 @@
-import { splitProps, createSignal, onCleanup, createMemo, mergeProps } from 'solid-js'
+import { splitProps, createSignal, onCleanup, createMemo, mergeProps, Show, For } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 
 // CSS class name constants (global CSS via app.css → button.css)
@@ -290,19 +290,22 @@ const Button = (props: ButtonProps) => {
       {...others}
     >
       {renderContent()}
-      {hasRipple() &&
-        ripples().map((ripple) => (
-          <span
-            class={cn(styles['ks-btn-ripple-effect'], ripple.isFading && styles['ks-btn-ripple-fade'])}
-            style={{
-              left: `${ripple.x - ripple.size / 2}px`,
-              top: `${ripple.y - ripple.size / 2}px`,
-              width: `${ripple.size}px`,
-              height: `${ripple.size}px`,
-              'background-color': 'var(--ks-ripple-color, rgba(255, 255, 255, 0.3))',
-            }}
-          />
-        ))}
+      <Show when={hasRipple()}>
+        <For each={ripples()}>
+          {(ripple) => (
+            <span
+              class={cn(styles['ks-btn-ripple-effect'], ripple.isFading && styles['ks-btn-ripple-fade'])}
+              style={{
+                left: `${ripple.x - ripple.size / 2}px`,
+                top: `${ripple.y - ripple.size / 2}px`,
+                width: `${ripple.size}px`,
+                height: `${ripple.size}px`,
+                'background-color': 'var(--ks-ripple-color, rgba(255, 255, 255, 0.3))',
+              }}
+            />
+          )}
+        </For>
+      </Show>
     </Dynamic>
   )
 }

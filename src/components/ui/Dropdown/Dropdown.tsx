@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js'
-import { createSignal, onCleanup, onMount } from 'solid-js'
+import { createSignal, For, onCleanup, onMount, Show } from 'solid-js'
 import ChevronDown from 'lucide-solid/icons/chevron-down'
 
 export interface DropdownItemProps {
@@ -76,9 +76,9 @@ const Dropdown: Component<DropdownProps> = (props) => {
           <div class="font-semibold text-white">
             {currentSelection()?.label || props.placeholder || 'Select an option'}
           </div>
-          {currentSelection()?.description && (
+          <Show when={currentSelection()?.description}>
             <div class="text-xs text-zinc-400">{currentSelection()?.description}</div>
-          )}
+          </Show>
         </div>
         <ChevronDown
           size={18}
@@ -86,9 +86,9 @@ const Dropdown: Component<DropdownProps> = (props) => {
         />
       </button>
 
-      {isOpen() && (
+      <Show when={isOpen()}>
         <div class="absolute top-full left-0 mt-2 w-full bg-zinc-900/95 border border-zinc-800/50 rounded-lg backdrop-blur-xl z-50 shadow-xl select-none">
-          {props.items.map((item) => (
+          <For each={props.items}>{(item) => (
             <button
               onClick={() => handleSelect(item)}
               disabled={item.disabled}
@@ -97,32 +97,34 @@ const Dropdown: Component<DropdownProps> = (props) => {
               } ${item.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
             >
               <div class="flex items-center gap-2 flex-shrink-0">
-                {item.icon ? (
+                <Show when={item.icon} fallback={
+                  <Show when={item.status}>
+                    <div
+                      class="w-2 h-2 rounded-full flex-shrink-0"
+                      style={{ background: getStatusColor(item.status) }}
+                    />
+                  </Show>
+                }>
                   <item.icon size={16} class="text-amber-500" />
-                ) : item.status ? (
-                  <div
-                    class="w-2 h-2 rounded-full flex-shrink-0"
-                    style={{ background: getStatusColor(item.status) }}
-                  />
-                ) : null}
+                </Show>
               </div>
               <div class="flex-1 text-left min-w-0">
                 <div class="font-medium text-white flex items-center gap-2">
                   {item.label}
-                  {item.badge && (
+                  <Show when={item.badge}>
                     <span class="px-2 py-0.5 text-xs font-medium bg-zinc-700/50 text-zinc-400 rounded flex-shrink-0">
                       {item.badge}
                     </span>
-                  )}
+                  </Show>
                 </div>
-                {item.description && (
+                <Show when={item.description}>
                   <div class="text-xs text-zinc-400 truncate">{item.description}</div>
-                )}
+                </Show>
               </div>
             </button>
-          ))}
+          )}</For>
         </div>
-      )}
+      </Show>
     </div>
   )
 }

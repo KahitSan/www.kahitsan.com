@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from './fixtures'
 
 test.describe('Home Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -15,8 +15,8 @@ test.describe('Home Page', () => {
     await expect(hero.locator('h1')).toContainText('Productivity starts')
   })
 
-  test('shows Explore Spaces and View Community buttons', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Explore Spaces' })).toBeVisible()
+  test('shows Explore Solutions and View Community buttons', async ({ page }) => {
+    await expect(page.getByRole('link', { name: 'Explore Solutions' })).toBeVisible()
     await expect(page.getByRole('link', { name: 'View Community' })).toBeVisible()
   })
 
@@ -45,7 +45,7 @@ test.describe('Home Page', () => {
   test('shows navigation header', async ({ page }) => {
     const header = page.locator('header')
     await expect(header).toBeVisible()
-    await expect(header).toContainText('Spaces')
+    await expect(header).toContainText('Solutions')
     await expect(header).toContainText('Community')
     await expect(header).toContainText('Announcements')
   })
@@ -56,8 +56,8 @@ test.describe('Home Page', () => {
     await expect(footer).toContainText('KahitSan Solutions Corp')
   })
 
-  test('navigate to spaces via button', async ({ page }) => {
-    await page.getByRole('link', { name: 'Explore Spaces' }).click()
-    await expect(page).toHaveURL('/spaces')
+  test('navigate to solutions via button', async ({ page }) => {
+    await page.getByRole('link', { name: 'Explore Solutions' }).click()
+    await expect(page).toHaveURL('/solutions')
   })
 })

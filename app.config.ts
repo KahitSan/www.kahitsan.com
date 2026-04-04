@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   devOverlay: false,
-  ssr: true,
+  ssr: process.argv.includes("build"),
   vite: {
     plugins: [tailwindcss()],
   },
@@ -13,10 +13,7 @@ export default defineConfig({
     prerender: {
       routes: [
         "/",
-        "/spaces",
-        "/panganiban",
-        "/panganiban/pricing",
-        "/diversion",
+        "/solutions",
         "/community",
         "/announcements",
         "/announcement/pricing-update-nov-2025",

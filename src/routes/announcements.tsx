@@ -1,4 +1,5 @@
 import { Title, Meta, Link } from "@solidjs/meta";
+import { For, Show } from 'solid-js'
 import type { Component } from 'solid-js'
 import { A } from '@solidjs/router'
 import Header from '~/components/Header'
@@ -52,7 +53,7 @@ const AnnouncementsPage: Component = () => {
             </div>
 
             <div class="space-y-6">
-              {announcements.map((announcement) => (
+              <For each={announcements}>{(announcement) => (
                 <A href={`/announcement/${announcement.slug}`} class="block">
                   <div class="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 clip-corner p-8 relative overflow-hidden group hover:border-zinc-700/50 transition-all cursor-pointer">
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -78,11 +79,11 @@ const AnnouncementsPage: Component = () => {
                               </div>
                             </div>
                             <div class="flex items-center gap-2">
-                              {announcement.isPast && (
+                              <Show when={announcement.isPast}>
                                 <span class="px-3 py-1 rounded-full bg-zinc-800/50 border border-zinc-700/50 text-xs text-zinc-500">
                                   Past
                                 </span>
-                              )}
+                              </Show>
                               <ChevronRight size={20} class="text-zinc-400 group-hover:text-amber-500 transition-colors" />
                             </div>
                           </div>
@@ -92,7 +93,7 @@ const AnnouncementsPage: Component = () => {
                     </div>
                   </div>
                 </A>
-              ))}
+              )}</For>
             </div>
           </div>
         </div>
