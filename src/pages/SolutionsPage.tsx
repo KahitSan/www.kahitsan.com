@@ -232,14 +232,6 @@ export default function SolutionsPage() {
                   </For>
                 </div>
 
-                <Button
-                  variant="clip1"
-                  intent="primary"
-                  class="w-full justify-center py-3 mt-auto"
-                  effect="scan-line"
-                >
-                  Inquire for Booking
-                </Button>
               </div>
             </div>
           </div>
