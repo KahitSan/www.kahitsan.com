@@ -17,7 +17,6 @@ export default defineConfig({
         "/community",
         "/announcements",
         "/announcement/pricing-update-nov-2025",
-        "/account",
         "/404",
       ],
       crawlLinks: false,

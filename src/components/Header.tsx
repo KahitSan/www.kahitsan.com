@@ -5,7 +5,6 @@ import Home from 'lucide-solid/icons/home'
 import Users from 'lucide-solid/icons/users'
 import Lightbulb from 'lucide-solid/icons/lightbulb'
 import Bell from 'lucide-solid/icons/bell'
-import UserCircle from 'lucide-solid/icons/user-circle'
 import Menu from 'lucide-solid/icons/menu'
 import X from 'lucide-solid/icons/x'
 import KahitSanLogo from '~/assets/logo.png'
@@ -22,7 +21,6 @@ const navItems: NavItem[] = [
   { icon: Lightbulb, label: 'Solutions', href: '/solutions' },
   { icon: Users, label: 'Community', href: '/community' },
   { icon: Bell, label: 'Announcements', href: '/announcements' },
-  { icon: UserCircle, label: 'Account', href: '/account' },
 ]
 
 const Header: Component = () => {

@@ -25,9 +25,6 @@ test.describe('Navigation', () => {
     await clickNavLink('Announcements')
     await expect(page).toHaveURL('/announcements')
 
-    await clickNavLink('Account')
-    await expect(page).toHaveURL('/account')
-
     await clickNavLink('Home')
     await expect(page).toHaveURL('/')
   })
@@ -47,23 +44,6 @@ test.describe('Navigation', () => {
     await menuButton.click()
     await expect(page.locator('nav.fixed')).toBeVisible()
     await page.keyboard.press('Escape')
-  })
-})
-
-test.describe('Account Page', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/account')
-  })
-
-  test('has correct page title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Account - KahitSan/)
-  })
-
-  test('shows Coming Soon', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: /Coming Soon/i })).toBeVisible()
-    await expect(page.getByText('User Registration & Login')).toBeVisible()
-    await expect(page.getByText('Booking Management')).toBeVisible()
-    await expect(page.getByText('Usage History')).toBeVisible()
   })
 })
 
