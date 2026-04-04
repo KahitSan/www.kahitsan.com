@@ -12,7 +12,7 @@ const Footer: Component = () => {
             <a href="#" class="text-zinc-400 hover:text-white transition-colors">Privacy</a>
           </div>
           <div class="text-center space-y-2">
-            <p class="text-zinc-400 text-sm">© 2025 KahitSan Solutions Corp</p>
+            <p class="text-zinc-400 text-sm">© {new Date().getFullYear()} KahitSan Solutions Corp</p>
             <p class="text-zinc-500 text-xs">
               *Pantry access available when no events in the inner area
             </p>
