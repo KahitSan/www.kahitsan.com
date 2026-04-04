@@ -101,6 +101,7 @@ const HomePage: Component = () => {
                   {typedText()}
                   <span class={showCursor() ? 'opacity-100' : 'opacity-0'}>|</span>
                 </span>
+                <noscript><span class="gradient-text italic">KahitSan</span></noscript>
               </h1>
               <p class="text-zinc-400 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
                 Your comfy study tambayan. A fusion of{' '}
@@ -118,11 +119,11 @@ const HomePage: Component = () => {
               </div>
             </div>
             <div class="md:col-span-5 relative">
-              <div class="clip-corner-both relative aspect-square overflow-hidden shadow-2xl">
+              <div class="clip-corner-both relative aspect-square overflow-hidden shadow-2xl" ref={(el) => onMount(() => el.classList.add('js-animate'))}>
                 <img
                   src={entranceArea}
                   alt="KahitSan Coworking Space"
-                  class="object-cover w-full h-full opacity-80"
+                  class="object-cover w-full h-full opacity-80 hero-ken-burns"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               </div>
