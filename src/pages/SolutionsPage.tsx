@@ -243,6 +243,10 @@ export default function SolutionsPage() {
               </div>
             </div>
           </div>
+
+          <p class="text-zinc-500 text-xs mt-6 italic">
+            *Pantry access may be limited when the Whole Inner Area is reserved for events.
+          </p>
         </section>
 
         {/* Partner Organizations */}
