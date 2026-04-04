@@ -8,7 +8,7 @@ const Footer: Component = () => {
         <div class="flex flex-col items-center gap-6">
           <div class="flex flex-wrap justify-center gap-6 text-sm">
             <A href="/about" class="text-zinc-400 hover:text-white transition-colors">About</A>
-            <a href="#" class="text-zinc-400 hover:text-white transition-colors">Contact</a>
+            <A href="/contact" class="text-zinc-400 hover:text-white transition-colors">Contact</A>
             <A href="/terms" class="text-zinc-400 hover:text-white transition-colors">Terms</A>
             <A href="/privacy" class="text-zinc-400 hover:text-white transition-colors">Privacy</A>
           </div>

@@ -20,6 +20,7 @@ export default defineConfig({
         "/terms",
         "/privacy",
         "/about",
+        "/contact",
         "/404",
       ],
       crawlLinks: false,
