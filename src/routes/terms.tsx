@@ -1,0 +1,129 @@
+import { Title, Meta, Link } from "@solidjs/meta";
+import Header from '~/components/Header'
+import Footer from '~/components/Footer'
+
+export default function TermsPage() {
+  return (
+    <>
+      <Title>Terms of Service - KahitSan</Title>
+      <Meta name="description" content="Terms of Service for KahitSan Coworking Space in Naga City." />
+      <Meta property="og:title" content="Terms of Service - KahitSan" />
+      <Link rel="canonical" href="https://www.kahitsan.com/terms" />
+
+      <div class="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)' }}>
+        <Header />
+
+        <main class="pt-32 pb-24 px-6 md:px-12 max-w-4xl mx-auto">
+          <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">LEGAL</div>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">Terms of Service</h1>
+          <p class="text-zinc-500 text-sm mb-12">Last updated: April 4, 2026</p>
+
+          <div class="space-y-12 text-zinc-300 leading-relaxed">
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">Welcome to KahitSan</h2>
+              <p>
+                By using any of our coworking spaces or services at KahitSan, you agree to these terms. They're straightforward — we want everyone to have a great experience, so please read through them.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">How Check-In Works</h2>
+              <p class="mb-3">
+                <strong class="text-white">New clients:</strong> When you visit us for the first time, we'll ask for some basic information — your full name, contact number, email address, and optionally a social media account. This helps us reach you if needed (for example, if you leave something behind).
+              </p>
+              <p>
+                <strong class="text-white">Returning clients:</strong> If you've been here before, we'll simply ask for your name and how long you'd like to stay. Quick and easy.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">Space Rules</h2>
+              <p class="mb-4">
+                Our spaces are shared environments. To keep things comfortable for everyone, we ask that you:
+              </p>
+              <ul class="space-y-3 ml-4">
+                <li class="flex items-start gap-3">
+                  <span class="text-amber-400 mt-1">—</span>
+                  <span><strong class="text-white">Keep noise levels down.</strong> Use headphones for calls and media. If you need to take a call, our call booths are available for that.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-amber-400 mt-1">—</span>
+                  <span><strong class="text-white">Be respectful and friendly.</strong> Treat other clients and staff with courtesy. Harassment, discrimination, or disruptive behavior of any kind won't be tolerated.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-amber-400 mt-1">—</span>
+                  <span><strong class="text-white">Clean as you go.</strong> Return shared items to where you found them, dispose of trash properly, and leave your workspace tidy for the next person.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-amber-400 mt-1">—</span>
+                  <span><strong class="text-white">Take care of our equipment.</strong> Report any damage or issues to staff. You may be held responsible for intentional damage to furniture, equipment, or facilities.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-amber-400 mt-1">—</span>
+                  <span><strong class="text-white">No illegal activities.</strong> Our spaces may only be used for lawful purposes. Any illegal activity will result in immediate removal and may be reported to authorities.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-amber-400 mt-1">—</span>
+                  <span><strong class="text-white">Food and drinks.</strong> Light snacks are fine at your workspace. For full meals, please use designated areas. Free coffee and water are available at the pantry.</span>
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">Payments and Pricing</h2>
+              <p class="mb-3">
+                All rates are displayed on our Solutions page and at the front desk. Payment is required upon check-in or at the end of your session as agreed with staff. We reserve the right to update our pricing — any changes will be posted in advance.
+              </p>
+              <p>
+                Partner organization members receive discounted rates. You may be asked to show proof of membership when claiming partner pricing.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">Personal Belongings</h2>
+              <p>
+                You are responsible for your own belongings. KahitSan is not liable for any lost, stolen, or damaged personal property. That said, if you leave something behind, we'll do our best to contact you using the information you provided during check-in.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">Internet Use</h2>
+              <p>
+                We provide high-speed internet access to all clients. Please use it responsibly — don't download or distribute illegal content, attempt to access other clients' devices, or use excessive bandwidth that degrades the experience for others.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">Limitation of Liability</h2>
+              <p>
+                KahitSan provides its spaces and services "as is." While we do our best to maintain a safe, comfortable, and well-equipped environment, we are not liable for indirect or consequential damages arising from your use of our spaces. This includes but is not limited to loss of data, business interruption, or equipment failure.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">Changes to These Terms</h2>
+              <p>
+                We may update these terms from time to time. When we do, we'll update the "Last updated" date at the top. Continued use of our spaces after changes are posted means you accept the updated terms.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-bold text-white mb-4">Agreement</h2>
+              <p>
+                By availing any service from KahitSan — whether it's a walk-in session, a membership, or booking a private space — you agree to these terms and our <a href="/privacy" class="text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-4">Privacy Policy</a>.
+              </p>
+            </section>
+
+            <section class="border-t border-zinc-800/50 pt-8">
+              <p class="text-zinc-500 text-sm">
+                If you have questions about these terms, feel free to reach out to us through our social media channels or visit our Panganiban Drive location in Naga City.
+              </p>
+            </section>
+          </div>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  )
+}

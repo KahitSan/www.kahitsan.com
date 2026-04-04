@@ -1,4 +1,5 @@
 import type { Component } from 'solid-js'
+import { A } from '@solidjs/router'
 
 const Footer: Component = () => {
   return (
@@ -8,8 +9,8 @@ const Footer: Component = () => {
           <div class="flex flex-wrap justify-center gap-6 text-sm">
             <a href="#" class="text-zinc-400 hover:text-white transition-colors">About</a>
             <a href="#" class="text-zinc-400 hover:text-white transition-colors">Contact</a>
-            <a href="#" class="text-zinc-400 hover:text-white transition-colors">Terms</a>
-            <a href="#" class="text-zinc-400 hover:text-white transition-colors">Privacy</a>
+            <A href="/terms" class="text-zinc-400 hover:text-white transition-colors">Terms</A>
+            <A href="/privacy" class="text-zinc-400 hover:text-white transition-colors">Privacy</A>
           </div>
           <div class="text-center">
             <p class="text-zinc-400 text-sm">© {new Date().getFullYear()} KahitSan Solutions Corp</p>
