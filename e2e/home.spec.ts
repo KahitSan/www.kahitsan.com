@@ -20,12 +20,23 @@ test.describe('Home Page', () => {
     await expect(page.getByRole('link', { name: 'View Community' })).toBeVisible()
   })
 
-  test('shows services section with pricing info', async ({ page }) => {
+  test('shows services section', async ({ page }) => {
     const services = page.locator('section#services')
     await expect(services).toBeVisible()
     await expect(services).toContainText('Coworking Spaces')
-    await expect(services).toContainText('₱79')
-    await expect(services).toContainText('Future Services')
+    await expect(services).toContainText('Software')
+  })
+
+  test('shows coworking spaces bento grid', async ({ page }) => {
+    await expect(page.getByText('Entrance Area')).toBeVisible()
+    await expect(page.getByText('Inner Area')).toBeVisible()
+    await expect(page.getByText('Call Booths')).toBeVisible()
+  })
+
+  test('shows future services cards', async ({ page }) => {
+    await expect(page.getByText('Business Registration')).toBeVisible()
+    await expect(page.getByText('Event Management')).toBeVisible()
+    await expect(page.getByText('Custom Software')).toBeVisible()
   })
 
   test('shows connect section with social links', async ({ page }) => {
@@ -36,10 +47,8 @@ test.describe('Home Page', () => {
     await expect(connect.getByRole('link', { name: 'Instagram', exact: true })).toBeVisible()
   })
 
-  test('shows location status (Panganiban open, Diversion closed)', async ({ page }) => {
-    const connect = page.locator('section#connect')
-    await expect(connect).toContainText('Panganiban Drive - Open')
-    await expect(connect).toContainText('Diversion Road - Closed')
+  test('shows location status', async ({ page }) => {
+    await expect(page.getByText('Panganiban Drive — Open')).toBeVisible()
   })
 
   test('shows navigation header', async ({ page }) => {
