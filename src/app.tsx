@@ -1,8 +1,10 @@
 import { Router, useLocation } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-import { type JSX, Suspense, createEffect, onMount } from "solid-js";
+import { type JSX, Suspense, ErrorBoundary, createEffect, onMount } from "solid-js";
 import { isServer } from "solid-js/web";
-import { MetaProvider } from "@solidjs/meta";
+import { MetaProvider, Title } from "@solidjs/meta";
+import NotFound from "~/components/ui/NotFound/NotFound";
+import Logo from "~/assets/logo.png";
 import "./assets/css/app.css";
 
 function AppLayout(props: { children: JSX.Element }) {
@@ -21,11 +23,26 @@ function AppLayout(props: { children: JSX.Element }) {
 
   return (
     <div class="page-transition-container relative min-h-screen">
-      <Suspense>
-        <div class="page-enter" ref={pageRef}>
-          {props.children}
-        </div>
-      </Suspense>
+      <ErrorBoundary
+        fallback={() => (
+          <div class="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)' }}>
+            <Title>Something went wrong - KahitSan</Title>
+            <NotFound
+              title=""
+              heading="Something went wrong"
+              message="An unexpected error occurred. Please try refreshing the page."
+              buttonText="Go Back Home"
+              logo={<img src={Logo} alt="KahitSan Logo" width={200} height={200} />}
+            />
+          </div>
+        )}
+      >
+        <Suspense>
+          <div class="page-enter" ref={pageRef}>
+            {props.children}
+          </div>
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
