@@ -13,6 +13,8 @@ export default createHandler(() => (
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
           <link rel="manifest" href="/favicon/site.webmanifest" />
           {assets}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8DDGHSHDP" />
+          <script innerHTML={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V8DDGHSHDP');`} />
         </head>
         <body>
           <div id="app">{children}</div>

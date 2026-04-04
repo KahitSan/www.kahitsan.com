@@ -11,13 +11,19 @@ function AppLayout(props: { children: JSX.Element }) {
   const location = useLocation();
   let pageRef: HTMLDivElement | undefined;
 
-  // Re-trigger the CSS animation on every route change (client-only)
+  // Re-trigger the CSS animation and track page view on every route change (client-only)
   createEffect(() => {
-    location.pathname; // track as dependency
-    if (!isServer && pageRef) {
-      pageRef.style.animation = "none";
-      pageRef.offsetHeight; // force reflow
-      pageRef.style.animation = "";
+    const path = location.pathname;
+    if (!isServer) {
+      if (pageRef) {
+        pageRef.style.animation = "none";
+        pageRef.offsetHeight; // force reflow
+        pageRef.style.animation = "";
+      }
+      // Track SPA navigation in Google Analytics
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'page_view', { page_path: path });
+      }
     }
   });
 
