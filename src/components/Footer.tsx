@@ -7,7 +7,7 @@ const Footer: Component = () => {
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex flex-col items-center gap-6">
           <div class="flex flex-wrap justify-center gap-6 text-sm">
-            <a href="#" class="text-zinc-400 hover:text-white transition-colors">About</a>
+            <A href="/about" class="text-zinc-400 hover:text-white transition-colors">About</A>
             <a href="#" class="text-zinc-400 hover:text-white transition-colors">Contact</a>
             <A href="/terms" class="text-zinc-400 hover:text-white transition-colors">Terms</A>
             <A href="/privacy" class="text-zinc-400 hover:text-white transition-colors">Privacy</A>

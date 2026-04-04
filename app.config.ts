@@ -19,6 +19,7 @@ export default defineConfig({
         "/announcement/pricing-update-nov-2025",
         "/terms",
         "/privacy",
+        "/about",
         "/404",
       ],
       crawlLinks: false,
