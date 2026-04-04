@@ -4,9 +4,7 @@ import type { Component } from 'solid-js'
 import { A } from '@solidjs/router'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
-import Calendar from 'lucide-solid/icons/calendar'
 import DollarSign from 'lucide-solid/icons/dollar-sign'
-import ChevronRight from 'lucide-solid/icons/chevron-right'
 
 const AnnouncementsPage: Component = () => {
   const announcements = [
@@ -14,6 +12,9 @@ const AnnouncementsPage: Component = () => {
       id: 1,
       title: 'Pricing Update - Effective November 1, 2025',
       date: 'November 1, 2025',
+      month: 'NOV',
+      day: '01',
+      year: '2025',
       type: 'Pricing',
       icon: DollarSign,
       content:
@@ -35,68 +36,101 @@ const AnnouncementsPage: Component = () => {
       <div class="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)' }}>
         <Header />
 
-        <div class="relative py-24 px-4">
-          <div class="absolute inset-0 pointer-events-none overflow-hidden">
-            <div class="absolute top-20 left-1/4 w-72 h-72 opacity-10" style="background:radial-gradient(ellipse, rgba(201, 169, 97, 0.3) 0%, transparent 60%)" />
-          </div>
+        <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+          {/* Hero */}
+          <section class="mb-20">
+            <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">NEWS & UPDATES</div>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 max-w-4xl">
+              Stay in the <span class="gradient-text">loop</span>.
+            </h1>
+            <p class="text-zinc-400 text-lg max-w-2xl">
+              Important updates, pricing changes, and news from KahitSan. We keep things transparent so you always know what's happening.
+            </p>
+          </section>
 
-          <div class="relative z-10 max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/30 border border-zinc-800/50 mb-3">
-                <Calendar size={16} class="text-amber-400" />
-                <span class="text-xs font-bold">Latest Updates</span>
-              </div>
-              <h1 class="text-3xl md:text-4xl font-bold mb-3 gradient-text">Announcements</h1>
-              <p class="text-base md:text-lg text-zinc-400">
-                Stay updated with our latest news and schedule changes
-              </p>
-            </div>
+          {/* Timeline */}
+          <section>
+            <div class="relative">
+              {/* Timeline line */}
+              <div class="absolute left-[39px] top-0 bottom-0 w-px bg-zinc-800/50 hidden md:block" />
 
-            <div class="space-y-6">
-              <For each={announcements}>{(announcement) => (
-                <A href={`/announcement/${announcement.slug}`} class="block">
-                  <div class="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 clip-corner p-8 relative overflow-hidden group hover:border-zinc-700/50 transition-all cursor-pointer">
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                    <div class="relative z-10">
-                      <div class="flex items-start gap-4">
-                        <div class="p-3 rounded-lg bg-amber-500/20 border border-amber-500/30 shrink-0">
-                          <announcement.icon size={24} class="text-amber-400" />
+              <div class="space-y-10">
+                <For each={announcements}>{(announcement, i) => (
+                  <A href={`/announcement/${announcement.slug}`} class="block group">
+                    <div class="grid grid-cols-1 md:grid-cols-[80px_1fr] gap-6 md:gap-10">
+                      {/* Date badge */}
+                      <div class="hidden md:flex flex-col items-center relative">
+                        <div class="w-[18px] h-[18px] rounded-full bg-amber-500 border-4 border-zinc-950 z-10 group-hover:scale-125 transition-transform" />
+                        <div class="mt-3 text-center">
+                          <div class="text-amber-400 text-xs font-black tracking-widest">{announcement.month}</div>
+                          <div class="text-2xl font-black text-white leading-none">{announcement.day}</div>
+                          <div class="text-zinc-500 text-[10px] tracking-widest">{announcement.year}</div>
                         </div>
-                        <div class="flex-1">
-                          <div class="flex items-start justify-between gap-4 mb-3">
-                            <div>
-                              <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-amber-500 transition-colors">
-                                {announcement.title}
-                              </h3>
-                              <div class="flex items-center gap-3 text-sm text-zinc-400">
-                                <span class="flex items-center gap-1">
-                                  <Calendar size={14} />
-                                  {announcement.date}
-                                </span>
-                                <span class="px-2 py-0.5 rounded bg-zinc-800/50 text-xs">
-                                  {announcement.type}
-                                </span>
+                      </div>
+
+                      {/* Card */}
+                      <div class="relative">
+                        <div class="clip-corner-both p-[1px] bg-gradient-to-br from-amber-500/20 to-transparent group-hover:from-amber-500/40 transition-all">
+                          <div class="bg-zinc-950 clip-corner-both p-8 md:p-10 relative overflow-hidden">
+                            {/* Background number */}
+                            <span class="text-[8rem] font-black text-amber-500/[0.03] absolute -top-6 -right-2 select-none pointer-events-none leading-none">
+                              {String(i() + 1).padStart(2, '0')}
+                            </span>
+
+                            <div class="relative z-10">
+                              {/* Mobile date */}
+                              <div class="flex items-center gap-3 mb-4 md:hidden">
+                                <div class="w-3 h-3 rounded-full bg-amber-500" />
+                                <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">{announcement.date}</span>
+                              </div>
+
+                              <div class="flex items-start gap-5">
+                                <div class="p-3 bg-amber-500/10 clip-corner shrink-0 group-hover:bg-amber-500/20 transition-colors">
+                                  <announcement.icon size={24} class="text-amber-400" />
+                                </div>
+                                <div class="flex-1">
+                                  <div class="flex flex-wrap items-center gap-3 mb-3">
+                                    <span class="px-3 py-1 bg-zinc-800/60 text-zinc-400 text-[10px] font-bold uppercase tracking-widest clip-corner">
+                                      {announcement.type}
+                                    </span>
+                                    <Show when={announcement.isPast}>
+                                      <span class="px-3 py-1 bg-zinc-800/40 text-zinc-600 text-[10px] font-bold uppercase tracking-widest clip-corner">
+                                        Past
+                                      </span>
+                                    </Show>
+                                  </div>
+                                  <h2 class="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-amber-400 transition-colors">
+                                    {announcement.title}
+                                  </h2>
+                                  <p class="text-zinc-400 leading-relaxed mb-6">{announcement.content}</p>
+                                  <span class="inline-flex items-center gap-2 text-amber-400 text-sm font-bold tracking-widest uppercase group-hover:gap-3 transition-all">
+                                    Read More
+                                    <span class="text-lg">&rarr;</span>
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                            <div class="flex items-center gap-2">
-                              <Show when={announcement.isPast}>
-                                <span class="px-3 py-1 rounded-full bg-zinc-800/50 border border-zinc-700/50 text-xs text-zinc-500">
-                                  Past
-                                </span>
-                              </Show>
-                              <ChevronRight size={20} class="text-zinc-400 group-hover:text-amber-500 transition-colors" />
-                            </div>
                           </div>
-                          <p class="text-zinc-300 leading-relaxed">{announcement.content}</p>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </A>
-              )}</For>
+                  </A>
+                )}</For>
+              </div>
             </div>
-          </div>
-        </div>
+          </section>
+
+          {/* Empty state hint */}
+          <Show when={announcements.length === 1}>
+            <div class="mt-20 text-center">
+              <div class="inline-block clip-corner bg-zinc-900/30 border border-zinc-800/30 px-8 py-6">
+                <p class="text-zinc-500 text-sm">
+                  More announcements will appear here as they are published.
+                </p>
+              </div>
+            </div>
+          </Show>
+        </main>
 
         <Footer />
       </div>
