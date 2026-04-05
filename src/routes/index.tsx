@@ -82,7 +82,7 @@ const HomePage: Component = () => {
       <Meta property="og:url" content="https://www.kahitsan.com" />
       <Link rel="canonical" href="https://www.kahitsan.com" />
 
-      <div class="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)' }}>
+      <div class="min-h-screen page-bg transition-colors duration-300">
         <Header />
 
         {/* Hero Section */}
@@ -210,7 +210,7 @@ const HomePage: Component = () => {
             </A>
 
             {/* Future Services */}
-            <div class="group relative clip-corner-both overflow-hidden min-h-[480px] flex items-end" style={{ background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%)' }}>
+            <div class="group relative clip-corner-both overflow-hidden min-h-[480px] flex items-end card-bg">
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div class="relative p-10 w-full">
                 <div class="flex items-center gap-3 mb-4">

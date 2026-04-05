@@ -61,7 +61,7 @@ const CommunityPage: Component = () => {
       <Meta property="og:url" content="https://www.kahitsan.com/community" />
       <Link rel="canonical" href="https://www.kahitsan.com/community" />
 
-      <div class="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)' }}>
+      <div class="min-h-screen page-bg transition-colors duration-300">
         <Header />
 
         <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">

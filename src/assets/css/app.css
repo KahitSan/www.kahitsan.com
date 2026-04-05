@@ -1,4 +1,7 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import "./design-system.css";
 @import "./transitions.css";
 @import "./button.css";

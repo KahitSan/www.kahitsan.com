@@ -14,7 +14,7 @@ const PricingUpdateAnnouncementPage: Component = () => {
       <Meta property="og:url" content="https://www.kahitsan.com/announcement/pricing-update-nov-2025" />
       <Link rel="canonical" href="https://www.kahitsan.com/announcement/pricing-update-nov-2025" />
 
-      <div class="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)' }}>
+      <div class="min-h-screen page-bg transition-colors duration-300">
         <Header />
 
         <div class="relative max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-16">

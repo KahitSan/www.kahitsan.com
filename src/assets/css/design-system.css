@@ -4,8 +4,35 @@
     overflow-x: hidden;
   }
 
+  /* Default: dark mode */
   body {
-    @apply bg-zinc-950 text-zinc-200;
+    @apply bg-zinc-950 text-zinc-200 transition-colors duration-300;
+  }
+
+  /* Light mode — inspired by Material Design 3 editorial palette */
+  .light body {
+    background-color: #f7f9fb;
+    color: #191c1e;
+  }
+}
+
+/* Theme-aware page backgrounds */
+@layer components {
+  .page-bg {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  }
+
+  .light .page-bg {
+    background: #f7f9fb;
+  }
+
+  .card-bg {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  }
+
+  .light .card-bg {
+    background: #f2f4f6;
+    border: 1px solid #d3c5ac33;
   }
 }
 
@@ -25,4 +52,493 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+}
+
+/* =============================================================================
+   Light mode — global color remapping
+
+   Color palette derived from Material Design 3 editorial scheme:
+
+   Page background:       #f7f9fb  (cool white)
+   Surface container low: #f2f4f6  (subtle gray)
+   Surface container:     #eceef0  (cards, footer)
+   Surface container hi:  #e6e8ea  (tags, chips)
+   Surface highest:       #e0e3e5  (dividers)
+   On-surface (text):     #191c1e  (near-black)
+   Secondary (muted):     #5f5e5e  (body copy)
+   Outline:               #817660  (warm gray borders)
+   Outline variant:       #d3c5ac  (warm light borders)
+   Primary:               #785a00  (dark gold — accent text)
+   Primary container:     #eab308  (bright gold — accent bg)
+   ============================================================================= */
+
+/* --- Text: headings & primary content ---
+ * .text-white on image overlays must STAY white since overlays are dark.
+ * We only remap .text-white outside of overlay contexts.
+ * Use a :not() guard for elements inside gradient overlays / absolute containers.
+ */
+.light .text-white {
+  color: #191c1e;
+}
+
+/*
+ * Image overlay cards: containers with a background <img> + dark gradient
+ * are unaffected by theme — the overlays are always dark. So we UNDO all
+ * light-mode color remappings inside them to preserve dark-mode colors.
+ */
+.light :has(> img.object-cover) > .relative,
+.light :has(> img.object-cover) > .absolute {
+  color: #ffffff;
+}
+
+.light :has(> img.object-cover) > .relative .text-white,
+.light :has(> img.object-cover) > .absolute .text-white {
+  color: #ffffff;
+}
+
+.light :has(> img.object-cover) > .relative .text-amber-400,
+.light :has(> img.object-cover) > .absolute .text-amber-400 {
+  color: #fbbf24;
+}
+
+.light :has(> img.object-cover) > .relative .text-zinc-400,
+.light :has(> img.object-cover) > .absolute .text-zinc-400 {
+  color: #a1a1aa;
+}
+
+.light :has(> img.object-cover) > .relative .text-zinc-500,
+.light :has(> img.object-cover) > .absolute .text-zinc-500 {
+  color: #71717a;
+}
+
+.light :has(> img.object-cover) > .relative .border-amber-500\/40,
+.light :has(> img.object-cover) > .absolute .border-amber-500\/40 {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* group-hover overrides inside overlays — only on actual hover */
+.light .group:hover :has(> img.object-cover) > .relative .group-hover\:bg-amber-500 {
+  background-color: #f59e0b;
+}
+
+.light .group:hover :has(> img.object-cover) > .relative .group-hover\:text-black {
+  color: #000000;
+}
+
+/* --- Text: body & secondary --- */
+.light .text-zinc-200 {
+  color: #2d3133;
+}
+
+.light .text-zinc-300 {
+  color: #3d4043;
+}
+
+.light .text-zinc-400 {
+  color: #5f5e5e;
+}
+
+.light .text-zinc-500 {
+  color: #817660;
+}
+
+.light .text-zinc-600 {
+  color: #5f5e5e;
+}
+
+/* --- Accent: amber/gold — darker for contrast on light --- */
+.light .text-amber-400 {
+  color: #785a00;
+}
+
+.light .text-amber-300 {
+  color: #785a00;
+}
+
+.light .gradient-text {
+  background: linear-gradient(135deg, #785a00, #a07d2e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Blue accent — darker for the "future services" card */
+.light .text-blue-400 {
+  color: #2563eb;
+}
+
+/* Status colors — slightly deeper for contrast */
+.light .text-emerald-400 {
+  color: #059669;
+}
+
+.light .text-red-400 {
+  color: #dc2626;
+}
+
+/* --- Solid backgrounds --- */
+.light .bg-zinc-950 {
+  background-color: #ffffff;
+}
+
+.light .bg-zinc-900 {
+  background-color: #f2f4f6;
+}
+
+.light .bg-zinc-800 {
+  background-color: #e6e8ea;
+}
+
+/* --- Semi-transparent backgrounds --- */
+.light .bg-zinc-900\/20 {
+  background-color: rgba(236, 238, 240, 0.4);
+}
+
+.light .bg-zinc-900\/30 {
+  background-color: rgba(236, 238, 240, 0.5);
+}
+
+.light .bg-zinc-900\/40 {
+  background-color: rgba(236, 238, 240, 0.6);
+}
+
+.light .bg-zinc-900\/50 {
+  background-color: rgba(236, 238, 240, 0.7);
+}
+
+.light .bg-zinc-900\/60 {
+  background-color: rgba(236, 238, 240, 0.85);
+}
+
+.light .bg-zinc-900\/70 {
+  background-color: rgba(247, 249, 251, 0.9);
+}
+
+.light .bg-zinc-900\/80 {
+  background-color: rgba(247, 249, 251, 0.92);
+}
+
+.light .bg-zinc-900\/95 {
+  background-color: rgba(255, 255, 255, 0.97);
+}
+
+.light .bg-zinc-950\/50 {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.light .bg-zinc-800\/50 {
+  background-color: rgba(230, 232, 234, 0.5);
+}
+
+.light .bg-zinc-800\/60 {
+  background-color: rgba(230, 232, 234, 0.6);
+}
+
+.light .bg-zinc-800\/40 {
+  background-color: rgba(230, 232, 234, 0.4);
+}
+
+/* Black overlays on images — soften to warm white */
+.light .bg-black\/40 {
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+.light .bg-black\/50 {
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+/* Amber tints — warm and gentle */
+.light .bg-amber-500\/5 {
+  background-color: rgba(120, 90, 0, 0.03);
+}
+
+.light .bg-amber-500\/10 {
+  background-color: rgba(120, 90, 0, 0.06);
+}
+
+.light .bg-amber-500\/20 {
+  background-color: rgba(120, 90, 0, 0.08);
+}
+
+.light .bg-amber-600\/20 {
+  background-color: rgba(120, 90, 0, 0.08);
+}
+
+/* Blue tints */
+.light .bg-blue-500\/20 {
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+/* Emerald status glow */
+.light .bg-emerald-400 {
+  background-color: #059669;
+}
+
+/* Red status */
+.light .bg-red-400 {
+  background-color: #dc2626;
+}
+
+/* --- Border colors — warm outlines from the editorial palette --- */
+.light .border-zinc-800\/50,
+.light .border-zinc-800\/30,
+.light .border-zinc-800\/20 {
+  border-color: #d3c5ac40;
+}
+
+.light .border-zinc-800 {
+  border-color: #e0e3e5;
+}
+
+.light .border-amber-500\/10 {
+  border-color: #d3c5ac30;
+}
+
+.light .border-amber-500\/5 {
+  border-color: #d3c5ac20;
+}
+
+.light .border-amber-500\/40 {
+  border-color: #d3c5ac80;
+}
+
+.light .border-amber-600\/60 {
+  border-color: rgba(120, 90, 0, 0.3);
+}
+
+.light .border-blue-400\/40 {
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+/* --- Gradient overlays on images — leave UNCHANGED ---
+ * These sit on photos and are always dark regardless of theme.
+ * No remapping needed.
+ */
+
+/* --- Gradient border wrappers --- */
+.light .from-amber-500\/30 {
+  --tw-gradient-from: rgba(120, 90, 0, 0.12);
+}
+
+.light .from-amber-500\/20 {
+  --tw-gradient-from: rgba(120, 90, 0, 0.08);
+}
+
+.light .from-amber-500\/40 {
+  --tw-gradient-from: rgba(120, 90, 0, 0.15);
+}
+
+/* --- Watermarks & decorative text --- */
+.light .text-white\/\[0\.015\],
+.light .text-white\/\[0\.02\] {
+  color: rgba(25, 28, 30, 0.03);
+}
+
+.light .text-amber-500\/10 {
+  color: rgba(120, 90, 0, 0.06);
+}
+
+.light .text-amber-500\/\[0\.03\] {
+  color: rgba(120, 90, 0, 0.03);
+}
+
+/* --- Opacity: community logos more visible on light --- */
+.light .opacity-40 {
+  opacity: 0.7;
+}
+
+.light .opacity-50 {
+  opacity: 0.65;
+}
+
+.light .opacity-60 {
+  opacity: 0.75;
+}
+
+.light .opacity-80 {
+  opacity: 0.9;
+}
+
+/* --- Hover states --- */
+.light .hover\:text-white:hover {
+  color: #191c1e;
+}
+
+.light .hover\:text-amber-300:hover {
+  color: #785a00;
+}
+
+.light .hover\:text-amber-400:hover {
+  color: #785a00;
+}
+
+.light .hover\:bg-zinc-800\/50:hover {
+  background-color: rgba(230, 232, 234, 0.6);
+}
+
+.light .hover\:bg-zinc-800\/60:hover {
+  background-color: rgba(230, 232, 234, 0.7);
+}
+
+.light .hover\:bg-amber-500:hover {
+  background-color: #eab308;
+  color: #191c1e;
+}
+
+.light .hover\:bg-blue-400:hover {
+  background-color: #2563eb;
+}
+
+.light .hover\:text-black:hover {
+  color: #191c1e;
+}
+
+.light .hover\:opacity-100:hover {
+  opacity: 1;
+}
+
+.light .group:hover .group-hover\:bg-amber-500\/20 {
+  background-color: rgba(120, 90, 0, 0.06);
+}
+
+.light .group:hover .group-hover\:text-amber-400 {
+  color: #785a00;
+}
+
+/* --- Header --- */
+.light header.fixed {
+  background-color: rgba(247, 249, 251, 0.85);
+  border-bottom-color: #d3c5ac30;
+}
+
+/* --- Mobile nav drawer --- */
+.light nav.fixed {
+  background-color: rgba(255, 255, 255, 0.97);
+  border-left-color: #e0e3e5;
+}
+
+/* --- Footer --- */
+.light footer {
+  border-top-color: #e0e3e5;
+}
+
+.light footer .bg-zinc-800 {
+  background-color: #eceef0;
+}
+
+.light footer .hover\:bg-amber-500:hover {
+  background-color: #eab308;
+}
+
+/* --- Active nav link ---
+ * Custom class that mirrors intent="primary" exactly, including CSS vars.
+ * This ensures active nav looks identical to "Explore Solutions" in both modes.
+ */
+.ks-nav-active {
+  color: #fbbf24 !important;
+  background-color: rgba(217, 119, 6, 0.2) !important;
+  border-color: rgba(217, 119, 6, 0.6) !important;
+  --ks-effect-color: rgba(201, 169, 97, 0.4) !important;
+  --ks-effect-bg: rgba(201, 169, 97, 0.1) !important;
+  --ks-effect-border: rgba(201, 169, 97, 0.4) !important;
+  --ks-ripple-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.light .ks-nav-active {
+  color: #785a00 !important;
+  background-color: rgba(120, 90, 0, 0.1) !important;
+  border-color: rgba(120, 90, 0, 0.4) !important;
+}
+
+/* --- Button overrides --- */
+
+/* Primary button — make amber bg and border much more visible */
+.light .bg-amber-600\/20 {
+  background-color: rgba(120, 90, 0, 0.1);
+}
+
+.light .border-amber-600\/60 {
+  border-color: rgba(120, 90, 0, 0.4);
+}
+
+.light .hover\:bg-amber-600\/30:hover {
+  background-color: rgba(120, 90, 0, 0.15);
+}
+
+.light .hover\:border-amber-500:hover {
+  border-color: rgba(120, 90, 0, 0.6);
+}
+
+/* Secondary / nav inactive — neutral gray, visible on white */
+.light .text-slate-400 {
+  color: #64748b;
+}
+
+.light .bg-slate-600\/20 {
+  background-color: rgba(79, 70, 51, 0.08);
+}
+
+.light .border-slate-600\/60 {
+  border-color: rgba(79, 70, 51, 0.3);
+}
+
+.light .hover\:bg-slate-600\/30:hover {
+  background-color: rgba(79, 70, 51, 0.12);
+}
+
+.light .hover\:border-slate-500:hover {
+  border-color: rgba(79, 70, 51, 0.45);
+}
+
+/* CTA-style borders on cards */
+.light .border-amber-500\/40 {
+  border-color: rgba(120, 90, 0, 0.3);
+}
+
+.light .group:hover .group-hover\:bg-amber-500 {
+  background-color: #eab308;
+}
+
+.light .group:hover .group-hover\:text-black {
+  color: #191c1e;
+}
+
+.light .border-blue-400\/40 {
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+/* --- Shadows for cards on light (adds depth that dark mode gets from contrast) --- */
+.light .clip-corner-both {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.light .clip-corner {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* --- Emerald glow — less intense on light --- */
+.light .shadow-\[0_0_10px_rgba\(52\,211\,153\,0\.6\)\] {
+  box-shadow: 0 0 8px rgba(5, 150, 105, 0.4);
+}
+
+/* --- Animate pulse color --- */
+.light .animate-pulse {
+  animation-duration: 2s;
+}
+
+/* --- Backdrop blur stays the same --- */
+
+/* --- Grayscale filters — slightly less aggressive on light --- */
+.light .grayscale {
+  filter: grayscale(0.6);
+}
+
+.light .hover\:grayscale-0:hover {
+  filter: grayscale(0);
+}
+
+/* --- Selection color --- */
+.light ::selection {
+  background-color: rgba(234, 179, 8, 0.25);
+  color: #191c1e;
 }

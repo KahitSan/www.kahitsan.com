@@ -5,6 +5,7 @@ import { isServer } from "solid-js/web";
 import { MetaProvider, Title } from "@solidjs/meta";
 import NotFound from "~/components/ui/NotFound/NotFound";
 import Logo from "~/assets/kahitsan-coworking-logo-dark.png";
+import { ThemeProvider } from "~/lib/theme";
 import "./assets/css/app.css";
 
 function AppLayout(props: { children: JSX.Element }) {
@@ -31,7 +32,7 @@ function AppLayout(props: { children: JSX.Element }) {
     <div class="page-transition-container relative min-h-screen">
       <ErrorBoundary
         fallback={() => (
-          <div class="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)' }}>
+          <div class="min-h-screen page-bg transition-colors duration-300">
             <Title>Something went wrong - KahitSan</Title>
             <NotFound
               title=""
@@ -55,10 +56,12 @@ function AppLayout(props: { children: JSX.Element }) {
 
 export default function App() {
   return (
-    <MetaProvider>
-      <Router root={AppLayout}>
-        <FileRoutes />
-      </Router>
-    </MetaProvider>
+    <ThemeProvider>
+      <MetaProvider>
+        <Router root={AppLayout}>
+          <FileRoutes />
+        </Router>
+      </MetaProvider>
+    </ThemeProvider>
   );
 }
