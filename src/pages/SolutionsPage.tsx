@@ -17,8 +17,8 @@ function HourlyTierCard(props: { option: PricingOption }) {
             class="w-full h-48 object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
           />
         </Show>
-        <div class="flex flex-col flex-1 p-8">
-          <h3 class="text-2xl font-bold text-white mb-2">{props.option.name}</h3>
+        <div class="flex flex-col flex-1 p-5 md:p-8">
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-2">{props.option.name}</h3>
           <p class="text-zinc-400 mb-6 text-sm">{props.option.description}</p>
 
           <div class="mt-auto space-y-3">
@@ -65,14 +65,14 @@ export default function SolutionsPage() {
 
   return (
     <div class="min-h-screen page-bg transition-colors duration-300">
-      <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+      <main class="pt-20 pb-12 md:pt-32 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
         {/* Hero */}
-        <section class="mb-20">
+        <section class="mb-12 md:mb-20">
           <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">PRICING & SOLUTIONS</div>
-          <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 max-w-4xl">
+          <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-6 max-w-4xl">
             Flexible <span class="gradient-text">workspaces</span> for focused productivity.
           </h1>
-          <p class="text-zinc-400 text-lg max-w-2xl">
+          <p class="text-zinc-400 text-base md:text-lg max-w-2xl">
             From open collaboration zones to private call booths. 24/7 access with free
             unlimited coffee, high-speed internet, and power outlets at every table.
           </p>
@@ -95,10 +95,10 @@ export default function SolutionsPage() {
         </section>
 
         {/* Floor Plan */}
-        <section class="mb-32 relative">
+        <section class="mb-16 md:mb-32 relative">
           <div class="absolute -top-10 -right-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
           <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">PANGANIBAN DRIVE</div>
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Floor Plan</h2>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-8">Floor Plan</h2>
           <div class="clip-corner-both overflow-hidden bg-zinc-900/60 p-[1px]">
             <div class="clip-corner-both overflow-hidden">
               <img
@@ -111,9 +111,9 @@ export default function SolutionsPage() {
         </section>
 
         {/* Hourly Pricing Tiers */}
-        <section class="mb-32 relative">
+        <section class="mb-16 md:mb-32 relative">
           <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             <For each={pricingData}>
               {(option) => <HourlyTierCard option={option} />}
             </For>
@@ -121,19 +121,19 @@ export default function SolutionsPage() {
         </section>
 
         {/* Premium Memberships — Bento Layout */}
-        <section class="mb-32 relative">
+        <section class="mb-16 md:mb-32 relative">
           <div class="absolute -top-10 right-20 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-          <div class="flex items-end justify-between mb-12">
+          <div class="flex items-end justify-between mb-8 md:mb-12">
             <div>
               <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">EXCLUSIVE ACCESS</div>
-              <h2 class="text-3xl md:text-4xl font-bold text-white">Advanced Memberships</h2>
+              <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white">Advanced Memberships</h2>
             </div>
             <div class="hidden md:block text-zinc-500 text-right max-w-xs text-sm">
               24/7 biometric authentication for seamless, cardless entry.
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
             {/* All-Access — wider card */}
             <div class="md:col-span-3 bg-amber-500/10 p-[1px] clip-corner-both">
               <div class="bg-zinc-900 h-full clip-corner-both flex flex-col">
@@ -144,12 +144,12 @@ export default function SolutionsPage() {
                     class="w-full h-56 object-cover"
                   />
                 </Show>
-                <div class="flex flex-col md:flex-row gap-10 p-10 flex-1">
+                <div class="flex flex-col md:flex-row gap-6 md:gap-10 p-6 md:p-10 flex-1">
                   <div class="flex-1 flex flex-col">
                     <span class="bg-amber-500/20 text-amber-400 px-3 py-1 text-[10px] font-black uppercase tracking-tighter w-fit mb-6">
                       Most Popular
                     </span>
-                    <h3 class="text-3xl font-bold text-white mb-4">{allAccess.name}</h3>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">{allAccess.name}</h3>
                     <p class="text-zinc-400 mb-8">{allAccess.description}</p>
                     <ul class="space-y-4">
                       <li class="flex items-center gap-3 text-sm text-zinc-300">
@@ -167,11 +167,11 @@ export default function SolutionsPage() {
                     </ul>
                   </div>
                   <div class="w-full md:w-1/3 bg-zinc-950/50 clip-corner p-6 flex flex-col justify-center items-center text-center">
-                    <div class="text-4xl font-bold gradient-text mb-1">
+                    <div class="text-3xl md:text-4xl font-bold gradient-text mb-1">
                       ₱{allAccess.mainPricing.walkinPrice.toLocaleString()}
                     </div>
                     <div class="text-zinc-500 uppercase text-[10px] tracking-widest mb-4">Monthly / Walk-in</div>
-                    <div class="text-2xl font-bold text-zinc-300 mb-1">
+                    <div class="text-xl md:text-2xl font-bold text-zinc-300 mb-1">
                       ₱{allAccess.mainPricing.partnerPrice.toLocaleString()}
                     </div>
                     <div class="text-zinc-500 uppercase text-[10px] tracking-widest mb-6">Monthly / Partner</div>
@@ -202,8 +202,8 @@ export default function SolutionsPage() {
                   class="w-full h-48 object-cover"
                 />
               </Show>
-              <div class="flex flex-col flex-1 p-10">
-                <h3 class="text-2xl font-bold text-white mb-4">{wholeInner.name}</h3>
+              <div class="flex flex-col flex-1 p-6 md:p-10">
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-4">{wholeInner.name}</h3>
                 <p class="text-zinc-400 text-sm mb-8">{wholeInner.description}</p>
 
                 <div class="space-y-4 mb-8">
@@ -242,11 +242,11 @@ export default function SolutionsPage() {
         </section>
 
         {/* Partner Organizations */}
-        <section class="py-24 border-t border-zinc-800/50 relative">
+        <section class="py-12 md:py-24 border-t border-zinc-800/50 relative">
           <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-          <div class="text-center mb-16">
+          <div class="text-center mb-8 md:mb-16">
             <div class="text-xs font-bold tracking-[0.3em] text-zinc-500 mb-4">STRATEGIC ALLIANCES</div>
-            <h2 class="text-3xl font-bold text-white">Partner Organizations</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-white">Partner Organizations</h2>
             <p class="text-zinc-400 text-sm mt-4 max-w-xl mx-auto">
               Members of these organizations enjoy exclusive discounts on all workspace bookings.
             </p>
@@ -273,11 +273,11 @@ export default function SolutionsPage() {
         </section>
 
         {/* Location */}
-        <section class="py-24 border-t border-zinc-800/50 relative">
+        <section class="py-12 md:py-24 border-t border-zinc-800/50 relative">
           <div class="absolute -top-10 -right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-          <div class="text-center mb-12">
+          <div class="text-center mb-8 md:mb-12">
             <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">FIND US</div>
-            <h2 class="text-3xl font-bold text-white">Our Location</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-white">Our Location</h2>
             <p class="text-zinc-400 text-sm mt-4 max-w-xl mx-auto">
               Panganiban Drive, Naga City, Camarines Sur
             </p>

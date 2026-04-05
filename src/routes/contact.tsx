@@ -20,23 +20,23 @@ const ContactPage: Component = () => {
       <Link rel="canonical" href="https://www.kahitsan.com/contact" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
-        <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <main class="pt-20 pb-12 md:pt-32 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
           {/* Two-column split: Info left, Map right */}
-          <section class="mb-24">
+          <section class="mb-12 md:mb-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 clip-corner-both overflow-hidden border border-zinc-800/30">
               {/* Left — Contact info */}
-              <div class="bg-zinc-950 p-10 md:p-14 flex flex-col justify-between">
+              <div class="bg-zinc-950 p-6 md:p-10 lg:p-14 flex flex-col justify-between">
                 <div>
                   <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">CONTACT US</div>
-                  <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+                  <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
                     Let's <span class="gradient-text">talk</span>.
                   </h1>
-                  <p class="text-zinc-400 text-base mb-12 max-w-md">
+                  <p class="text-zinc-400 text-sm md:text-base mb-8 md:mb-12 max-w-md">
                     Have a question, want to book a space, or just want to say hi? Here's how to reach us.
                   </p>
 
                   {/* Contact rows */}
-                  <div class="space-y-8">
+                  <div class="space-y-5 md:space-y-8">
                     {/* Email */}
                     <a href="mailto:info@kahitsan.com" class="flex items-start gap-4 group/row">
                       <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 group-hover/row:bg-amber-500/20 transition-colors">

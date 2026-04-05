@@ -61,22 +61,22 @@ const CommunityPage: Component = () => {
       <Link rel="canonical" href="https://www.kahitsan.com/community" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
-        <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <main class="pt-20 pb-12 md:pt-32 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
           {/* Hero */}
-          <section class="mb-24">
+          <section class="mb-12 md:mb-24">
             <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">COMMUNITY</div>
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 max-w-4xl">
+            <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-6 max-w-4xl">
               Building <span class="gradient-text">together</span> with our community.
             </h1>
-            <p class="text-zinc-400 text-lg max-w-2xl">
+            <p class="text-zinc-400 text-base md:text-lg max-w-2xl">
               We support local organizations, sponsor educational programs, and host events that bring people together. Here's what we've been up to.
             </p>
           </section>
 
           {/* Partnerships — Full-width cards */}
-          <section class="mb-32 relative">
+          <section class="mb-16 md:mb-32 relative">
             <div class="absolute -top-10 -right-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="flex items-end justify-between mb-12">
+            <div class="flex items-end justify-between mb-8 md:mb-12">
               <div>
                 <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">PARTNER ORGANIZATIONS</div>
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Partnerships</h2>
@@ -86,12 +86,12 @@ const CommunityPage: Component = () => {
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               <For each={community.partnerships}>{(partner: Partnership) => (
                 <div class="bg-zinc-900/60 clip-corner-both p-[1px] group hover:bg-amber-500/20 transition-colors duration-500">
                   <div class="bg-zinc-950 clip-corner-both h-full flex flex-col">
                     {/* Logo area */}
-                    <div class="flex items-center justify-center p-4 bg-zinc-900/50 min-h-[160px]">
+                    <div class="flex items-center justify-center p-4 bg-zinc-900/50 min-h-[120px] md:min-h-[160px]">
                       <img
                         src={partner.icon}
                         alt={partner.name}
@@ -99,7 +99,7 @@ const CommunityPage: Component = () => {
                       />
                     </div>
                     {/* Details */}
-                    <div class="flex flex-col flex-1 p-8">
+                    <div class="flex flex-col flex-1 p-5 md:p-8">
                       <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-tighter w-fit mb-4">
                         {partner.discount}
                       </span>
@@ -115,19 +115,19 @@ const CommunityPage: Component = () => {
           </section>
 
           {/* Featured Events — Timeline style */}
-          <section class="mb-32 relative">
+          <section class="mb-16 md:mb-32 relative">
             <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="mb-12">
+            <div class="mb-8 md:mb-12">
               <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">HIGHLIGHTS</div>
               <h2 class="text-3xl md:text-4xl font-bold text-white">Featured Events</h2>
             </div>
 
-            <div class="space-y-8">
+            <div class="space-y-4 md:space-y-8">
               <For each={community.featuredEvents}>{(event: FeaturedEvent) => (
                 <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group hover:border-amber-500/20 transition-all">
                   <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-0">
                     {/* Left — Logo + Date */}
-                    <div class="flex flex-col items-center justify-center p-8 bg-zinc-900/60 border-b md:border-b-0 md:border-r border-zinc-800/30">
+                    <div class="flex flex-col items-center justify-center p-4 md:p-8 bg-zinc-900/60 border-b md:border-b-0 md:border-r border-zinc-800/30">
                       <img
                         src={event.icon}
                         alt={event.organization}
@@ -136,8 +136,8 @@ const CommunityPage: Component = () => {
                       <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">{event.date}</span>
                     </div>
                     {/* Right — Content */}
-                    <div class="p-8 md:p-10">
-                      <h3 class="text-2xl font-bold text-white mb-3">{event.title}</h3>
+                    <div class="p-5 md:p-10">
+                      <h3 class="text-xl md:text-2xl font-bold text-white mb-3">{event.title}</h3>
                       <p class="text-zinc-400 leading-relaxed mb-4">{event.description}</p>
                       <div class="flex flex-wrap gap-4 text-xs text-zinc-500 mb-2">
                         <span class="flex items-center gap-1.5">
@@ -158,19 +158,19 @@ const CommunityPage: Component = () => {
           </section>
 
           {/* Sponsorships — Numbered cards */}
-          <section class="mb-32 relative">
+          <section class="mb-16 md:mb-32 relative">
             <div class="absolute -top-10 right-20 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="mb-12">
+            <div class="mb-8 md:mb-12">
               <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">GIVING BACK</div>
               <h2 class="text-3xl md:text-4xl font-bold text-white">Sponsorships</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               <For each={community.sponsorships}>{(sponsorship: Sponsorship, i) => (
                 <div class="relative group">
                   <div class="absolute inset-0 bg-amber-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div class="relative clip-corner p-[1px] bg-gradient-to-br from-amber-500/20 to-transparent">
-                    <div class="bg-zinc-950 p-10 h-full clip-corner">
+                    <div class="bg-zinc-950 p-6 md:p-10 h-full clip-corner">
                       <span class="text-6xl font-black text-amber-500/10 absolute top-4 right-8">
                         {String(i() + 1).padStart(2, '0')}
                       </span>
@@ -201,12 +201,12 @@ const CommunityPage: Component = () => {
 
           {/* CTA */}
           <section>
-            <div class="clip-corner-both bg-zinc-900/30 p-12 md:p-20 relative border border-amber-500/10 overflow-hidden">
+            <div class="clip-corner-both bg-zinc-900/30 p-6 md:p-12 lg:p-20 relative border border-amber-500/10 overflow-hidden">
               <div class="relative z-10 text-center max-w-2xl mx-auto">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
                   Host Your Event <span class="gradient-text">With Us</span>
                 </h2>
-                <p class="text-zinc-400 text-lg mb-8">
+                <p class="text-zinc-400 text-base md:text-lg mb-6 md:mb-8">
                   Looking to organize a workshop, meetup, or community event? Our spaces are built for gatherings that matter.
                 </p>
                 <Button

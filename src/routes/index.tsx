@@ -85,15 +85,15 @@ const HomePage: Component = () => {
         {/* Hero Section */}
         <section
           id="hero"
-          class="relative flex items-center pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden"
+          class="relative flex items-center pt-20 pb-12 md:pt-32 md:pb-20 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden"
           style={{ 'min-height': '600px' }}
         >
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">
             <div class="md:col-span-7 z-10">
               <div class="inline-block mb-6 px-4 py-1 bg-amber-500/10 border-l-2 border-amber-500 text-amber-400 text-xs font-bold tracking-widest uppercase">
                 Coworking Space in Naga City
               </div>
-              <h1 class="text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[0.95] tracking-tight mb-8">
+              <h1 class="text-[clamp(2rem,7vw,4.5rem)] font-bold leading-[0.95] tracking-tight mb-4 md:mb-8">
                 Productivity starts{' '}
                 <span class="gradient-text italic">
                   {typedText()}
@@ -101,7 +101,7 @@ const HomePage: Component = () => {
                 </span>
                 <noscript><span class="gradient-text italic">KahitSan</span></noscript>
               </h1>
-              <p class="text-zinc-400 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
+              <p class="text-zinc-400 text-base md:text-lg lg:text-xl max-w-xl mb-6 md:mb-10 leading-relaxed">
                 Your comfy study tambayan. A fusion of{' '}
                 <span class="text-white">premium workspaces</span> and{' '}
                 <span class="text-white">vibrant community</span>.{' '}
@@ -168,8 +168,8 @@ const HomePage: Component = () => {
         </section>
 
         {/* Dual Services Section */}
-        <section id="services" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-          <div class="text-center mb-16">
+        <section id="services" class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto">
+          <div class="text-center mb-8 md:mb-16">
             <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
               Our <span class="gradient-text">Services</span>
             </h2>
@@ -179,23 +179,23 @@ const HomePage: Component = () => {
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
             {/* Coworking Spaces */}
-            <A href="/solutions" class="group relative clip-corner-both overflow-hidden min-h-[480px] flex items-end">
+            <A href="/solutions" class="group relative clip-corner-both overflow-hidden min-h-[320px] md:min-h-[480px] flex items-end">
               <img
                 src={innerArea}
                 alt="Coworking Spaces"
                 class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div class="relative p-10 w-full">
-                <div class="flex items-center gap-3 mb-4">
+              <div class="relative p-6 md:p-10 w-full">
+                <div class="flex items-center gap-3 mb-3 md:mb-4">
                   <div class="w-1.5 h-1.5 rounded-full bg-amber-500" />
                   <div class="h-px w-12 bg-amber-500/30" />
                 </div>
-                <div class="flex flex-col gap-3 mb-4">
-                  <img src={coworkingLogo} alt="KahitSan Coworking" class="h-[80px] xl:h-[125px] w-auto self-start" />
-                  <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
+                <div class="flex flex-col gap-2 md:gap-3 mb-3 md:mb-4">
+                  <img src={coworkingLogo} alt="KahitSan Coworking" class="h-[60px] md:h-[80px] xl:h-[125px] w-auto self-start" />
+                  <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
                 </div>
                 <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
                   Premium workspaces with high-speed internet, unlimited coffee, and flexible hourly rates starting at ₱79.
@@ -207,14 +207,14 @@ const HomePage: Component = () => {
             </A>
 
             {/* Future Services */}
-            <div class="group relative clip-corner-both overflow-hidden min-h-[480px] flex items-end card-bg">
+            <div class="group relative clip-corner-both overflow-hidden min-h-[320px] md:min-h-[480px] flex items-end card-bg">
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div class="relative p-10 w-full">
-                <div class="flex items-center gap-3 mb-4">
+              <div class="relative p-6 md:p-10 w-full">
+                <div class="flex items-center gap-3 mb-3 md:mb-4">
                   <div class="w-1.5 h-1.5 rounded-full bg-blue-400" />
                   <div class="h-px w-12 bg-blue-400/30" />
                 </div>
-                <h3 class="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Software & Digital Solutions</h3>
+                <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 tracking-tight">Software & Digital Solutions</h3>
                 <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
                   Custom software development, business registration support, event management, and real estate consultation — coming soon.
                 </p>
@@ -232,9 +232,9 @@ const HomePage: Component = () => {
         </section>
 
         {/* Coworking Spaces Bento Grid */}
-        <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative">
+        <section class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto relative">
           <div class="absolute -top-20 right-0 w-80 h-80 bg-amber-500/5 rounded-full blur-[120px] -z-10" />
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4">
             <div>
               <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 Our <span class="gradient-text">Spaces</span>
@@ -248,35 +248,35 @@ const HomePage: Component = () => {
             </Button>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
             {/* Large Feature — Entrance Area */}
             <div class="md:col-span-2 md:row-span-2 relative clip-corner-both overflow-hidden group">
               <img
                 src={entranceArea}
                 alt="Entrance Area"
-                class="w-full h-full min-h-[400px] object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
+                class="w-full h-full min-h-[280px] md:min-h-[400px] object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5 md:p-8">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱99 / 4hrs</span>
-                <h3 class="text-2xl font-bold mb-2">Entrance Area</h3>
+                <h3 class="text-xl md:text-2xl font-bold mb-2">Entrance Area</h3>
                 <p class="text-zinc-400 text-sm max-w-xs">Prime location near entrance with relaxed vibe and comfortable seating.</p>
               </div>
             </div>
 
             {/* Inner Area */}
-            <div class="clip-corner bg-zinc-900 p-8 flex flex-col justify-between hover:bg-zinc-800/60 transition-colors border border-amber-500/5">
+            <div class="clip-corner bg-zinc-900 p-5 md:p-8 flex flex-col justify-between hover:bg-zinc-800/60 transition-colors border border-amber-500/5">
               <div>
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">From ₱149 / 4hrs</span>
-                <h3 class="text-xl font-bold mb-2">Inner Area</h3>
+                <h3 class="text-lg md:text-xl font-bold mb-2">Inner Area</h3>
                 <p class="text-zinc-400 text-sm">Premium workspace with ergonomic chairs and dedicated WiFi.</p>
               </div>
             </div>
 
             {/* Call Booth */}
-            <div class="clip-corner bg-zinc-900 p-8 flex flex-col justify-between hover:bg-zinc-800/60 transition-colors border border-amber-500/5">
+            <div class="clip-corner bg-zinc-900 p-5 md:p-8 flex flex-col justify-between hover:bg-zinc-800/60 transition-colors border border-amber-500/5">
               <div>
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">From ₱298 / 5hrs</span>
-                <h3 class="text-xl font-bold mb-2">Call Booths</h3>
+                <h3 class="text-lg md:text-xl font-bold mb-2">Call Booths</h3>
                 <p class="text-zinc-400 text-sm">Sound-proof private space for meetings and calls.</p>
               </div>
             </div>
@@ -288,9 +288,9 @@ const HomePage: Component = () => {
                 alt="Whole Inner Area"
                 class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700"
               />
-              <div class="absolute inset-0 bg-black/40 p-8 flex flex-col justify-end">
+              <div class="absolute inset-0 bg-black/40 p-5 md:p-8 flex flex-col justify-end">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱1,800 / 2hrs</span>
-                <h3 class="text-xl font-bold">Whole Inner Area</h3>
+                <h3 class="text-lg md:text-xl font-bold">Whole Inner Area</h3>
                 <p class="text-zinc-400 text-sm">Exclusive space for workshops and large groups.</p>
               </div>
             </div>
@@ -298,10 +298,10 @@ const HomePage: Component = () => {
         </section>
 
         {/* Future Services — Numbered Cards */}
-        <section class="py-24 relative bg-zinc-900/20 border-y border-zinc-800/20 overflow-hidden">
+        <section class="py-12 md:py-24 relative bg-zinc-900/20 border-y border-zinc-800/20 overflow-hidden">
           <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px]" />
           <div class="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
-          <div class="text-center mb-16">
+          <div class="text-center mb-8 md:mb-16">
             <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 italic">
               Future <span class="gradient-text">Services</span>
             </h2>
@@ -311,7 +311,7 @@ const HomePage: Component = () => {
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             <For each={[
               { num: '01', title: 'Business Registration', desc: 'Legal support, company formation, and compliance services to help you launch and scale.' },
               { num: '02', title: 'Event Management', desc: 'End-to-end event coordination for workshops, meetups, and corporate gatherings.' },
@@ -321,12 +321,12 @@ const HomePage: Component = () => {
                 <div class="relative group">
                   <div class="absolute inset-0 bg-amber-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div class="relative clip-corner p-[1px] bg-gradient-to-br from-amber-500/30 to-transparent">
-                    <div class="bg-zinc-950 p-10 h-full clip-corner">
-                      <span class="text-6xl font-black text-amber-500/10 absolute top-4 right-8">{service.num}</span>
-                      <div class="w-12 h-12 bg-amber-500/10 flex items-center justify-center clip-corner mb-8">
+                    <div class="bg-zinc-950 p-6 md:p-10 h-full clip-corner">
+                      <span class="text-5xl md:text-6xl font-black text-amber-500/10 absolute top-4 right-8">{service.num}</span>
+                      <div class="w-10 h-10 md:w-12 md:h-12 bg-amber-500/10 flex items-center justify-center clip-corner mb-4 md:mb-8">
                         <div class="w-2 h-2 rounded-full bg-amber-500" />
                       </div>
-                      <h3 class="text-2xl font-bold mb-4">{service.title}</h3>
+                      <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">{service.title}</h3>
                       <p class="text-zinc-400 leading-relaxed">{service.desc}</p>
                     </div>
                   </div>
@@ -339,10 +339,10 @@ const HomePage: Component = () => {
         </section>
 
         {/* Connect Section */}
-        <section id="connect" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <section id="connect" class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto">
           <div class="clip-corner bg-zinc-900/30 relative border border-amber-500/10 overflow-hidden">
             <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 items-stretch">
-              <div class="p-10 md:p-16 flex flex-col justify-center">
+              <div class="p-6 md:p-10 lg:p-16 flex flex-col justify-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
                   Connect <span class="gradient-text">With Us</span>
                 </h2>

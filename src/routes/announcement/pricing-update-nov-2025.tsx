@@ -14,20 +14,20 @@ const PricingUpdateAnnouncementPage: Component = () => {
       <Link rel="canonical" href="https://www.kahitsan.com/announcement/pricing-update-nov-2025" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
-        <div class="relative max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-16">
+        <div class="relative max-w-4xl mx-auto px-6 md:px-12 pt-20 pb-10 md:pt-32 md:pb-16">
           <div class="absolute inset-0 pointer-events-none overflow-hidden">
             <div class="absolute top-40 right-0 w-64 h-64 opacity-8" style="background:radial-gradient(circle, rgba(201, 169, 97, 0.2) 0%, transparent 70%)" />
           </div>
 
           <div class="relative z-10">
-            <div class="mb-12">
-              <h1 class="text-3xl md:text-4xl font-bold mb-3 text-amber-500">
+            <div class="mb-8 md:mb-12">
+              <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 text-amber-500">
                 Pricing Update - Effective November 1, 2025
               </h1>
               <p class="text-sm text-zinc-500">Announcement Date: October 16, 2025</p>
             </div>
 
-            <div class="bg-zinc-900/50 rounded-lg p-6 md:p-8 mb-12 border border-amber-500/20 backdrop-blur-sm">
+            <div class="bg-zinc-900/50 rounded-lg p-4 md:p-6 lg:p-8 mb-8 md:mb-12 border border-amber-500/20 backdrop-blur-sm">
               <p class="text-zinc-300 mb-4 font-light">Dear Partners and Community,</p>
               <p class="text-zinc-400 mb-4 leading-relaxed font-light">
                 After careful consideration and planning since early October, we are announcing a pricing update for KahitSan—effective November 1, 2025.
@@ -47,8 +47,8 @@ const PricingUpdateAnnouncementPage: Component = () => {
               </p>
             </div>
 
-            <div class="mb-12">
-              <h2 class="text-2xl font-light text-zinc-100 mb-8 pb-4 border-b border-amber-500/30">
+            <div class="mb-8 md:mb-12">
+              <h2 class="text-xl md:text-2xl font-light text-zinc-100 mb-6 md:mb-8 pb-4 border-b border-amber-500/30">
                 New Pricing Structure
               </h2>
 
@@ -137,8 +137,8 @@ const PricingUpdateAnnouncementPage: Component = () => {
               )}</For>
             </div>
 
-            <div class="bg-zinc-900/50 rounded-lg p-6 md:p-8 border border-amber-500/20 backdrop-blur-sm">
-              <h2 class="text-2xl font-light text-zinc-100 mb-8 pb-4 border-b border-amber-500/30">
+            <div class="bg-zinc-900/50 rounded-lg p-4 md:p-6 lg:p-8 border border-amber-500/20 backdrop-blur-sm">
+              <h2 class="text-xl md:text-2xl font-light text-zinc-100 mb-6 md:mb-8 pb-4 border-b border-amber-500/30">
                 Why This Change?
               </h2>
               <div class="space-y-6">

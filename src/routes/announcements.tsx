@@ -33,14 +33,14 @@ const AnnouncementsPage: Component = () => {
       <Link rel="canonical" href="https://www.kahitsan.com/announcements" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
-        <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <main class="pt-20 pb-12 md:pt-32 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
           {/* Hero */}
-          <section class="mb-20">
+          <section class="mb-12 md:mb-20">
             <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">NEWS & UPDATES</div>
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 max-w-4xl">
+            <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-6 max-w-4xl">
               Stay in the <span class="gradient-text">loop</span>.
             </h1>
-            <p class="text-zinc-400 text-lg max-w-2xl">
+            <p class="text-zinc-400 text-base md:text-lg max-w-2xl">
               Important updates, pricing changes, and news from KahitSan. We keep things transparent so you always know what's happening.
             </p>
           </section>

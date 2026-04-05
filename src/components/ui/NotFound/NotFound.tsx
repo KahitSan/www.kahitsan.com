@@ -44,9 +44,9 @@ const NotFound: Component<NotFoundProps> = (props) => {
           <div class="flex items-center justify-center mx-auto mb-6">{local.logo}</div>
         )}
         {local.title !== '' && (
-          <h1 class="text-6xl font-bold text-amber-500 mb-4">{local.title || '404'}</h1>
+          <h1 class="text-4xl md:text-6xl font-bold text-amber-500 mb-4">{local.title || '404'}</h1>
         )}
-        <h3 class="text-2xl font-bold text-white mb-3">
+        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
           {local.heading || 'Page Not Found'}
         </h3>
         <p class="text-sm text-zinc-400 max-w-md mb-8">

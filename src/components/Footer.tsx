@@ -12,7 +12,7 @@ const socialLinks = [
 
 const Footer: Component = () => {
   return (
-    <footer class="border-t border-zinc-800/50 py-8 mt-24">
+    <footer class="border-t border-zinc-800/50 py-6 md:py-8 mt-12 md:mt-24">
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex flex-col items-center gap-6">
           <div class="flex gap-4">
