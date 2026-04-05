@@ -405,6 +405,36 @@
   color: #785a00;
 }
 
+/* --- Bottom nav bar --- */
+.ks-bottom-nav-inactive {
+  color: #71717a;
+}
+
+.ks-bottom-nav-active {
+  color: #fbbf24;
+}
+
+.light .ks-bottom-nav-inactive {
+  color: #64748b;
+}
+
+.light .ks-bottom-nav-active {
+  color: #785a00;
+}
+
+/* Light mode bottom nav bar */
+.light nav.fixed[class*="bottom-0"] {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-top-color: #e0e3e5;
+}
+
+/* Pad page bottom so content isn't hidden behind bottom nav on mobile */
+@media (max-width: 1023px) {
+  .page-transition-container {
+    padding-bottom: 3.5rem;
+  }
+}
+
 /* --- Header --- */
 .light header.fixed {
   background-color: rgba(247, 249, 251, 0.85);
