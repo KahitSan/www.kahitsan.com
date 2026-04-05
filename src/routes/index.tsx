@@ -192,8 +192,8 @@ const HomePage: Component = () => {
                   <div class="w-1.5 h-1.5 rounded-full bg-amber-500" />
                   <div class="h-px w-12 bg-amber-500/30" />
                 </div>
-                <div class="flex items-center gap-4 mb-4">
-                  <img src={coworkingLogo} alt="KahitSan Coworking" class="h-[125px] w-auto" />
+                <div class="flex flex-col gap-3 mb-4">
+                  <img src={coworkingLogo} alt="KahitSan Coworking" class="h-[80px] xl:h-[125px] w-auto self-start" />
                   <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
                 </div>
                 <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
