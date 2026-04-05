@@ -8,7 +8,7 @@ import Bell from 'lucide-solid/icons/bell'
 import Info from 'lucide-solid/icons/info'
 import Menu from 'lucide-solid/icons/menu'
 import X from 'lucide-solid/icons/x'
-import KahitSanLogo from '~/assets/logo.png'
+import KahitSanLogo from '~/assets/kahitsan-coworking-logo-dark.png'
 import Button from '~/components/ui/Button/Button'
 
 interface NavItem {

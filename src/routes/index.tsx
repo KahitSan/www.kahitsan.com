@@ -13,6 +13,7 @@ import innerArea from '~/assets/images/panganiban/inner-area.jpg'
 import callBooth from '~/assets/images/panganiban/call-booth.jpg'
 import wholeInnerArea from '~/assets/images/panganiban/whole-inner-area.jpg'
 import { communityData } from '~/data/community'
+import coworkingLogo from '~/assets/kahitsan-coworking-logo-dark.png'
 
 const HomePage: Component = () => {
   // Collect all unique logos from partnerships and sponsorships
@@ -191,7 +192,10 @@ const HomePage: Component = () => {
                   <div class="w-1.5 h-1.5 rounded-full bg-amber-500" />
                   <div class="h-px w-12 bg-amber-500/30" />
                 </div>
-                <h3 class="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Coworking Spaces</h3>
+                <div class="flex items-center gap-4 mb-4">
+                  <img src={coworkingLogo} alt="KahitSan Coworking" class="h-[125px] w-auto" />
+                  <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
+                </div>
                 <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
                   Premium workspaces with high-speed internet, unlimited coffee, and flexible hourly rates starting at ₱79.
                 </p>

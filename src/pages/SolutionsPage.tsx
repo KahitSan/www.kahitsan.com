@@ -4,7 +4,7 @@ import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import { pricingData, additionalPricingData, formatDuration, PricingType, type PricingOption } from './SpacesPage/Panganiban/pricingData'
 import { communityData } from '~/data/community'
-import logo from '~/assets/logo.png'
+import logo from '~/assets/kahitsan-coworking-logo-dark.png'
 import floorPlan from '~/assets/floor_plan.png'
 
 function HourlyTierCard(props: { option: PricingOption }) {

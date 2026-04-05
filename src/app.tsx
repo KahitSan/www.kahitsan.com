@@ -4,7 +4,7 @@ import { type JSX, Suspense, ErrorBoundary, createEffect, onMount } from "solid-
 import { isServer } from "solid-js/web";
 import { MetaProvider, Title } from "@solidjs/meta";
 import NotFound from "~/components/ui/NotFound/NotFound";
-import Logo from "~/assets/logo.png";
+import Logo from "~/assets/kahitsan-coworking-logo-dark.png";
 import "./assets/css/app.css";
 
 function AppLayout(props: { children: JSX.Element }) {

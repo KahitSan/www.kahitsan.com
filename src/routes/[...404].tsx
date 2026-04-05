@@ -1,6 +1,6 @@
 import { Title, Meta } from "@solidjs/meta";
 import NotFound from '~/components/ui/NotFound/NotFound'
-import Logo from '~/assets/logo.png'
+import Logo from '~/assets/kahitsan-coworking-logo-dark.png'
 
 export default function NotFoundPage() {
   return (
