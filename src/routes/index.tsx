@@ -7,7 +7,7 @@ import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import Facebook from 'lucide-solid/icons/facebook'
 import Instagram from 'lucide-solid/icons/instagram'
-import Music from 'lucide-solid/icons/music'
+import TikTokIcon from '~/components/icons/TikTokIcon'
 import entranceArea from '~/assets/images/panganiban/entrance-area.jpg'
 import innerArea from '~/assets/images/panganiban/inner-area.jpg'
 import callBooth from '~/assets/images/panganiban/call-booth.jpg'
@@ -330,9 +330,9 @@ const HomePage: Component = () => {
 
         {/* Connect Section */}
         <section id="connect" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-          <div class="clip-corner bg-zinc-900/30 p-10 md:p-16 relative border border-amber-500/10 overflow-hidden">
-            <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
+          <div class="clip-corner bg-zinc-900/30 relative border border-amber-500/10 overflow-hidden">
+            <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 items-stretch">
+              <div class="p-10 md:p-16 flex flex-col justify-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
                   Connect <span class="gradient-text">With Us</span>
                 </h2>
@@ -343,7 +343,7 @@ const HomePage: Component = () => {
                   <For each={[
                     { href: 'https://www.facebook.com/KahitSan', icon: Facebook, label: 'Facebook' },
                     { href: 'https://www.instagram.com/kahitsan_com/', icon: Instagram, label: 'Instagram' },
-                    { href: 'https://www.tiktok.com/@kahitsan21', icon: Music, label: 'TikTok' },
+                    { href: 'https://www.tiktok.com/@kahitsan21', icon: TikTokIcon, label: 'TikTok' },
                   ]}>
                     {(social) => (
                       <a
@@ -369,12 +369,13 @@ const HomePage: Component = () => {
                   </div>
                 </div>
               </div>
-              <div class="relative aspect-video clip-corner overflow-hidden border border-amber-500/20">
+              <div class="relative min-h-[280px] md:min-h-0">
                 <iframe
                   src="https://maps.google.com/maps?q=KahitSan+Coworking+Space,+Panganiban+Drive,+Naga+City,+Philippines&t=&z=17&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
-                  style="border:0;min-height:280px;"
+                  class="absolute inset-0"
+                  style="border:0;"
                   allowfullscreen
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
