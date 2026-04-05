@@ -77,7 +77,8 @@ const CommunityPage: Component = () => {
           </section>
 
           {/* Partnerships — Full-width cards */}
-          <section class="mb-32">
+          <section class="mb-32 relative">
+            <div class="absolute -top-10 -right-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
             <div class="flex items-end justify-between mb-12">
               <div>
                 <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">PARTNER ORGANIZATIONS</div>
@@ -117,7 +118,8 @@ const CommunityPage: Component = () => {
           </section>
 
           {/* Featured Events — Timeline style */}
-          <section class="mb-32">
+          <section class="mb-32 relative">
+            <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
             <div class="mb-12">
               <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">HIGHLIGHTS</div>
               <h2 class="text-3xl md:text-4xl font-bold text-white">Featured Events</h2>
@@ -159,7 +161,8 @@ const CommunityPage: Component = () => {
           </section>
 
           {/* Sponsorships — Numbered cards */}
-          <section class="mb-32">
+          <section class="mb-32 relative">
+            <div class="absolute -top-10 right-20 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
             <div class="mb-12">
               <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">GIVING BACK</div>
               <h2 class="text-3xl md:text-4xl font-bold text-white">Sponsorships</h2>

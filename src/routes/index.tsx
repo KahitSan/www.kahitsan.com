@@ -143,27 +143,31 @@ const HomePage: Component = () => {
         </section>
 
         {/* Trusted By */}
-        <section class="py-16 border-y border-zinc-800/30">
-          <div class="text-center mb-10">
-            <span class="text-xs font-bold tracking-[0.3em] text-zinc-500 uppercase">Trusted By</span>
+        <section class="py-16 relative bg-zinc-900/20 border-y border-zinc-800/30 overflow-hidden">
+          <div class="absolute -top-10 -left-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px]" />
+          <div class="relative z-10">
+            <div class="text-center mb-10">
+              <span class="text-xs font-bold tracking-[0.3em] text-zinc-500 uppercase">Trusted By</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-12 md:gap-20 px-6">
+              <For each={allLogos()}>
+                {(org) => (
+                  <img
+                    src={org.icon}
+                    alt={org.name}
+                    class="h-24 w-auto object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+                    title={org.name}
+                  />
+                )}
+              </For>
+            </div>
+            <div class="text-center mt-8">
+              <A href="/community" class="text-amber-400 hover:text-amber-300 text-sm font-bold tracking-widest uppercase transition-colors">
+                View Community &rarr;
+              </A>
+            </div>
           </div>
-          <div class="flex flex-wrap items-center justify-center gap-12 md:gap-20 px-6">
-            <For each={allLogos()}>
-              {(org) => (
-                <img
-                  src={org.icon}
-                  alt={org.name}
-                  class="h-24 w-auto object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
-                  title={org.name}
-                />
-              )}
-            </For>
-          </div>
-          <div class="text-center mt-8">
-            <A href="/community" class="text-amber-400 hover:text-amber-300 text-sm font-bold tracking-widest uppercase transition-colors">
-              View Community &rarr;
-            </A>
-          </div>
+          <div class="absolute -bottom-16 -right-16 text-[10rem] font-black text-white/[0.015] select-none pointer-events-none uppercase">KHTS</div>
         </section>
 
         {/* Dual Services Section */}
@@ -231,7 +235,8 @@ const HomePage: Component = () => {
         </section>
 
         {/* Coworking Spaces Bento Grid */}
-        <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative">
+          <div class="absolute -top-20 right-0 w-80 h-80 bg-amber-500/5 rounded-full blur-[120px] -z-10" />
           <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div>
               <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
@@ -296,7 +301,9 @@ const HomePage: Component = () => {
         </section>
 
         {/* Future Services — Numbered Cards */}
-        <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <section class="py-24 relative bg-zinc-900/20 border-y border-zinc-800/20 overflow-hidden">
+          <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px]" />
+          <div class="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
           <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 italic">
               Future <span class="gradient-text">Services</span>
@@ -330,6 +337,8 @@ const HomePage: Component = () => {
               )}
             </For>
           </div>
+          </div>
+          <div class="absolute -top-16 -left-16 text-[10rem] font-black text-white/[0.015] select-none pointer-events-none uppercase">KHTS</div>
         </section>
 
         {/* Connect Section */}

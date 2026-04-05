@@ -98,7 +98,8 @@ export default function SolutionsPage() {
         </section>
 
         {/* Floor Plan */}
-        <section class="mb-32">
+        <section class="mb-32 relative">
+          <div class="absolute -top-10 -right-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
           <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">PANGANIBAN DRIVE</div>
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Floor Plan</h2>
           <div class="clip-corner-both overflow-hidden bg-zinc-900/60 p-[1px]">
@@ -113,7 +114,8 @@ export default function SolutionsPage() {
         </section>
 
         {/* Hourly Pricing Tiers */}
-        <section class="mb-32">
+        <section class="mb-32 relative">
+          <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <For each={pricingData}>
               {(option) => <HourlyTierCard option={option} />}
@@ -122,7 +124,8 @@ export default function SolutionsPage() {
         </section>
 
         {/* Premium Memberships — Bento Layout */}
-        <section class="mb-32">
+        <section class="mb-32 relative">
+          <div class="absolute -top-10 right-20 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
           <div class="flex items-end justify-between mb-12">
             <div>
               <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">EXCLUSIVE ACCESS</div>
@@ -242,7 +245,8 @@ export default function SolutionsPage() {
         </section>
 
         {/* Partner Organizations */}
-        <section class="py-24 border-t border-zinc-800/50">
+        <section class="py-24 border-t border-zinc-800/50 relative">
+          <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
           <div class="text-center mb-16">
             <div class="text-xs font-bold tracking-[0.3em] text-zinc-500 mb-4">STRATEGIC ALLIANCES</div>
             <h2 class="text-3xl font-bold text-white">Partner Organizations</h2>
@@ -272,7 +276,8 @@ export default function SolutionsPage() {
         </section>
 
         {/* Location */}
-        <section class="py-24 border-t border-zinc-800/50">
+        <section class="py-24 border-t border-zinc-800/50 relative">
+          <div class="absolute -top-10 -right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
           <div class="text-center mb-12">
             <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">FIND US</div>
             <h2 class="text-3xl font-bold text-white">Our Location</h2>

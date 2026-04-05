@@ -37,7 +37,8 @@ const AboutPage: Component = () => {
           </section>
 
           {/* Mission & Vision */}
-          <section class="mb-32">
+          <section class="mb-32 relative">
+            <div class="absolute -top-10 -left-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Mission */}
               <div class="relative group">
@@ -78,7 +79,8 @@ const AboutPage: Component = () => {
           </section>
 
           {/* Our Story */}
-          <section class="mb-32">
+          <section class="mb-32 relative">
+            <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
             <div class="mb-12">
               <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">OUR STORY</div>
               <h2 class="text-3xl md:text-4xl font-bold text-white">From college projects to a corporation.</h2>
@@ -159,7 +161,8 @@ const AboutPage: Component = () => {
           </section>
 
           {/* Looking Ahead */}
-          <section class="mb-32">
+          <section class="mb-32 relative">
+            <div class="absolute -top-10 left-20 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
             <div class="mb-12">
               <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">WHAT'S NEXT</div>
               <h2 class="text-3xl md:text-4xl font-bold text-white">Looking ahead.</h2>
