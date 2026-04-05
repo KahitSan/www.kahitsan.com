@@ -1,6 +1,5 @@
 import { Title, Meta, Link } from "@solidjs/meta";
 import type { Component } from 'solid-js'
-import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import Mail from 'lucide-solid/icons/mail'
@@ -21,8 +20,6 @@ const ContactPage: Component = () => {
       <Link rel="canonical" href="https://www.kahitsan.com/contact" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
-        <Header />
-
         <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
           {/* Two-column split: Info left, Map right */}
           <section class="mb-24">

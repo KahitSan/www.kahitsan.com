@@ -4,6 +4,7 @@ import { type JSX, Suspense, ErrorBoundary, createEffect, onMount } from "solid-
 import { isServer } from "solid-js/web";
 import { MetaProvider, Title } from "@solidjs/meta";
 import NotFound from "~/components/ui/NotFound/NotFound";
+import Header from "~/components/Header";
 import Logo from "~/assets/kahitsan-coworking-logo-dark.png";
 import { ThemeProvider } from "~/lib/theme";
 import "./assets/css/app.css";
@@ -30,6 +31,7 @@ function AppLayout(props: { children: JSX.Element }) {
 
   return (
     <div class="page-transition-container relative min-h-screen">
+      <Header />
       <ErrorBoundary
         fallback={() => (
           <div class="min-h-screen page-bg transition-colors duration-300">

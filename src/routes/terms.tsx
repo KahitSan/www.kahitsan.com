@@ -1,5 +1,4 @@
 import { Title, Meta, Link } from "@solidjs/meta";
-import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 
 export default function TermsPage() {
@@ -11,8 +10,6 @@ export default function TermsPage() {
       <Link rel="canonical" href="https://www.kahitsan.com/terms" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
-        <Header />
-
         <main class="pt-32 pb-24 px-6 md:px-12 max-w-4xl mx-auto">
           <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">LEGAL</div>
           <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">Terms of Service</h1>

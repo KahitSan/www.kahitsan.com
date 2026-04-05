@@ -1,7 +1,6 @@
 import { Title, Meta, Link } from "@solidjs/meta";
 import { For, Show } from 'solid-js'
 import type { Component } from 'solid-js'
-import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 
 const PricingUpdateAnnouncementPage: Component = () => {
@@ -15,8 +14,6 @@ const PricingUpdateAnnouncementPage: Component = () => {
       <Link rel="canonical" href="https://www.kahitsan.com/announcement/pricing-update-nov-2025" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
-        <Header />
-
         <div class="relative max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-16">
           <div class="absolute inset-0 pointer-events-none overflow-hidden">
             <div class="absolute top-40 right-0 w-64 h-64 opacity-8" style="background:radial-gradient(circle, rgba(201, 169, 97, 0.2) 0%, transparent 70%)" />

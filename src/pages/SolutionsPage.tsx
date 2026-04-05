@@ -1,5 +1,4 @@
 import { For, Show } from 'solid-js'
-import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import { pricingData, additionalPricingData, formatDuration, PricingType, type PricingOption } from './SpacesPage/Panganiban/pricingData'
@@ -66,8 +65,6 @@ export default function SolutionsPage() {
 
   return (
     <div class="min-h-screen page-bg transition-colors duration-300">
-      <Header />
-
       <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
         {/* Hero */}
         <section class="mb-20">

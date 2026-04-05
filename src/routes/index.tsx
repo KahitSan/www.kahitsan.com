@@ -2,7 +2,6 @@ import { Title, Meta, Link } from "@solidjs/meta";
 import type { Component } from 'solid-js'
 import { createSignal, onMount, onCleanup, For } from 'solid-js'
 import { A } from '@solidjs/router'
-import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import Facebook from 'lucide-solid/icons/facebook'
@@ -83,8 +82,6 @@ const HomePage: Component = () => {
       <Link rel="canonical" href="https://www.kahitsan.com" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
-        <Header />
-
         {/* Hero Section */}
         <section
           id="hero"
