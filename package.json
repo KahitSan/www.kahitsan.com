@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev --port 3457",
+    "dev": "vinxi dev --port 4200",
     "build": "vinxi build",
     "preview": "vinxi start",
     "lint": "eslint .",
