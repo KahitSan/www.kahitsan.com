@@ -5,3 +5,15 @@
 @import "./design-system.css";
 @import "./transitions.css";
 @import "./button.css";
+
+/* Logo marquee: auto-scroll when content overflows */
+.logo-marquee [data-logos] {
+  animation: marquee 20s linear infinite;
+}
+.logo-marquee:hover [data-logos] {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

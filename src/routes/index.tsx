@@ -146,17 +146,63 @@ const HomePage: Component = () => {
             <div class="text-center mb-10">
               <span class="text-xs font-bold tracking-[0.3em] text-zinc-500 uppercase">Trusted By</span>
             </div>
-            <div class="flex flex-wrap items-center justify-center gap-12 md:gap-20 px-6">
-              <For each={allLogos()}>
-                {(org) => (
-                  <img
-                    src={org.icon}
-                    alt={org.name}
-                    class="h-24 w-auto object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
-                    title={org.name}
-                  />
-                )}
-              </For>
+            <div
+              ref={(el) => {
+                const checkOverflow = () => {
+                  const inner = el.querySelector('[data-logos]') as HTMLElement
+                  if (!inner) return
+                  // Measure only the original logos (first half), not the duplicates
+                  const imgs = inner.querySelectorAll('img:not([aria-hidden])')
+                  const gap = parseFloat(getComputedStyle(inner).columnGap) || 0
+                  let contentWidth = 0
+                  imgs.forEach((img, i) => {
+                    contentWidth += img.getBoundingClientRect().width
+                    if (i < imgs.length - 1) contentWidth += gap
+                  })
+                  const overflows = contentWidth > el.clientWidth
+                  el.classList.toggle('logo-marquee', overflows)
+                  el.classList.toggle('justify-center', !overflows)
+                  // Hide duplicates when not scrolling
+                  inner.querySelectorAll('img[aria-hidden]').forEach((img) => {
+                    ;(img as HTMLElement).style.display = overflows ? '' : 'none'
+                  })
+                }
+                onMount(() => {
+                  // Wait for images to load before measuring
+                  const imgs = el.querySelectorAll('img')
+                  let loaded = 0
+                  const onLoad = () => { if (++loaded >= imgs.length) checkOverflow() }
+                  imgs.forEach((img) => img.complete ? onLoad() : img.addEventListener('load', onLoad, { once: true }))
+                  window.addEventListener('resize', checkOverflow)
+                  onCleanup(() => window.removeEventListener('resize', checkOverflow))
+                })
+              }}
+              class="flex overflow-hidden px-6"
+            >
+              <div data-logos class="flex items-center gap-12 md:gap-20 w-max">
+                <For each={allLogos()}>
+                  {(org) => (
+                    <img
+                      src={org.icon}
+                      alt={org.name}
+                      class="h-24 w-auto shrink-0 object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+                      title={org.name}
+                    />
+                  )}
+                </For>
+                {/* Duplicate for seamless marquee loop */}
+                <For each={allLogos()}>
+                  {(org) => (
+                    <img
+                      src={org.icon}
+                      alt={org.name}
+                      aria-hidden="true"
+                      class="h-24 w-auto shrink-0 object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+                      title={org.name}
+                    />
+                  )}
+                </For>
+              </div>
             </div>
             <div class="text-center mt-8">
               <A href="/community" class="text-amber-400 hover:text-amber-300 text-sm font-bold tracking-widest uppercase transition-colors">
