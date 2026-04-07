@@ -142,7 +142,7 @@ export const additionalPricingData: PricingOption[] = [
     additionalPricing: [
       { duration: { value: 3, unit: 'months' }, partnerPrice: 7497, walkinPrice: 9371, savings: 'Save 11%' },
       {
-        duration: { value: 0, unit: 'hours', customText: 'Renewal - Existing Members' },
+        duration: { value: 0, unit: 'hours', customText: 'Renewal for existing members before Nov 1, 2025' },
         partnerPrice: 1499,
         walkinPrice: 2249,
         partnerLabel: 'Entrance',
