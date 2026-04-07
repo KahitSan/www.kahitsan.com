@@ -6,6 +6,12 @@ export default defineConfig({
   devOverlay: false,
   ssr: process.argv.includes("build"),
   vite: {
+    define: {
+      "import.meta.env.VITE_API_URL": JSON.stringify(
+        process.env.VITE_API_URL || "http://localhost:4001",
+      ),
+      "import.meta.env.VITE_API_KEY": JSON.stringify(process.env.VITE_API_KEY || ""),
+    },
     plugins: [
       devtools({
         autoname: true,
