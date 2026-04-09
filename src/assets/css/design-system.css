@@ -116,6 +116,18 @@
   border-color: rgba(245, 158, 11, 0.4);
 }
 
+.light :has(> img.object-cover) > .absolute.bg-black\/40 {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.light :has(> img.object-cover) > .absolute.bg-black\/50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.light :has(> img.object-cover) > img.opacity-40 {
+  opacity: 0.4;
+}
+
 /* group-hover overrides inside overlays — only on actual hover */
 .light .group:hover :has(> img.object-cover) > .relative .group-hover\:bg-amber-500 {
   background-color: #f59e0b;

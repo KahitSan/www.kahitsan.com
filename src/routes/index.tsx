@@ -332,9 +332,9 @@ const HomePage: Component = () => {
               <img
                 src={wholeInnerArea}
                 alt="Whole Inner Area"
-                class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700"
+                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               />
-              <div class="absolute inset-0 bg-black/40 p-5 md:p-8 flex flex-col justify-end">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-5 md:p-8 flex flex-col justify-end">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱1,800 / 2hrs</span>
                 <h3 class="text-lg md:text-xl font-bold">Whole Inner Area</h3>
                 <p class="text-zinc-400 text-sm">Exclusive space for workshops and large groups.</p>
