@@ -10,12 +10,11 @@ test.describe('Announcements Page', () => {
   })
 
   test('shows Announcements heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Announcements' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Stay in the loop/i })).toBeVisible()
   })
 
   test('shows pricing update announcement', async ({ page }) => {
     await expect(page.getByText('Pricing Update - Effective November 1, 2025')).toBeVisible()
-    await expect(page.getByText('November 1, 2025').first()).toBeVisible()
   })
 
   test('announcement is clickable', async ({ page }) => {

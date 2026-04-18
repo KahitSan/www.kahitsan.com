@@ -16,8 +16,8 @@ test.describe('Home Page', () => {
   })
 
   test('shows Explore Solutions and View Community buttons', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Explore Solutions' })).toBeVisible()
-    await expect(page.getByRole('link', { name: 'View Community' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Explore Solutions', exact: true })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'View Community', exact: true })).toBeVisible()
   })
 
   test('shows services section', async ({ page }) => {
@@ -28,15 +28,15 @@ test.describe('Home Page', () => {
   })
 
   test('shows coworking spaces bento grid', async ({ page }) => {
-    await expect(page.getByText('Entrance Area')).toBeVisible()
-    await expect(page.getByText('Inner Area')).toBeVisible()
-    await expect(page.getByText('Call Booths')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Entrance Area', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Inner Area', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Call Booths', exact: true })).toBeVisible()
   })
 
   test('shows future services cards', async ({ page }) => {
-    await expect(page.getByText('Business Registration')).toBeVisible()
-    await expect(page.getByText('Event Management')).toBeVisible()
-    await expect(page.getByText('Custom Software')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Business Registration', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Event Management', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Custom Software', exact: true })).toBeVisible()
   })
 
   test('shows connect section with social links', async ({ page }) => {
@@ -48,7 +48,7 @@ test.describe('Home Page', () => {
   })
 
   test('shows location status', async ({ page }) => {
-    await expect(page.getByText('Panganiban Drive — Open')).toBeVisible()
+    await expect(page.locator('#hero').getByText('Panganiban Drive — Open')).toBeVisible()
   })
 
   test('shows navigation header', async ({ page }) => {
