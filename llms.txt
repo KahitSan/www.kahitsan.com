@@ -1,0 +1,20 @@
+# KahitSan
+
+> Affordable coworking space in Naga City, Philippines. Built for students, professionals, and anyone who needs a reliable place to focus.
+
+KahitSan is a tech-driven coworking space offering flexible hourly rates, memberships, and private spaces with 24/7 access, high-speed internet, and unlimited coffee.
+
+## Location
+
+- Panganiban Drive, Naga City, Philippines (currently open)
+
+## Pages
+
+- [Home](https://www.kahitsan.com/): Overview of KahitSan coworking space, features, and community
+- [Solutions & Pricing](https://www.kahitsan.com/solutions): Flexible coworking plans — hourly rates, memberships, private spaces
+- [Community](https://www.kahitsan.com/community): Partnerships, sponsorships, and community involvement
+- [Announcements](https://www.kahitsan.com/announcements): Latest news and updates
+- [About](https://www.kahitsan.com/about): Mission, vision, and story behind KahitSan
+- [Contact](https://www.kahitsan.com/contact): Get in touch with KahitSan
+- [Terms of Service](https://www.kahitsan.com/terms): Terms and conditions
+- [Privacy Policy](https://www.kahitsan.com/privacy): Privacy policy

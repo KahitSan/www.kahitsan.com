@@ -1,0 +1,363 @@
+{
+  "_Button-BlunJM-3.js": {
+    "file": "assets/Button-BlunJM-3.js",
+    "name": "Button",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_Footer-B7wuv_ez.js": {
+    "file": "assets/Footer-B7wuv_ez.js",
+    "name": "Footer",
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "_Icon-PMdG-jpX.js": {
+    "file": "assets/Icon-PMdG-jpX.js",
+    "name": "Icon",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_NotFound-CysPS4W7.js": {
+    "file": "assets/NotFound-CysPS4W7.js",
+    "name": "NotFound",
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_Button-BlunJM-3.js"
+    ]
+  },
+  "_community-COocyLWn.js": {
+    "file": "assets/community-COocyLWn.js",
+    "name": "community",
+    "assets": [
+      "assets/Ateneo-igR-QvHb.png",
+      "assets/UAPSA BISCAST Logo-Dhc_imaZ.png",
+      "assets/ACES_LOGO-Qblo5ZdB.png",
+      "assets/UAPGA CAMARINES-TERM LOGO-CjtKkGpx.png"
+    ]
+  },
+  "_components-iN5ziytJ.js": {
+    "file": "assets/components-iN5ziytJ.js",
+    "name": "components",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_index-DfSS9rjF.js": {
+    "file": "assets/index-DfSS9rjF.js",
+    "name": "index",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_kahitsan-coworking-logo-dark-e8ZH1Xw8.js": {
+    "file": "assets/kahitsan-coworking-logo-dark-e8ZH1Xw8.js",
+    "name": "kahitsan-coworking-logo-dark",
+    "assets": [
+      "assets/kahitsan-coworking-logo-dark-DwX9Dwwm.png"
+    ]
+  },
+  "_map-pin-CtnboMwp.js": {
+    "file": "assets/map-pin-CtnboMwp.js",
+    "name": "map-pin",
+    "imports": [
+      "_Icon-PMdG-jpX.js",
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_routing-BBa5UeYj.js": {
+    "file": "assets/routing-BBa5UeYj.js",
+    "name": "routing"
+  },
+  "_users-Bf1tCPLs.js": {
+    "file": "assets/users-Bf1tCPLs.js",
+    "name": "users",
+    "imports": [
+      "_Icon-PMdG-jpX.js",
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_whole-inner-area--FI7VriO.js": {
+    "file": "assets/whole-inner-area--FI7VriO.js",
+    "name": "whole-inner-area",
+    "assets": [
+      "assets/entrance-area-DlJ8ZC0U.jpg",
+      "assets/inner-area-KwJ-83rv.jpg",
+      "assets/whole-inner-area-C8o0b5-2.jpg"
+    ]
+  },
+  "src/assets/floor_plan.png": {
+    "file": "assets/floor_plan-C949cxep.png",
+    "src": "src/assets/floor_plan.png"
+  },
+  "src/assets/images/community/ACES_LOGO.png": {
+    "file": "assets/ACES_LOGO-Qblo5ZdB.png",
+    "src": "src/assets/images/community/ACES_LOGO.png"
+  },
+  "src/assets/images/community/Ateneo.png": {
+    "file": "assets/Ateneo-igR-QvHb.png",
+    "src": "src/assets/images/community/Ateneo.png"
+  },
+  "src/assets/images/community/UAPGA CAMARINES-TERM LOGO.png": {
+    "file": "assets/UAPGA CAMARINES-TERM LOGO-CjtKkGpx.png",
+    "src": "src/assets/images/community/UAPGA CAMARINES-TERM LOGO.png"
+  },
+  "src/assets/images/community/UAPSA BISCAST Logo.png": {
+    "file": "assets/UAPSA BISCAST Logo-Dhc_imaZ.png",
+    "src": "src/assets/images/community/UAPSA BISCAST Logo.png"
+  },
+  "src/assets/images/panganiban/all-access-membership.jpg": {
+    "file": "assets/all-access-membership-BCsCfAKe.jpg",
+    "src": "src/assets/images/panganiban/all-access-membership.jpg"
+  },
+  "src/assets/images/panganiban/call-booth.jpg": {
+    "file": "assets/call-booth-CiM7-ken.jpg",
+    "src": "src/assets/images/panganiban/call-booth.jpg"
+  },
+  "src/assets/images/panganiban/entrance-area.jpg": {
+    "file": "assets/entrance-area-DlJ8ZC0U.jpg",
+    "src": "src/assets/images/panganiban/entrance-area.jpg"
+  },
+  "src/assets/images/panganiban/inner-area.jpg": {
+    "file": "assets/inner-area-KwJ-83rv.jpg",
+    "src": "src/assets/images/panganiban/inner-area.jpg"
+  },
+  "src/assets/images/panganiban/whole-inner-area.jpg": {
+    "file": "assets/whole-inner-area-C8o0b5-2.jpg",
+    "src": "src/assets/images/panganiban/whole-inner-area.jpg"
+  },
+  "src/assets/kahitsan-corp-logo-dark.png": {
+    "file": "assets/kahitsan-corp-logo-dark-Dw6iWM9n.png",
+    "src": "src/assets/kahitsan-corp-logo-dark.png"
+  },
+  "src/assets/kahitsan-corp-logo-light.png": {
+    "file": "assets/kahitsan-corp-logo-light-CUvNAJYy.png",
+    "src": "src/assets/kahitsan-corp-logo-light.png"
+  },
+  "src/assets/kahitsan-coworking-logo-dark.png": {
+    "file": "assets/kahitsan-coworking-logo-dark-DwX9Dwwm.png",
+    "src": "src/assets/kahitsan-coworking-logo-dark.png"
+  },
+  "src/routes/[...404].tsx?pick=default&pick=$css": {
+    "file": "assets/_...404_-3u7MpV3E.js",
+    "name": "_...404_",
+    "src": "src/routes/[...404].tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_NotFound-CysPS4W7.js",
+      "_kahitsan-coworking-logo-dark-e8ZH1Xw8.js",
+      "_Button-BlunJM-3.js"
+    ]
+  },
+  "src/routes/about.tsx?pick=default&pick=$css": {
+    "file": "assets/about-DJhKsnHw.js",
+    "name": "about",
+    "src": "src/routes/about.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-B7wuv_ez.js",
+      "_Button-BlunJM-3.js",
+      "_Icon-PMdG-jpX.js",
+      "_users-Bf1tCPLs.js",
+      "_map-pin-CtnboMwp.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/announcement/pricing-update-nov-2025.tsx?pick=default&pick=$css": {
+    "file": "assets/pricing-update-nov-2025-CMBeeHfk.js",
+    "name": "pricing-update-nov-2025",
+    "src": "src/routes/announcement/pricing-update-nov-2025.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-B7wuv_ez.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/announcements.tsx?pick=default&pick=$css": {
+    "file": "assets/announcements-DkcdsFVb.js",
+    "name": "announcements",
+    "src": "src/routes/announcements.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-B7wuv_ez.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/community.tsx?pick=default&pick=$css": {
+    "file": "assets/community-CfrijrRe.js",
+    "name": "community",
+    "src": "src/routes/community.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-B7wuv_ez.js",
+      "_Icon-PMdG-jpX.js",
+      "_Button-BlunJM-3.js",
+      "_community-COocyLWn.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/contact.tsx?pick=default&pick=$css": {
+    "file": "assets/contact-BxEze4rr.js",
+    "name": "contact",
+    "src": "src/routes/contact.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-B7wuv_ez.js",
+      "_Button-BlunJM-3.js",
+      "_Icon-PMdG-jpX.js",
+      "_map-pin-CtnboMwp.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/index.tsx?pick=default&pick=$css": {
+    "file": "assets/index-B-aXlCGi.js",
+    "name": "index",
+    "src": "src/routes/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-B7wuv_ez.js",
+      "_Button-BlunJM-3.js",
+      "_whole-inner-area--FI7VriO.js",
+      "_community-COocyLWn.js",
+      "_kahitsan-coworking-logo-dark-e8ZH1Xw8.js",
+      "_components-iN5ziytJ.js",
+      "_Icon-PMdG-jpX.js"
+    ]
+  },
+  "src/routes/privacy.tsx?pick=default&pick=$css": {
+    "file": "assets/privacy-PoDLhx64.js",
+    "name": "privacy",
+    "src": "src/routes/privacy.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-B7wuv_ez.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/solutions.tsx?pick=default&pick=$css": {
+    "file": "assets/solutions-DcwamBsG.js",
+    "name": "solutions",
+    "src": "src/routes/solutions.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-DfSS9rjF.js",
+      "_routing-BBa5UeYj.js",
+      "_Footer-B7wuv_ez.js",
+      "_Button-BlunJM-3.js",
+      "_whole-inner-area--FI7VriO.js",
+      "_community-COocyLWn.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ],
+    "assets": [
+      "assets/call-booth-CiM7-ken.jpg",
+      "assets/all-access-membership-BCsCfAKe.jpg",
+      "assets/floor_plan-C949cxep.png"
+    ]
+  },
+  "src/routes/spaces.tsx?pick=default&pick=$css": {
+    "file": "assets/spaces-DIkL_a0F.js",
+    "name": "spaces",
+    "src": "src/routes/spaces.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/spaces/[...rest].tsx?pick=default&pick=$css": {
+    "file": "assets/_...rest_-DIkL_a0F.js",
+    "name": "_...rest_",
+    "src": "src/routes/spaces/[...rest].tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/terms.tsx?pick=default&pick=$css": {
+    "file": "assets/terms-I5ExDlST.js",
+    "name": "terms",
+    "src": "src/routes/terms.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-B7wuv_ez.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "virtual:$vinxi/handler/client": {
+    "file": "assets/client-CVDA3kJZ.js",
+    "name": "client",
+    "src": "virtual:$vinxi/handler/client",
+    "isEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_NotFound-CysPS4W7.js",
+      "_Icon-PMdG-jpX.js",
+      "_users-Bf1tCPLs.js",
+      "_Button-BlunJM-3.js",
+      "_components-iN5ziytJ.js",
+      "_kahitsan-coworking-logo-dark-e8ZH1Xw8.js"
+    ],
+    "dynamicImports": [
+      "src/routes/[...404].tsx?pick=default&pick=$css",
+      "src/routes/about.tsx?pick=default&pick=$css",
+      "src/routes/announcement/pricing-update-nov-2025.tsx?pick=default&pick=$css",
+      "src/routes/announcements.tsx?pick=default&pick=$css",
+      "src/routes/community.tsx?pick=default&pick=$css",
+      "src/routes/contact.tsx?pick=default&pick=$css",
+      "src/routes/index.tsx?pick=default&pick=$css",
+      "src/routes/privacy.tsx?pick=default&pick=$css",
+      "src/routes/solutions.tsx?pick=default&pick=$css",
+      "src/routes/spaces/[...rest].tsx?pick=default&pick=$css",
+      "src/routes/spaces.tsx?pick=default&pick=$css",
+      "src/routes/terms.tsx?pick=default&pick=$css"
+    ],
+    "css": [
+      "assets/client-w2i9Pvcb.css"
+    ],
+    "assets": [
+      "assets/kahitsan-corp-logo-dark-Dw6iWM9n.png",
+      "assets/kahitsan-corp-logo-light-CUvNAJYy.png"
+    ]
+  }
+}

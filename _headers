@@ -1,0 +1,23 @@
+## Security and performance headers for Cloudflare Pages
+
+/*
+  # Security Headers
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-XSS-Protection: 1; mode=block
+
+  # Cache Control for static assets
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files should not be cached aggressively
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Root index
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Service worker (if you add one later)
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
