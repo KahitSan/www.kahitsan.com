@@ -83,55 +83,81 @@ const AboutPage: Component = () => {
               <h2 class="text-3xl md:text-4xl font-bold text-white">From college projects to a corporation.</h2>
             </div>
 
-            <div class="space-y-6">
-              {/* Timeline items */}
-              <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group hover:border-amber-500/20 transition-all">
-                <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-0">
-                  <div class="flex items-center justify-center p-4 md:p-8 bg-zinc-900/60 border-b md:border-b-0 md:border-r border-zinc-800/30">
-                    <div class="flex items-center gap-2">
-                      <Users size={16} class="text-amber-400" />
-                      <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">Origins</span>
+            <div class="relative md:pl-[140px]">
+              {/* Vertical rail line connecting the dots (desktop only) */}
+              <div class="hidden md:block absolute left-[60px] top-8 bottom-8 w-px bg-zinc-800/60" />
+
+              <div class="space-y-6">
+                {/* Timeline items */}
+                <div class="relative group">
+                  <div class="hidden md:flex flex-col items-center absolute -left-[140px] top-8 w-[120px]">
+                    <div class="w-[18px] h-[18px] rounded-full bg-amber-500 border-4 border-zinc-950 z-10 group-hover:scale-125 transition-transform" />
+                    <div class="mt-3 flex flex-col items-center gap-1">
+                      <Users size={14} class="text-amber-400" />
+                      <span class="text-amber-400 text-xs font-black tracking-widest uppercase">Origins</span>
                     </div>
                   </div>
-                  <div class="p-5 md:p-10">
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3">Met in college, built for fun</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                      The founding members of KahitSan met in college. We started working on fun projects together — building things, breaking things, and learning as we went. That shared energy eventually became the foundation for something bigger.
-                    </p>
+                  <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group-hover:border-amber-500/20 transition-all">
+                    <div class="flex md:hidden items-center justify-center p-4 bg-zinc-900/60 border-b border-zinc-800/30">
+                      <div class="flex items-center gap-2">
+                        <Users size={16} class="text-amber-400" />
+                        <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">Origins</span>
+                      </div>
+                    </div>
+                    <div class="p-5 md:p-10">
+                      <h3 class="text-lg md:text-xl font-bold text-white mb-3">Met in college, built for fun</h3>
+                      <p class="text-zinc-400 leading-relaxed">
+                        The founding members of KahitSan met in college. We started working on fun projects together — building things, breaking things, and learning as we went. That shared energy eventually became the foundation for something bigger.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group hover:border-amber-500/20 transition-all">
-                <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-0">
-                  <div class="flex items-center justify-center p-4 md:p-8 bg-zinc-900/60 border-b md:border-b-0 md:border-r border-zinc-800/30">
-                    <div class="flex items-center gap-2">
-                      <MapPin size={16} class="text-amber-400" />
-                      <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">2025</span>
+                <div class="relative group">
+                  <div class="hidden md:flex flex-col items-center absolute -left-[140px] top-8 w-[120px]">
+                    <div class="w-[18px] h-[18px] rounded-full bg-amber-500 border-4 border-zinc-950 z-10 group-hover:scale-125 transition-transform" />
+                    <div class="mt-3 flex flex-col items-center gap-1">
+                      <MapPin size={14} class="text-amber-400" />
+                      <span class="text-amber-400 text-xs font-black tracking-widest uppercase">2025</span>
                     </div>
                   </div>
-                  <div class="p-5 md:p-10">
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3">Testing the market in Naga City</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                      Before any formal business structure, we were already on the ground — testing the coworking space concept in Naga City, Philippines. We wanted to know if there was real demand for an affordable, reliable workspace. There was.
-                    </p>
+                  <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group-hover:border-amber-500/20 transition-all">
+                    <div class="flex md:hidden items-center justify-center p-4 bg-zinc-900/60 border-b border-zinc-800/30">
+                      <div class="flex items-center gap-2">
+                        <MapPin size={16} class="text-amber-400" />
+                        <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">2025</span>
+                      </div>
+                    </div>
+                    <div class="p-5 md:p-10">
+                      <h3 class="text-lg md:text-xl font-bold text-white mb-3">Testing the market in Naga City</h3>
+                      <p class="text-zinc-400 leading-relaxed">
+                        Before any formal business structure, we were already on the ground — testing the coworking space concept in Naga City, Philippines. We wanted to know if there was real demand for an affordable, reliable workspace. There was.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group hover:border-amber-500/20 transition-all">
-                <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-0">
-                  <div class="flex items-center justify-center p-4 md:p-8 bg-zinc-900/60 border-b md:border-b-0 md:border-r border-zinc-800/30">
-                    <div class="flex items-center gap-2">
-                      <Rocket size={16} class="text-amber-400" />
-                      <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">2026</span>
+                <div class="relative group">
+                  <div class="hidden md:flex flex-col items-center absolute -left-[140px] top-8 w-[120px]">
+                    <div class="w-[18px] h-[18px] rounded-full bg-amber-500 border-4 border-zinc-950 z-10 group-hover:scale-125 transition-transform" />
+                    <div class="mt-3 flex flex-col items-center gap-1">
+                      <Rocket size={14} class="text-amber-400" />
+                      <span class="text-amber-400 text-xs font-black tracking-widest uppercase">2026</span>
                     </div>
                   </div>
-                  <div class="p-5 md:p-10">
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3">KahitSan Corporation</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                      In 2026, we formalized the team — registering KahitSan as a corporation in the Philippines and establishing the directors who will continue to manage the company. We're fully bootstrapped, funding everything from our own pockets as we explore different target markets and figure out how to scale on our own terms.
-                    </p>
+                  <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group-hover:border-amber-500/20 transition-all">
+                    <div class="flex md:hidden items-center justify-center p-4 bg-zinc-900/60 border-b border-zinc-800/30">
+                      <div class="flex items-center gap-2">
+                        <Rocket size={16} class="text-amber-400" />
+                        <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">2026</span>
+                      </div>
+                    </div>
+                    <div class="p-5 md:p-10">
+                      <h3 class="text-lg md:text-xl font-bold text-white mb-3">KahitSan Corporation</h3>
+                      <p class="text-zinc-400 leading-relaxed">
+                        In 2026, we formalized the team — registering KahitSan as a corporation in the Philippines and establishing the directors who will continue to manage the company. We're fully bootstrapped, funding everything from our own pockets as we explore different target markets and figure out how to scale on our own terms.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

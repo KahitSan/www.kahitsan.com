@@ -2,15 +2,14 @@ import { test, expect } from './fixtures'
 
 test.describe('Navigation', () => {
   test('all nav links work from home', async ({ page, viewport }) => {
-    const isMobile = (viewport?.width ?? 1280) < 768
+    const isMobile = (viewport?.width ?? 1280) < 1024
 
     const clickNavLink = async (name: string) => {
       if (isMobile) {
-        await page.getByRole('button', { name: 'Toggle menu' }).click()
-        // Mobile nav links are inside a fixed nav overlay
+        // Tablet/mobile use the fixed bottom nav; desktop uses the header nav
         await page.locator('nav.fixed').getByRole('link', { name, exact: true }).click()
       } else {
-        await page.getByRole('link', { name }).first().click()
+        await page.getByRole('link', { name, exact: true }).first().click()
       }
     }
 
@@ -35,15 +34,12 @@ test.describe('Navigation', () => {
     await expect(page).toHaveURL('/')
   })
 
-  test('mobile menu opens and closes', async ({ page, viewport }) => {
-    if ((viewport?.width ?? 1280) >= 768) {
+  test('mobile bottom nav is visible', async ({ page, viewport }) => {
+    if ((viewport?.width ?? 1280) >= 1024) {
       test.skip()
     }
     await page.goto('/')
-    const menuButton = page.getByRole('button', { name: 'Toggle menu' })
-    await menuButton.click()
     await expect(page.locator('nav.fixed')).toBeVisible()
-    await page.keyboard.press('Escape')
   })
 })
 

@@ -10,7 +10,7 @@ test.describe('Community Page', () => {
   })
 
   test('shows Community Engagement heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: /Community Engagement/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Building together with our community/i })).toBeVisible()
   })
 
   test('shows Featured Events section', async ({ page }) => {
