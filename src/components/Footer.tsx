@@ -35,7 +35,18 @@ const Footer: Component = () => {
             <A href="/privacy" class="text-zinc-400 hover:text-white transition-colors">Privacy</A>
           </div>
           <div class="text-center">
-            <p class="text-zinc-400 text-sm">© {new Date().getFullYear()} KahitSan Solutions Corp</p>
+            <p class="text-zinc-400 text-sm">
+              Created with <span class="text-amber-500" aria-label="love">♥</span> by{' '}
+              <a
+                href="https://github.com/llupRisinglll"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-zinc-300 hover:text-white underline-offset-4 hover:underline transition-colors"
+              >
+                Luis Edward M. Miranda
+              </a>{' '}
+              of Kahitsan Corp
+            </p>
           </div>
         </div>
       </div>
