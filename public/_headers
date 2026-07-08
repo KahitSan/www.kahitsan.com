@@ -18,6 +18,13 @@
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
 
+# Bare "/" is a distinct request path from "/index.html" in Cloudflare Pages
+# header matching (it matches on literal path, not resolved file) — without
+# this rule it falls through to the /* immutable rule above and caches the
+# HTML shell (with stale hashed asset references) for a year.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
 # Service worker (if you add one later)
 /sw.js
   Cache-Control: public, max-age=0, must-revalidate
