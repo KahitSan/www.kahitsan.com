@@ -53,7 +53,7 @@ const NotFound: Component<NotFoundProps> = (props) => {
           {local.message || "The page you're looking for doesn't exist or has been moved."}
         </p>
         {!local.hideButton && (
-          <Button intent="primary" size="lg" onClick={handleButtonClick}>
+          <Button intent="primary" onClick={handleButtonClick}>
             {local.buttonText || 'Go Back Home'}
           </Button>
         )}

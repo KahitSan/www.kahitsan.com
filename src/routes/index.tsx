@@ -108,10 +108,10 @@ const HomePage: Component = () => {
                 KahitSan man pinanggalingan mo.
               </p>
               <div class="flex flex-wrap gap-4">
-                <Button as={A} href="/solutions" intent="primary" size="lg" effect="scan-line">
+                <Button as={A} href="/solutions" intent="primary" effect="scan-line">
                   Explore Solutions
                 </Button>
-                <Button as={A} href="/community" intent="secondary" size="lg">
+                <Button as={A} href="/community" intent="secondary">
                   View Community
                 </Button>
               </div>

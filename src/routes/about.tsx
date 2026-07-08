@@ -225,7 +225,6 @@ const AboutPage: Component = () => {
                   rel="noopener noreferrer"
                   intent="primary"
                   variant="clip1"
-                  size="lg"
                   effect="scan-line"
                   icon={() => <Facebook size={18} />}
                   iconPosition="left"
