@@ -7,7 +7,17 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-XSS-Protection: 1; mode=block
 
-  # Cache Control for static assets
+  # No-cache floor for EVERY path. The _redirects /* → /404/index.html fallback
+  # can serve the HTML 404 shell at a missing asset URL during a deploy-window
+  # gap; if that HTML were tagged immutable it pins the wrong body for a year
+  # (the cache-poisoning incident — HTML served at a .css path). Real hashed
+  # assets override this below; everything else revalidates so a misroute heals.
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Content-hashed build assets are the only paths safe to cache immutably —
+# their filename changes on every build, so a stale entry can never shadow a
+# new one. Must be stated explicitly because /* above is no-cache.
+/_build/assets/*
   Cache-Control: public, max-age=31536000, immutable
 
 # HTML files should not be cached aggressively
@@ -19,9 +29,7 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 # Bare "/" is a distinct request path from "/index.html" in Cloudflare Pages
-# header matching (it matches on literal path, not resolved file) — without
-# this rule it falls through to the /* immutable rule above and caches the
-# HTML shell (with stale hashed asset references) for a year.
+# header matching (it matches on literal path, not resolved file).
 /
   Cache-Control: public, max-age=0, must-revalidate
 
