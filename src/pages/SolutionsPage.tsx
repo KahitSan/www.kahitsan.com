@@ -15,6 +15,10 @@ function HourlyTierCard(props: { option: PricingOption }) {
             src={props.option.coverImage}
             alt={props.option.name}
             class="w-full h-48 object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+            width={800}
+            height={500}
+            loading="lazy"
+            decoding="async"
           />
         </Show>
         <div class="flex flex-col flex-1 p-5 md:p-8">
@@ -105,6 +109,10 @@ export default function SolutionsPage() {
                 src={floorPlan}
                 alt="KahitSan Panganiban Drive Floor Plan"
                 class="w-full h-auto"
+                width={600}
+                height={400}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -142,6 +150,10 @@ export default function SolutionsPage() {
                     src={allAccess.coverImage}
                     alt={allAccess.name}
                     class="w-full h-56 object-cover"
+                    width={800}
+                    height={500}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </Show>
                 <div class="flex flex-col md:flex-row gap-6 md:gap-10 p-6 md:p-10 flex-1">
@@ -200,6 +212,10 @@ export default function SolutionsPage() {
                   src={wholeInner.coverImage}
                   alt={wholeInner.name}
                   class="w-full h-48 object-cover"
+                  width={800}
+                  height={500}
+                  loading="lazy"
+                  decoding="async"
                 />
               </Show>
               <div class="flex flex-col flex-1 p-6 md:p-10">
@@ -260,6 +276,10 @@ export default function SolutionsPage() {
                   alt={`${partnership.name} Logo`}
                   class="w-24 h-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"
                   title={`${partnership.name} — ${partnership.discount}`}
+                  width={80}
+                  height={80}
+                  loading="lazy"
+                  decoding="async"
                 />
               )}
             </For>

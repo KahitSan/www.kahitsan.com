@@ -41,7 +41,7 @@ function AppLayout(props: { children: JSX.Element }) {
               heading="Something went wrong"
               message="An unexpected error occurred. Please try refreshing the page."
               buttonText="Go Back Home"
-              logo={<img src={Logo} alt="KahitSan Logo" width={200} height={200} />}
+              logo={<img src={Logo} alt="KahitSan Logo" width={200} height={200} loading="lazy" decoding="async" />}
             />
           </div>
         )}

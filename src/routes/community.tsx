@@ -96,6 +96,10 @@ const CommunityPage: Component = () => {
                         src={partner.icon}
                         alt={partner.name}
                         class="h-36 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                        width={80}
+                        height={80}
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     {/* Details */}
@@ -132,6 +136,10 @@ const CommunityPage: Component = () => {
                         src={event.icon}
                         alt={event.organization}
                         class="h-20 w-auto object-contain mb-4 grayscale group-hover:grayscale-0 transition-all duration-500"
+                        width={80}
+                        height={80}
+                        loading="lazy"
+                        decoding="async"
                       />
                       <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">{event.date}</span>
                     </div>
@@ -179,6 +187,10 @@ const CommunityPage: Component = () => {
                           src={sponsorship.icon}
                           alt={sponsorship.name}
                           class="h-14 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                          width={80}
+                          height={80}
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div class="h-px flex-1 bg-zinc-800/50" />
                       </div>

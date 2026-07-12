@@ -9,7 +9,6 @@ import Instagram from 'lucide-solid/icons/instagram'
 import TikTokIcon from '~/components/icons/TikTokIcon'
 import entranceArea from '~/assets/images/panganiban/entrance-area.jpg'
 import innerArea from '~/assets/images/panganiban/inner-area.jpg'
-import callBooth from '~/assets/images/panganiban/call-booth.jpg'
 import wholeInnerArea from '~/assets/images/panganiban/whole-inner-area.jpg'
 import { communityData } from '~/data/community'
 import coworkingLogo from '~/assets/kahitsan-coworking-logo-dark.png'
@@ -80,8 +79,9 @@ const HomePage: Component = () => {
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com" />
       <Link rel="canonical" href="https://www.kahitsan.com" />
+      <Link rel="preload" as="image" type="image/jpeg" href={entranceArea} />
 
-      <div class="min-h-screen page-bg transition-colors duration-300">
+      <main class="min-h-screen page-bg transition-colors duration-300">
         {/* Hero Section */}
         <section
           id="hero"
@@ -122,6 +122,9 @@ const HomePage: Component = () => {
                   src={entranceArea}
                   alt="KahitSan Coworking Space"
                   class="object-cover w-full h-full opacity-80 hero-ken-burns"
+                  width={1200}
+                  height={800}
+                  decoding="async"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               </div>
@@ -187,6 +190,10 @@ const HomePage: Component = () => {
                       alt={org.name}
                       class="h-24 w-auto shrink-0 object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
                       title={org.name}
+                      width={80}
+                      height={80}
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
                 </For>
@@ -199,6 +206,10 @@ const HomePage: Component = () => {
                       aria-hidden="true"
                       class="h-24 w-auto shrink-0 object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
                       title={org.name}
+                      width={80}
+                      height={80}
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
                 </For>
@@ -232,6 +243,10 @@ const HomePage: Component = () => {
                 src={innerArea}
                 alt="Coworking Spaces"
                 class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
+                width={800}
+                height={600}
+                loading="lazy"
+                decoding="async"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               <div class="relative p-6 md:p-10 w-full">
@@ -240,7 +255,7 @@ const HomePage: Component = () => {
                   <div class="h-px w-12 bg-amber-500/30" />
                 </div>
                 <div class="flex flex-col gap-2 md:gap-3 mb-3 md:mb-4">
-                  <img src={coworkingLogo} alt="KahitSan Coworking" class="h-[60px] md:h-[80px] xl:h-[125px] w-auto self-start" />
+                  <img src={coworkingLogo} alt="KahitSan Coworking" class="h-[60px] md:h-[80px] xl:h-[125px] w-auto self-start" width={200} height={60} loading="lazy" decoding="async" />
                   <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
                 </div>
                 <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
@@ -301,6 +316,10 @@ const HomePage: Component = () => {
                 src={entranceArea}
                 alt="Entrance Area"
                 class="w-full h-full min-h-[280px] md:min-h-[400px] object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
+                width={800}
+                height={600}
+                loading="lazy"
+                decoding="async"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5 md:p-8">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱99 / 4hrs</span>
@@ -333,6 +352,10 @@ const HomePage: Component = () => {
                 src={wholeInnerArea}
                 alt="Whole Inner Area"
                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                width={800}
+                height={600}
+                loading="lazy"
+                decoding="async"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-5 md:p-8 flex flex-col justify-end">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱1,800 / 2hrs</span>
@@ -444,7 +467,7 @@ const HomePage: Component = () => {
         </section>
 
         <Footer />
-      </div>
+      </main>
     </>
   )
 }

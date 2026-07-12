@@ -58,6 +58,10 @@ const Header: Component = () => {
                 src={theme() === 'dark' ? KahitSanLogoDark : KahitSanLogoLight}
                 alt="KahitSan"
                 class="h-[65px] w-auto"
+                width={180}
+                height={50}
+                loading="lazy"
+                decoding="async"
               />
             </A>
 
