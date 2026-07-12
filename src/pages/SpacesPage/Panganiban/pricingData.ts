@@ -1,8 +1,8 @@
-import entranceAreaImage from '~/assets/images/panganiban/entrance-area.jpg'
-import innerAreaImage from '~/assets/images/panganiban/inner-area.jpg'
-import callBoothImage from '~/assets/images/panganiban/call-booth.jpg'
-import allAccessMembershipImage from '~/assets/images/panganiban/all-access-membership.jpg'
-import wholeInnerAreaImage from '~/assets/images/panganiban/whole-inner-area.jpg'
+import entranceAreaImage from '~/assets/images/panganiban/entrance-area.jpg?w=327;373;746'
+import innerAreaImage from '~/assets/images/panganiban/inner-area.jpg?w=327;373;746'
+import callBoothImage from '~/assets/images/panganiban/call-booth.jpg?w=327;373;746'
+import allAccessMembershipImage from '~/assets/images/panganiban/all-access-membership.jpg?w=327;373;746'
+import wholeInnerAreaImage from '~/assets/images/panganiban/whole-inner-area.jpg?w=327;373;746'
 
 export const PricingType = {
   NONE: 'none',
@@ -60,7 +60,7 @@ export const pricingData: PricingOption[] = [
     icon: 'clock',
     color: 'amber',
     durationPrefix: 'for',
-    coverImage: entranceAreaImage,
+    coverImage: entranceAreaImage.img.src,
     mainPricing: { duration: { value: 4, unit: 'hours' }, partnerPrice: 79, walkinPrice: 99 },
     additionalPricing: [
       { duration: { value: 8, unit: 'hours' }, partnerPrice: 94, walkinPrice: 118 },
@@ -79,7 +79,7 @@ export const pricingData: PricingOption[] = [
     icon: 'sparkles',
     color: 'blue',
     durationPrefix: 'for',
-    coverImage: innerAreaImage,
+    coverImage: innerAreaImage.img.src,
     mainPricing: { duration: { value: 4, unit: 'hours' }, partnerPrice: 119, walkinPrice: 149 },
     additionalPricing: [
       { duration: { value: 8, unit: 'hours' }, partnerPrice: 142, walkinPrice: 178 },
@@ -98,7 +98,7 @@ export const pricingData: PricingOption[] = [
     icon: 'users',
     color: 'green',
     durationPrefix: 'for',
-    coverImage: callBoothImage,
+    coverImage: callBoothImage.img.src,
     mainPricing: { duration: { value: 5, unit: 'hours' }, partnerPrice: 238, walkinPrice: 298 },
     additionalPricing: [
       {
@@ -119,7 +119,7 @@ export const additionalPricingData: PricingOption[] = [
     icon: 'sparkles',
     color: 'purple',
     durationPrefix: 'for',
-    coverImage: wholeInnerAreaImage,
+    coverImage: wholeInnerAreaImage.img.src,
     mainPricing: { duration: { value: 2, unit: 'hours' }, partnerPrice: 1440, walkinPrice: 1800 },
     additionalPricing: [
       {
@@ -137,7 +137,7 @@ export const additionalPricingData: PricingOption[] = [
     icon: 'star',
     color: 'amber',
     durationPrefix: 'for',
-    coverImage: allAccessMembershipImage,
+    coverImage: allAccessMembershipImage.img.src,
     mainPricing: { duration: { value: 1, unit: 'months' }, partnerPrice: 2800, walkinPrice: 3500 },
     additionalPricing: [
       { duration: { value: 3, unit: 'months' }, partnerPrice: 7497, walkinPrice: 9371, savings: 'Save 11%' },

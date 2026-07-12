@@ -1,7 +1,7 @@
-import ateneoLogo from '~/assets/images/community/Ateneo.png'
-import uapsaLogo from '~/assets/images/community/UAPSA BISCAST Logo.png'
-import acesLogo from '~/assets/images/community/ACES_LOGO.png'
-import uapgaLogo from '~/assets/images/community/UAPGA CAMARINES-TERM LOGO.png'
+import ateneoLogo from '~/assets/images/community/Ateneo.png?w=96;192'
+import uapsaLogo from '~/assets/images/community/UAPSA BISCAST Logo.png?w=96;192'
+import acesLogo from '~/assets/images/community/ACES_LOGO.png?w=96;192'
+import uapgaLogo from '~/assets/images/community/UAPGA CAMARINES-TERM LOGO.png?w=96;192'
 import type { CommunityData } from '~/types/community'
 
 export const communityData: CommunityData = {
@@ -14,7 +14,7 @@ export const communityData: CommunityData = {
       organization: 'Association of Civil Engineering Students',
       description:
         'Featured at this flagship event showcasing educational programs, innovation competitions, and academic festivities celebrating civil engineering excellence.',
-      icon: acesLogo,
+      icon: acesLogo.img.src,
       socialLinks: {
         facebook:
           'https://www.facebook.com/photo/?fbid=1051016330382402&set=a.457555103061864',
@@ -29,7 +29,7 @@ export const communityData: CommunityData = {
       effectiveDate: 'Effective September 3, 2025',
       description:
         'Official partnership providing exclusive discounts to ACES members for coworking space access.',
-      icon: acesLogo,
+      icon: acesLogo.img.src,
       socialLinks: {
         facebook: 'https://www.facebook.com/biscastaces',
       },
@@ -41,7 +41,7 @@ export const communityData: CommunityData = {
       effectiveDate: 'Effective October 9, 2025',
       description:
         'United Architects of The Philippines Students Auxiliary - Partnership offering special rates for architecture students.',
-      icon: uapsaLogo,
+      icon: uapsaLogo.img.src,
       socialLinks: {
         facebook: 'https://www.facebook.com/uapsabiscast1999',
       },
@@ -53,7 +53,7 @@ export const communityData: CommunityData = {
       effectiveDate: 'Effective October 31, 2025',
       description:
         'The official organization of architecture graduates providing professional networking, community development programs, and leadership training opportunities.',
-      icon: uapgaLogo,
+      icon: uapgaLogo.img.src,
       socialLinks: {
         facebook: 'https://www.facebook.com/uapgacamarines',
       },
@@ -68,7 +68,7 @@ export const communityData: CommunityData = {
       theme: 'Adhika: Thriving with Hope Towards Youthful Potential',
       description:
         'Supporting student orientation through coworking vouchers for ORSEM preparation and activities.',
-      icon: ateneoLogo,
+      icon: ateneoLogo.img.src,
     },
     {
       id: 2,
@@ -78,7 +78,7 @@ export const communityData: CommunityData = {
       theme: 'Atamanon asin Padanayon: Mental Health, We Care',
       description:
         'Supporting mental health awareness by providing coworking vouchers for Mental Health Month activities and programs.',
-      icon: ateneoLogo,
+      icon: ateneoLogo.img.src,
       socialLinks: {
         facebook:
           'https://www.facebook.com/adnu.college.guidance.center/posts/pfbid032Q2uZYextZaQ5Z6goZnRWrMC8bGthiQ4EzP1EiptSxoSCxPNK4ArRiqva66EY1uBl',

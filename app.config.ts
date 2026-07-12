@@ -1,6 +1,7 @@
 import devtools from "solid-devtools/vite";
 import { defineConfig } from "@solidjs/start/config";
 import tailwindcss from "@tailwindcss/vite";
+import { imagetools } from "vite-imagetools";
 
 export default defineConfig({
   devOverlay: false,
@@ -16,6 +17,19 @@ export default defineConfig({
         },
       }),
       tailwindcss(),
+      imagetools({
+        defaultDirectives: (url) => {
+          // Only process local image files, not external URLs
+          if (url.searchParams.has("w")) {
+            return new URLSearchParams({
+              format: "webp;avif",
+              quality: "80",
+              as: "picture",
+            });
+          }
+          return new URLSearchParams();
+        },
+      }),
     ],
     // @kahitsan/ksui ships SolidJS .tsx source (the `solid` export condition),
     // so vite-plugin-solid must compile it rather than esbuild pre-bundling it,

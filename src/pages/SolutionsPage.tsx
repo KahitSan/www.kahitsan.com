@@ -3,8 +3,8 @@ import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import { pricingData, additionalPricingData, formatDuration, PricingType, type PricingOption } from './SpacesPage/Panganiban/pricingData'
 import { communityData } from '~/data/community'
-import logo from '~/assets/kahitsan-coworking-logo-dark.png'
-import floorPlan from '~/assets/floor_plan.png'
+import logo from '~/assets/kahitsan-coworking-logo-dark.png?w=96;192'
+import floorPlan from '~/assets/floor_plan.png?w=327;640;1184'
 
 function HourlyTierCard(props: { option: PricingOption }) {
   return (
@@ -106,7 +106,7 @@ export default function SolutionsPage() {
           <div class="clip-corner-both overflow-hidden bg-zinc-900/60 p-[1px]">
             <div class="clip-corner-both overflow-hidden">
               <img
-                src={floorPlan}
+                src={floorPlan.img.src}
                 alt="KahitSan Panganiban Drive Floor Plan"
                 class="w-full h-auto"
                 width={600}

@@ -7,11 +7,11 @@ import Button from '~/components/ui/Button/Button'
 import Facebook from 'lucide-solid/icons/facebook'
 import Instagram from 'lucide-solid/icons/instagram'
 import TikTokIcon from '~/components/icons/TikTokIcon'
-import entranceArea from '~/assets/images/panganiban/entrance-area.jpg'
-import innerArea from '~/assets/images/panganiban/inner-area.jpg'
-import wholeInnerArea from '~/assets/images/panganiban/whole-inner-area.jpg'
+import entranceArea from '~/assets/images/panganiban/entrance-area.jpg?w=327;580;1200'
+import innerArea from '~/assets/images/panganiban/inner-area.jpg?w=327;580;1152'
+import wholeInnerArea from '~/assets/images/panganiban/whole-inner-area.jpg?w=327;580;1160'
 import { communityData } from '~/data/community'
-import coworkingLogo from '~/assets/kahitsan-coworking-logo-dark.png'
+import coworkingLogo from '~/assets/kahitsan-coworking-logo-dark.png?w=138;184;287'
 
 const HomePage: Component = () => {
   // Collect all unique logos from partnerships and sponsorships
@@ -79,7 +79,7 @@ const HomePage: Component = () => {
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com" />
       <Link rel="canonical" href="https://www.kahitsan.com" />
-      <Link rel="preload" as="image" type="image/jpeg" href={entranceArea} />
+      <Link rel="preload" as="image" type="image/webp" href={entranceArea.img.src} />
 
       <main class="min-h-screen page-bg transition-colors duration-300">
         {/* Hero Section */}
@@ -119,7 +119,7 @@ const HomePage: Component = () => {
             <div class="md:col-span-5 relative">
               <div class="clip-corner-both relative aspect-square overflow-hidden shadow-2xl" ref={(el) => onMount(() => el.classList.add('js-animate'))}>
                 <img
-                  src={entranceArea}
+                  src={entranceArea.img.src}
                   alt="KahitSan Coworking Space"
                   class="object-cover w-full h-full opacity-80 hero-ken-burns"
                   width={1200}
@@ -240,7 +240,7 @@ const HomePage: Component = () => {
             {/* Coworking Spaces */}
             <A href="/solutions" class="group relative clip-corner-both overflow-hidden min-h-[320px] md:min-h-[480px] flex items-end">
               <img
-                src={innerArea}
+                src={innerArea.img.src}
                 alt="Coworking Spaces"
                 class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
                 width={800}
@@ -255,7 +255,7 @@ const HomePage: Component = () => {
                   <div class="h-px w-12 bg-amber-500/30" />
                 </div>
                 <div class="flex flex-col gap-2 md:gap-3 mb-3 md:mb-4">
-                  <img src={coworkingLogo} alt="KahitSan Coworking" class="h-[60px] md:h-[80px] xl:h-[125px] w-auto self-start" width={200} height={60} loading="lazy" decoding="async" />
+                  <img src={coworkingLogo.img.src} alt="KahitSan Coworking" class="h-[60px] md:h-[80px] xl:h-[125px] w-auto self-start" width={200} height={60} loading="lazy" decoding="async" />
                   <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
                 </div>
                 <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
@@ -313,7 +313,7 @@ const HomePage: Component = () => {
             {/* Large Feature — Entrance Area */}
             <div class="md:col-span-2 md:row-span-2 relative clip-corner-both overflow-hidden group">
               <img
-                src={entranceArea}
+                src={entranceArea.img.src}
                 alt="Entrance Area"
                 class="w-full h-full min-h-[280px] md:min-h-[400px] object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
                 width={800}
@@ -349,7 +349,7 @@ const HomePage: Component = () => {
             {/* Whole Inner Area — Wide */}
             <div class="md:col-span-2 clip-corner overflow-hidden relative group min-h-[200px]">
               <img
-                src={wholeInnerArea}
+                src={wholeInnerArea.img.src}
                 alt="Whole Inner Area"
                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
                 width={800}
