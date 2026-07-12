@@ -5,6 +5,7 @@ import { pricingData, additionalPricingData, formatDuration, PricingType, type P
 import { communityData } from '~/data/community'
 import logo from '~/assets/kahitsan-coworking-logo-dark.png?w=96;192'
 import floorPlan from '~/assets/floor_plan.png?w=327;640;1184'
+import { Picture } from '~/components/ui'
 
 function HourlyTierCard(props: { option: PricingOption }) {
   return (
@@ -105,14 +106,15 @@ export default function SolutionsPage() {
           <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-8">Floor Plan</h2>
           <div class="clip-corner-both overflow-hidden bg-zinc-900/60 p-[1px]">
             <div class="clip-corner-both overflow-hidden">
-              <img
-                src={floorPlan.img.src}
+              <Picture
+                src={floorPlan}
                 alt="KahitSan Panganiban Drive Floor Plan"
                 class="w-full h-auto"
                 width={600}
                 height={400}
                 loading="lazy"
                 decoding="async"
+                sizes="(max-width: 768px) 100vw, 1184px"
               />
             </div>
           </div>

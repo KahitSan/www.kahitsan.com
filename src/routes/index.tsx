@@ -12,6 +12,7 @@ import innerArea from '~/assets/images/panganiban/inner-area.jpg?w=327;580;1152'
 import wholeInnerArea from '~/assets/images/panganiban/whole-inner-area.jpg?w=327;580;1160'
 import { communityData } from '~/data/community'
 import coworkingLogo from '~/assets/kahitsan-coworking-logo-dark.png?w=138;184;287'
+import { Picture } from '~/components/ui'
 
 const HomePage: Component = () => {
   // Collect all unique logos from partnerships and sponsorships
@@ -79,7 +80,7 @@ const HomePage: Component = () => {
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com" />
       <Link rel="canonical" href="https://www.kahitsan.com" />
-      <Link rel="preload" as="image" type="image/webp" href={entranceArea.img.src} />
+      <Link rel="preload" as="image" imagesrcset={entranceArea.sources?.avif} imagesizes="(max-width: 768px) 100vw, 465px" type="image/avif" />
 
       <main class="min-h-screen page-bg transition-colors duration-300">
         {/* Hero Section */}
@@ -118,13 +119,14 @@ const HomePage: Component = () => {
             </div>
             <div class="md:col-span-5 relative">
               <div class="clip-corner-both relative aspect-square overflow-hidden shadow-2xl" ref={(el) => onMount(() => el.classList.add('js-animate'))}>
-                <img
-                  src={entranceArea.img.src}
+                <Picture
+                  src={entranceArea}
                   alt="KahitSan Coworking Space"
                   class="object-cover w-full h-full opacity-80 hero-ken-burns"
                   width={1200}
                   height={800}
                   decoding="async"
+                  sizes="(max-width: 768px) 100vw, 465px"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               </div>
@@ -239,14 +241,15 @@ const HomePage: Component = () => {
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
             {/* Coworking Spaces */}
             <A href="/solutions" class="group relative clip-corner-both overflow-hidden min-h-[320px] md:min-h-[480px] flex items-end">
-              <img
-                src={innerArea.img.src}
+              <Picture
+                src={innerArea}
                 alt="Coworking Spaces"
                 class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
                 width={800}
                 height={600}
                 loading="lazy"
                 decoding="async"
+                sizes="(max-width: 768px) 100vw, 576px"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               <div class="relative p-6 md:p-10 w-full">
@@ -255,7 +258,7 @@ const HomePage: Component = () => {
                   <div class="h-px w-12 bg-amber-500/30" />
                 </div>
                 <div class="flex flex-col gap-2 md:gap-3 mb-3 md:mb-4">
-                  <img src={coworkingLogo.img.src} alt="KahitSan Coworking" class="h-[60px] md:h-[80px] xl:h-[125px] w-auto self-start" width={200} height={60} loading="lazy" decoding="async" />
+                  <Picture src={coworkingLogo} alt="KahitSan Coworking" class="h-[60px] md:h-[80px] xl:h-[125px] w-auto self-start" width={200} height={60} loading="lazy" decoding="async" sizes="287px" />
                   <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
                 </div>
                 <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
@@ -312,14 +315,15 @@ const HomePage: Component = () => {
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
             {/* Large Feature — Entrance Area */}
             <div class="md:col-span-2 md:row-span-2 relative clip-corner-both overflow-hidden group">
-              <img
-                src={entranceArea.img.src}
+              <Picture
+                src={entranceArea}
                 alt="Entrance Area"
                 class="w-full h-full min-h-[280px] md:min-h-[400px] object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
                 width={800}
                 height={600}
                 loading="lazy"
                 decoding="async"
+                sizes="(max-width: 768px) 100vw, 580px"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5 md:p-8">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱99 / 4hrs</span>
@@ -348,14 +352,15 @@ const HomePage: Component = () => {
 
             {/* Whole Inner Area — Wide */}
             <div class="md:col-span-2 clip-corner overflow-hidden relative group min-h-[200px]">
-              <img
-                src={wholeInnerArea.img.src}
+              <Picture
+                src={wholeInnerArea}
                 alt="Whole Inner Area"
                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
                 width={800}
                 height={600}
                 loading="lazy"
                 decoding="async"
+                sizes="(max-width: 768px) 100vw, 580px"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-5 md:p-8 flex flex-col justify-end">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱1,800 / 2hrs</span>
