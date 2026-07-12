@@ -80,7 +80,7 @@ const HomePage: Component = () => {
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com" />
       <Link rel="canonical" href="https://www.kahitsan.com" />
-      <Link rel="preload" as="image" imagesrcset={entranceArea.sources?.avif} imagesizes="(max-width: 768px) 100vw, 465px" type="image/avif" />
+      <Link rel="preload" as="image" imagesrcset={entranceArea.sources?.avif} imagesizes="(max-width: 768px) 100vw, 465px" type="image/avif" fetchpriority="high" />
 
       <main class="min-h-screen page-bg transition-colors duration-300">
         {/* Hero Section */}
@@ -127,6 +127,7 @@ const HomePage: Component = () => {
                   height={800}
                   decoding="async"
                   sizes="(max-width: 768px) 100vw, 465px"
+                  fetchpriority="high"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               </div>
@@ -462,6 +463,7 @@ const HomePage: Component = () => {
                   style="border:0;"
                   allowfullscreen
                   loading="lazy"
+                  fetchpriority="low"
                   referrerpolicy="no-referrer-when-downgrade"
                   title="KahitSan Coworking Space location"
                 />

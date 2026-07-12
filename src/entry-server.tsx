@@ -16,8 +16,8 @@ export default createHandler(() => (
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
           <link rel="manifest" href="/favicon/site.webmanifest" />
           {assets}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8DDGHSHDP" />
-          <script innerHTML={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V8DDGHSHDP');`} />
+          <script innerHTML={`(function(){var l=document.querySelectorAll('link[rel="stylesheet"]');for(var i=0;i<l.length;i++){l[i].media='print';l[i].onload=function(){this.media='all'};}})();`} />
+          <script innerHTML={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}function loadGA(){var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-V8DDGHSHDP';s.async=true;document.head.appendChild(s);gtag('js',new Date());gtag('config','G-V8DDGHSHDP');}if('requestIdleCallback' in window){requestIdleCallback(loadGA)}else{setTimeout(loadGA,3000)}`} />
         </head>
         <body>
           <div id="app">{children}</div>

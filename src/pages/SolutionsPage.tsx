@@ -314,6 +314,7 @@ export default function SolutionsPage() {
                 style="border:0;"
                 allowfullscreen
                 loading="lazy"
+                fetchpriority="low"
                 referrerpolicy="no-referrer-when-downgrade"
                 title="KahitSan Coworking Space location"
               />
