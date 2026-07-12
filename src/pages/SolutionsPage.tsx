@@ -114,7 +114,7 @@ export default function SolutionsPage() {
                 height={400}
                 loading="lazy"
                 decoding="async"
-                sizes="(max-width: 768px) 100vw, 1184px"
+                sizes="(max-width: 768px) 327px, 1184px"
               />
             </div>
           </div>

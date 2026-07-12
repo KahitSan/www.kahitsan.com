@@ -24,20 +24,19 @@ interface PictureProps extends Omit<JSX.ImgHTMLAttributes<HTMLImageElement>, 'sr
  * or plain string URLs. Generates <source> tags for modern formats.
  */
 export function Picture(props: PictureProps) {
-  const src = props.src
+  const { src, alt, sizes, loading, decoding, width, height, ...rest } = props as PictureProps & Record<string, any>
 
   // Plain string URL — just render an <img>
   if (typeof src === "string") {
     return (
       <img
         src={src}
-        alt={props.alt}
-        width={props.width}
-        height={props.height}
-        loading={props.loading}
-        decoding={props.decoding}
-        class={props.class}
-        style={props.style}
+        alt={alt}
+        loading={loading}
+        decoding={decoding}
+        width={width}
+        height={height}
+        {...rest}
       />
     )
   }
@@ -49,17 +48,16 @@ export function Picture(props: PictureProps) {
   return (
     <picture>
       {sources && Object.entries(sources).map(([format, srcset]) => (
-        <source srcset={srcset} type={`image/${format}`} sizes={props.sizes} />
+        <source srcset={srcset} type={`image/${format}`} sizes={sizes} />
       ))}
       <img
         src={img.src}
-        alt={props.alt}
-        width={props.width ?? img.w}
-        height={props.height ?? img.h}
-        loading={props.loading}
-        decoding={props.decoding}
-        class={props.class}
-        style={props.style}
+        alt={alt}
+        width={width ?? img.w}
+        height={height ?? img.h}
+        loading={loading}
+        decoding={decoding}
+        {...rest}
       />
     </picture>
   )

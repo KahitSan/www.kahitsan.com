@@ -80,7 +80,7 @@ const HomePage: Component = () => {
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com" />
       <Link rel="canonical" href="https://www.kahitsan.com" />
-      <Link rel="preload" as="image" imagesrcset={entranceArea.sources?.avif} imagesizes="(max-width: 768px) 100vw, 465px" type="image/avif" fetchpriority="high" />
+      <Link rel="preload" as="image" imagesrcset={entranceArea.sources?.avif} imagesizes="(max-width: 768px) 327px, 465px" type="image/avif" fetchpriority="high" />
 
       <main class="min-h-screen page-bg transition-colors duration-300">
         {/* Hero Section */}
@@ -126,7 +126,7 @@ const HomePage: Component = () => {
                   width={1200}
                   height={800}
                   decoding="async"
-                  sizes="(max-width: 768px) 100vw, 465px"
+                  sizes="(max-width: 768px) 327px, 465px"
                   fetchpriority="high"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
@@ -250,7 +250,7 @@ const HomePage: Component = () => {
                 height={600}
                 loading="lazy"
                 decoding="async"
-                sizes="(max-width: 768px) 100vw, 576px"
+                sizes="(max-width: 768px) 327px, 576px"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               <div class="relative p-6 md:p-10 w-full">
@@ -324,7 +324,7 @@ const HomePage: Component = () => {
                 height={600}
                 loading="lazy"
                 decoding="async"
-                sizes="(max-width: 768px) 100vw, 580px"
+                sizes="(max-width: 768px) 327px, 580px"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5 md:p-8">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱99 / 4hrs</span>
@@ -361,7 +361,7 @@ const HomePage: Component = () => {
                 height={600}
                 loading="lazy"
                 decoding="async"
-                sizes="(max-width: 768px) 100vw, 580px"
+                sizes="(max-width: 768px) 327px, 580px"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-5 md:p-8 flex flex-col justify-end">
                 <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱1,800 / 2hrs</span>
