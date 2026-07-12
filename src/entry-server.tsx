@@ -17,6 +17,7 @@ export default createHandler(() => (
           <link rel="manifest" href="/favicon/site.webmanifest" />
           {assets}
           <script innerHTML={`(function(){var l=document.querySelectorAll('link[rel="stylesheet"]');for(var i=0;i<l.length;i++){l[i].media='print';l[i].onload=function(){this.media='all'};}})();`} />
+          <noscript>{/* Fallback: if JS disabled, stylesheets already have media="all" from {assets}, so CSS still applies */}</noscript>
           <script innerHTML={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}function loadGA(){var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-V8DDGHSHDP';s.async=true;document.head.appendChild(s);gtag('js',new Date());gtag('config','G-V8DDGHSHDP');}if('requestIdleCallback' in window){requestIdleCallback(loadGA)}else{setTimeout(loadGA,3000)}`} />
         </head>
         <body>

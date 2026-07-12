@@ -22,7 +22,7 @@ export default defineConfig({
           // Only process local image files, not external URLs
           if (url.searchParams.has("w")) {
             return new URLSearchParams({
-              format: "webp;avif",
+              format: "avif;webp",
               quality: "80",
               as: "picture",
             });

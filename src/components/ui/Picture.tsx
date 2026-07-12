@@ -45,9 +45,18 @@ export function Picture(props: PictureProps) {
   const sources = src.sources
   const img = src.img
 
+  // Ensure AVIF <source> appears first (matches preload), then webp, then others
+  const formatOrder = ["avif", "webp"]
+  const sortedSources = sources
+    ? [
+        ...formatOrder.filter((f) => f in sources).map((f) => [f, sources[f]] as [string, string]),
+        ...Object.entries(sources).filter(([f]) => !formatOrder.includes(f)),
+      ]
+    : []
+
   return (
     <picture>
-      {sources && Object.entries(sources).map(([format, srcset]) => (
+      {sortedSources.map(([format, srcset]) => (
         <source srcset={srcset} type={`image/${format}`} sizes={sizes} />
       ))}
       <img
