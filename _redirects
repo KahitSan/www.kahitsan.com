@@ -1,0 +1,14 @@
+# Cloudflare Pages redirects
+
+# Redirect non-www to www
+https://kahitsan.com/*    https://www.kahitsan.com/:splat    301
+
+# Build assets that don't exist must fail, not fall through to the HTML shell.
+# During a deploy-window gap a missing /_build/assets/* request would otherwise
+# hit the /* fallback below, serve the 404 HTML body at the asset URL, and (under
+# an immutable cache rule) get pinned as cache-poisoned HTML at a .css/.js path.
+# 404 status is not edge-cached by Pages, so this heals on the next request.
+/_build/assets/*    /404/index.html   404
+
+# Fallback: serve 404 page for unknown routes
+/*    /404/index.html   404

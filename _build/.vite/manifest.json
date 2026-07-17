@@ -1,0 +1,388 @@
+{
+  "_Button-YRh2USo0.js": {
+    "file": "assets/Button-YRh2USo0.js",
+    "name": "Button",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_Footer-ClrRTRyC.js": {
+    "file": "assets/Footer-ClrRTRyC.js",
+    "name": "Footer",
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "_Icon-PMdG-jpX.js": {
+    "file": "assets/Icon-PMdG-jpX.js",
+    "name": "Icon",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_Picture-KUisv4Rf.js": {
+    "file": "assets/Picture-KUisv4Rf.js",
+    "name": "Picture",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_community-Uz3TL6RS.js": {
+    "file": "assets/community-Uz3TL6RS.js",
+    "name": "community",
+    "assets": [
+      "assets/Ateneo-CJ2lo88j.webp",
+      "assets/UAPSA BISCAST Logo-DmIyQsZe.webp",
+      "assets/ACES_LOGO-DOCCKNpd.webp",
+      "assets/UAPGA CAMARINES-TERM LOGO-ClHrVO3S.webp"
+    ]
+  },
+  "_components-iN5ziytJ.js": {
+    "file": "assets/components-iN5ziytJ.js",
+    "name": "components",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_index-DfSS9rjF.js": {
+    "file": "assets/index-DfSS9rjF.js",
+    "name": "index",
+    "imports": [
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_kahitsan-coworking-logo-dark-Dgjcbdt_.js": {
+    "file": "assets/kahitsan-coworking-logo-dark-Dgjcbdt_.js",
+    "name": "kahitsan-coworking-logo-dark",
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_Button-YRh2USo0.js"
+    ],
+    "assets": [
+      "assets/kahitsan-coworking-logo-dark-DwX9Dwwm.png"
+    ]
+  },
+  "_map-pin-CtnboMwp.js": {
+    "file": "assets/map-pin-CtnboMwp.js",
+    "name": "map-pin",
+    "imports": [
+      "_Icon-PMdG-jpX.js",
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "_routing-BBa5UeYj.js": {
+    "file": "assets/routing-BBa5UeYj.js",
+    "name": "routing"
+  },
+  "_users-Bf1tCPLs.js": {
+    "file": "assets/users-Bf1tCPLs.js",
+    "name": "users",
+    "imports": [
+      "_Icon-PMdG-jpX.js",
+      "_routing-BBa5UeYj.js"
+    ]
+  },
+  "src/assets/floor_plan.png": {
+    "file": "assets/floor_plan-DeIKlrXr.webp",
+    "src": "src/assets/floor_plan.png"
+  },
+  "src/assets/images/community/ACES_LOGO.png": {
+    "file": "assets/ACES_LOGO-DxRaz0Ow.avif",
+    "src": "src/assets/images/community/ACES_LOGO.png"
+  },
+  "src/assets/images/community/Ateneo.png": {
+    "file": "assets/Ateneo-B2bMlLfa.avif",
+    "src": "src/assets/images/community/Ateneo.png"
+  },
+  "src/assets/images/community/UAPGA%20CAMARINES-TERM%20LOGO.png": {
+    "file": "assets/UAPGA CAMARINES-TERM LOGO-B2Gqd9F7.avif",
+    "src": "src/assets/images/community/UAPGA%20CAMARINES-TERM%20LOGO.png"
+  },
+  "src/assets/images/community/UAPSA%20BISCAST%20Logo.png": {
+    "file": "assets/UAPSA BISCAST Logo-JYbkH0pY.avif",
+    "src": "src/assets/images/community/UAPSA%20BISCAST%20Logo.png"
+  },
+  "src/assets/images/panganiban/all-access-membership.jpg": {
+    "file": "assets/all-access-membership-C2mEswvU.avif",
+    "src": "src/assets/images/panganiban/all-access-membership.jpg"
+  },
+  "src/assets/images/panganiban/call-booth.jpg": {
+    "file": "assets/call-booth-B2cjuT13.webp",
+    "src": "src/assets/images/panganiban/call-booth.jpg"
+  },
+  "src/assets/images/panganiban/entrance-area.jpg": {
+    "file": "assets/entrance-area-BBXX9V9J.webp",
+    "src": "src/assets/images/panganiban/entrance-area.jpg"
+  },
+  "src/assets/images/panganiban/inner-area.jpg": {
+    "file": "assets/inner-area-3fTHyunh.webp",
+    "src": "src/assets/images/panganiban/inner-area.jpg"
+  },
+  "src/assets/images/panganiban/whole-inner-area.jpg": {
+    "file": "assets/whole-inner-area-DrT0BK9x.webp",
+    "src": "src/assets/images/panganiban/whole-inner-area.jpg"
+  },
+  "src/assets/kahitsan-corp-logo-dark.png": {
+    "file": "assets/kahitsan-corp-logo-dark-Dw6iWM9n.png",
+    "src": "src/assets/kahitsan-corp-logo-dark.png"
+  },
+  "src/assets/kahitsan-corp-logo-light.png": {
+    "file": "assets/kahitsan-corp-logo-light-CUvNAJYy.png",
+    "src": "src/assets/kahitsan-corp-logo-light.png"
+  },
+  "src/assets/kahitsan-coworking-logo-dark.png": {
+    "file": "assets/kahitsan-coworking-logo-dark-D9TiR3f6.webp",
+    "src": "src/assets/kahitsan-coworking-logo-dark.png"
+  },
+  "src/routes/[...404].tsx?pick=default&pick=$css": {
+    "file": "assets/_...404_-C4fRVFS9.js",
+    "name": "_...404_",
+    "src": "src/routes/[...404].tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_kahitsan-coworking-logo-dark-Dgjcbdt_.js",
+      "_Button-YRh2USo0.js"
+    ]
+  },
+  "src/routes/about.tsx?pick=default&pick=$css": {
+    "file": "assets/about-DuCWqCS5.js",
+    "name": "about",
+    "src": "src/routes/about.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-ClrRTRyC.js",
+      "_Button-YRh2USo0.js",
+      "_Icon-PMdG-jpX.js",
+      "_users-Bf1tCPLs.js",
+      "_map-pin-CtnboMwp.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/announcement/pricing-update-nov-2025.tsx?pick=default&pick=$css": {
+    "file": "assets/pricing-update-nov-2025-CblwQJKj.js",
+    "name": "pricing-update-nov-2025",
+    "src": "src/routes/announcement/pricing-update-nov-2025.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-ClrRTRyC.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/announcements.tsx?pick=default&pick=$css": {
+    "file": "assets/announcements-BfGZJhka.js",
+    "name": "announcements",
+    "src": "src/routes/announcements.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-ClrRTRyC.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/community.tsx?pick=default&pick=$css": {
+    "file": "assets/community-1gNeVaCl.js",
+    "name": "community",
+    "src": "src/routes/community.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-ClrRTRyC.js",
+      "_Icon-PMdG-jpX.js",
+      "_Button-YRh2USo0.js",
+      "_community-Uz3TL6RS.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/contact.tsx?pick=default&pick=$css": {
+    "file": "assets/contact-3KI3x2Bx.js",
+    "name": "contact",
+    "src": "src/routes/contact.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-ClrRTRyC.js",
+      "_Button-YRh2USo0.js",
+      "_Icon-PMdG-jpX.js",
+      "_map-pin-CtnboMwp.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/index.tsx?pick=default&pick=$css": {
+    "file": "assets/index-DzuV-KcR.js",
+    "name": "index",
+    "src": "src/routes/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-ClrRTRyC.js",
+      "_Button-YRh2USo0.js",
+      "_community-Uz3TL6RS.js",
+      "_Picture-KUisv4Rf.js",
+      "_components-iN5ziytJ.js",
+      "_Icon-PMdG-jpX.js"
+    ],
+    "assets": [
+      "assets/entrance-area-BxtwYYdF.avif",
+      "assets/entrance-area-Ca75xsuj.avif",
+      "assets/entrance-area-Di1RA8Fl.avif",
+      "assets/entrance-area-LXj3n1IS.webp",
+      "assets/entrance-area-Cdluqrb7.webp",
+      "assets/entrance-area-Cv5dVrNa.webp",
+      "assets/inner-area-DlL_TJFJ.avif",
+      "assets/inner-area-6DJAilIS.avif",
+      "assets/inner-area-BKvYTOwI.avif",
+      "assets/inner-area-CPlGKt3z.webp",
+      "assets/inner-area-CzylcOmy.webp",
+      "assets/inner-area-CA6NBId1.webp",
+      "assets/whole-inner-area-qhDLC-AP.avif",
+      "assets/whole-inner-area-CizGKU8H.avif",
+      "assets/whole-inner-area-DzYKeg-3.avif",
+      "assets/whole-inner-area-CH95Rjro.webp",
+      "assets/whole-inner-area-B9lydI3i.webp",
+      "assets/whole-inner-area-rQFTuMD3.webp",
+      "assets/kahitsan-coworking-logo-dark-07vo3f3X.avif",
+      "assets/kahitsan-coworking-logo-dark-DsEDTurU.avif",
+      "assets/kahitsan-coworking-logo-dark-BuJcEj6N.avif",
+      "assets/kahitsan-coworking-logo-dark-CfHlTX0f.webp",
+      "assets/kahitsan-coworking-logo-dark-CbEx5JK0.webp",
+      "assets/kahitsan-coworking-logo-dark-D9TiR3f6.webp"
+    ]
+  },
+  "src/routes/privacy.tsx?pick=default&pick=$css": {
+    "file": "assets/privacy-tQAoEpuZ.js",
+    "name": "privacy",
+    "src": "src/routes/privacy.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-ClrRTRyC.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/solutions.tsx?pick=default&pick=$css": {
+    "file": "assets/solutions-CWyENKy4.js",
+    "name": "solutions",
+    "src": "src/routes/solutions.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-DfSS9rjF.js",
+      "_routing-BBa5UeYj.js",
+      "_Footer-ClrRTRyC.js",
+      "_Button-YRh2USo0.js",
+      "_community-Uz3TL6RS.js",
+      "_Picture-KUisv4Rf.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ],
+    "assets": [
+      "assets/entrance-area-gWY00BY0.webp",
+      "assets/inner-area-3fTHyunh.webp",
+      "assets/call-booth-B2cjuT13.webp",
+      "assets/all-access-membership-Dl2O_7YZ.webp",
+      "assets/whole-inner-area-DrT0BK9x.webp",
+      "assets/floor_plan-DdQF8F6J.avif",
+      "assets/floor_plan-BTCVOo60.avif",
+      "assets/floor_plan-CzkGjFC0.avif",
+      "assets/floor_plan-Dmdlq4VE.webp",
+      "assets/floor_plan-CtStOfSx.webp",
+      "assets/floor_plan-DeIKlrXr.webp"
+    ]
+  },
+  "src/routes/spaces.tsx?pick=default&pick=$css": {
+    "file": "assets/spaces-DIkL_a0F.js",
+    "name": "spaces",
+    "src": "src/routes/spaces.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/spaces/[...rest].tsx?pick=default&pick=$css": {
+    "file": "assets/_...rest_-DIkL_a0F.js",
+    "name": "_...rest_",
+    "src": "src/routes/spaces/[...rest].tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "src/routes/terms.tsx?pick=default&pick=$css": {
+    "file": "assets/terms-COoCfdkF.js",
+    "name": "terms",
+    "src": "src/routes/terms.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_Footer-ClrRTRyC.js",
+      "_Icon-PMdG-jpX.js",
+      "_components-iN5ziytJ.js"
+    ]
+  },
+  "virtual:$vinxi/handler/client": {
+    "file": "assets/client-DwlZBdCh.js",
+    "name": "client",
+    "src": "virtual:$vinxi/handler/client",
+    "isEntry": true,
+    "imports": [
+      "_routing-BBa5UeYj.js",
+      "_index-DfSS9rjF.js",
+      "_kahitsan-coworking-logo-dark-Dgjcbdt_.js",
+      "_Icon-PMdG-jpX.js",
+      "_users-Bf1tCPLs.js",
+      "_Button-YRh2USo0.js",
+      "_components-iN5ziytJ.js"
+    ],
+    "dynamicImports": [
+      "src/routes/[...404].tsx?pick=default&pick=$css",
+      "src/routes/about.tsx?pick=default&pick=$css",
+      "src/routes/announcement/pricing-update-nov-2025.tsx?pick=default&pick=$css",
+      "src/routes/announcements.tsx?pick=default&pick=$css",
+      "src/routes/community.tsx?pick=default&pick=$css",
+      "src/routes/contact.tsx?pick=default&pick=$css",
+      "src/routes/index.tsx?pick=default&pick=$css",
+      "src/routes/privacy.tsx?pick=default&pick=$css",
+      "src/routes/solutions.tsx?pick=default&pick=$css",
+      "src/routes/spaces/[...rest].tsx?pick=default&pick=$css",
+      "src/routes/spaces.tsx?pick=default&pick=$css",
+      "src/routes/terms.tsx?pick=default&pick=$css"
+    ],
+    "css": [
+      "assets/client-aJ0fSnEl.css"
+    ],
+    "assets": [
+      "assets/kahitsan-corp-logo-dark-Dw6iWM9n.png",
+      "assets/kahitsan-corp-logo-light-CUvNAJYy.png"
+    ]
+  }
+}
