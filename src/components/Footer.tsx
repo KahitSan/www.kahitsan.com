@@ -10,6 +10,23 @@ const socialLinks = [
   { href: 'https://www.tiktok.com/@kahitsan21', icon: TikTokIcon, label: 'TikTok' },
 ]
 
+const authorSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Luis Edward Miranda',
+  url: 'https://github.com/llupRisinglll',
+  sameAs: [
+    'https://github.com/llupRisinglll',
+    'https://www.linkedin.com/in/lluprisingll',
+    'https://www.instagram.com/lluprisingll/',
+  ],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Kahitsan Corp',
+    url: 'https://www.kahitsan.com',
+  },
+}
+
 const Footer: Component = () => {
   return (
     <footer class="border-t border-zinc-800/50 py-6 md:py-8 mt-12 md:mt-24">
@@ -43,13 +60,14 @@ const Footer: Component = () => {
                 rel="noopener noreferrer"
                 class="text-zinc-300 hover:text-white underline-offset-4 hover:underline transition-colors"
               >
-                Luis Edward M. Miranda
+                Luis Edward Miranda
               </a>{' '}
               of Kahitsan Corp
             </p>
           </div>
         </div>
       </div>
+      <script type="application/ld+json">{JSON.stringify(authorSchema)}</script>
     </footer>
   )
 }
