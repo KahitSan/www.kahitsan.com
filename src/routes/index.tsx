@@ -9,7 +9,6 @@ import Instagram from 'lucide-solid/icons/instagram'
 import TikTokIcon from '~/components/icons/TikTokIcon'
 import entranceArea from '~/assets/images/panganiban/entrance-area.jpg?w=327;580;1200'
 import innerArea from '~/assets/images/panganiban/inner-area.jpg?w=327;580;1152'
-import wholeInnerArea from '~/assets/images/panganiban/whole-inner-area.jpg?w=327;580;1160'
 import { communityData } from '~/data/community'
 import coworkingLogo from '~/assets/kahitsan-coworking-logo-dark.png?w=138;184;287'
 import { Picture } from '~/components/ui'
@@ -263,7 +262,7 @@ const HomePage: Component = () => {
                   <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
                 </div>
                 <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
-                  Premium workspaces with high-speed internet, unlimited coffee, and flexible hourly rates starting at ₱79.
+                  Premium workspaces with high-speed internet, unlimited coffee, and flexible hourly rates starting at ₱129.
                 </p>
                 <span class="clip-corner border border-amber-500/40 text-amber-400 px-8 py-3 text-xs font-bold uppercase tracking-widest inline-block group-hover:bg-amber-500 group-hover:text-black transition-all">
                   Explore Spaces
@@ -327,7 +326,7 @@ const HomePage: Component = () => {
                 sizes="(max-width: 768px) 327px, 580px"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5 md:p-8">
-                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱99 / 4hrs</span>
+                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱129 / 4hrs</span>
                 <h3 class="text-xl md:text-2xl font-bold mb-2">Entrance Area</h3>
                 <p class="text-zinc-400 text-sm max-w-xs">Prime location near entrance with relaxed vibe and comfortable seating.</p>
               </div>
@@ -336,7 +335,7 @@ const HomePage: Component = () => {
             {/* Inner Area */}
             <div class="clip-corner bg-zinc-900 p-5 md:p-8 flex flex-col justify-between hover:bg-zinc-800/60 transition-colors border border-amber-500/5">
               <div>
-                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">From ₱149 / 4hrs</span>
+                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">From ₱189 / 4hrs</span>
                 <h3 class="text-lg md:text-xl font-bold mb-2">Inner Area</h3>
                 <p class="text-zinc-400 text-sm">Premium workspace with ergonomic chairs and dedicated WiFi.</p>
               </div>
@@ -345,30 +344,12 @@ const HomePage: Component = () => {
             {/* Call Booth */}
             <div class="clip-corner bg-zinc-900 p-5 md:p-8 flex flex-col justify-between hover:bg-zinc-800/60 transition-colors border border-amber-500/5">
               <div>
-                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">From ₱298 / 5hrs</span>
+                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">From ₱379 / 5hrs</span>
                 <h3 class="text-lg md:text-xl font-bold mb-2">Call Booths</h3>
                 <p class="text-zinc-400 text-sm">Sound-proof private space for meetings and calls.</p>
               </div>
             </div>
 
-            {/* Whole Inner Area — Wide */}
-            <div class="md:col-span-2 clip-corner overflow-hidden relative group min-h-[200px]">
-              <Picture
-                src={wholeInnerArea}
-                alt="Whole Inner Area"
-                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-                width={800}
-                height={600}
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 768px) 327px, 580px"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-5 md:p-8 flex flex-col justify-end">
-                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱1,800 / 2hrs</span>
-                <h3 class="text-lg md:text-xl font-bold">Whole Inner Area</h3>
-                <p class="text-zinc-400 text-sm">Exclusive space for workshops and large groups.</p>
-              </div>
-            </div>
           </div>
         </section>
 

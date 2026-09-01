@@ -3,7 +3,6 @@ import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import { pricingData, additionalPricingData, formatDuration, PricingType, type PricingOption } from './SpacesPage/Panganiban/pricingData'
 import { communityData } from '~/data/community'
-import logo from '~/assets/kahitsan-coworking-logo-dark.png?w=96;192'
 import floorPlan from '~/assets/floor_plan.png?w=327;640;1184'
 import { Picture } from '~/components/ui'
 
@@ -34,7 +33,6 @@ function HourlyTierCard(props: { option: PricingOption }) {
               </span>
               <div class="text-right">
                 <span class="gradient-text font-bold">₱{props.option.mainPricing.walkinPrice}</span>
-                <span class="text-zinc-600 text-xs ml-1">/ ₱{props.option.mainPricing.partnerPrice}</span>
               </div>
             </div>
             {/* Additional tiers */}
@@ -48,15 +46,10 @@ function HourlyTierCard(props: { option: PricingOption }) {
                   </span>
                   <div class="text-right">
                     <span class="text-zinc-300 font-bold">₱{tier.walkinPrice}</span>
-                    <span class="text-zinc-600 text-xs ml-1">/ ₱{tier.partnerPrice}</span>
                   </div>
                 </div>
               )}
             </For>
-            {/* Legend */}
-            <div class="text-zinc-600 text-[10px] uppercase tracking-wider text-right pt-1">
-              walk-in / partner
-            </div>
           </div>
         </div>
       </div>
@@ -66,7 +59,6 @@ function HourlyTierCard(props: { option: PricingOption }) {
 
 export default function SolutionsPage() {
   const allAccess = additionalPricingData.find(o => o.id === 'all-access-membership')!
-  const wholeInner = additionalPricingData.find(o => o.id === 'whole-inner-area')!
 
   return (
     <div class="min-h-screen page-bg transition-colors duration-300">
@@ -185,16 +177,12 @@ export default function SolutionsPage() {
                       ₱{allAccess.mainPricing.walkinPrice.toLocaleString()}
                     </div>
                     <div class="text-zinc-500 uppercase text-[10px] tracking-widest mb-4">Monthly / Walk-in</div>
-                    <div class="text-xl md:text-2xl font-bold text-zinc-300 mb-1">
-                      ₱{allAccess.mainPricing.partnerPrice.toLocaleString()}
-                    </div>
-                    <div class="text-zinc-500 uppercase text-[10px] tracking-widest mb-6">Monthly / Partner</div>
                     <For each={allAccess.additionalPricing}>
                       {(tier) => (
                         <div class="w-full p-3 bg-zinc-800/50 clip-corner mb-2 text-center">
                           <div class="text-zinc-400 text-xs font-bold mb-1">{formatDuration(tier.duration)}</div>
                           <div class="text-zinc-300 text-sm">
-                            ₱{tier.partnerPrice.toLocaleString()} / ₱{tier.walkinPrice.toLocaleString()}
+                            ₱{tier.walkinPrice.toLocaleString()}
                           </div>
                           <Show when={tier.savings}>
                             <div class="text-green-400 text-xs mt-1">{tier.savings}</div>
@@ -207,56 +195,8 @@ export default function SolutionsPage() {
               </div>
             </div>
 
-            {/* Whole Inner Area — narrower card */}
-            <div class="md:col-span-2 bg-zinc-900 clip-corner-both flex flex-col">
-              <Show when={wholeInner.coverImage}>
-                <img
-                  src={wholeInner.coverImage}
-                  alt={wholeInner.name}
-                  class="w-full h-48 object-cover"
-                  width={800}
-                  height={500}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </Show>
-              <div class="flex flex-col flex-1 p-6 md:p-10">
-                <h3 class="text-xl md:text-2xl font-bold text-white mb-4">{wholeInner.name}</h3>
-                <p class="text-zinc-400 text-sm mb-8">{wholeInner.description}</p>
-
-                <div class="space-y-4 mb-8">
-                  <div class="p-4 bg-zinc-950 clip-corner flex justify-between items-center">
-                    <span class="text-xs uppercase font-bold text-zinc-500">
-                      {formatDuration(wholeInner.mainPricing.duration)}
-                    </span>
-                    <div class="text-right">
-                      <span class="gradient-text font-bold">₱{wholeInner.mainPricing.walkinPrice.toLocaleString()}</span>
-                      <span class="text-zinc-500 text-xs ml-2">walk-in</span>
-                    </div>
-                  </div>
-                  <div class="p-4 bg-zinc-950 clip-corner flex justify-between items-center">
-                    <span class="text-xs uppercase font-bold text-zinc-500">Partner Rate</span>
-                    <span class="text-zinc-300 font-bold">₱{wholeInner.mainPricing.partnerPrice.toLocaleString()}</span>
-                  </div>
-                  <For each={wholeInner.additionalPricing}>
-                    {(tier) => (
-                      <div class="p-4 bg-zinc-950 clip-corner flex justify-between items-center">
-                        <span class="text-xs uppercase font-bold text-zinc-500">+{formatDuration(tier.duration)} ext.</span>
-                        <span class="text-zinc-400 text-sm">
-                          ₱{tier.partnerPrice.toLocaleString()} / ₱{tier.walkinPrice.toLocaleString()}
-                        </span>
-                      </div>
-                    )}
-                  </For>
-                </div>
-
-              </div>
-            </div>
           </div>
 
-          <p class="text-zinc-500 text-xs mt-6 italic">
-            *Pantry access may be limited when the Whole Inner Area is reserved for events.
-          </p>
         </section>
 
         {/* Partner Organizations */}
