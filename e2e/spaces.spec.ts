@@ -22,7 +22,6 @@ test.describe('Solutions Page', () => {
   test('shows advanced memberships section', async ({ page }) => {
     await expect(page.getByRole('heading', { name: /Advanced Memberships/i })).toBeVisible()
     await expect(page.getByText('All-Access Membership').first()).toBeVisible()
-    await expect(page.getByText('Whole Inner Area').first()).toBeVisible()
   })
 
   test('shows Partner Organizations section', async ({ page }) => {

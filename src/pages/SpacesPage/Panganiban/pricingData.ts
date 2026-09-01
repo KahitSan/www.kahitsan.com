@@ -2,7 +2,6 @@ import entranceAreaImage from '~/assets/images/panganiban/entrance-area.jpg?w=32
 import innerAreaImage from '~/assets/images/panganiban/inner-area.jpg?w=327;373;746'
 import callBoothImage from '~/assets/images/panganiban/call-booth.jpg?w=327;373;746'
 import allAccessMembershipImage from '~/assets/images/panganiban/all-access-membership.jpg?w=327;373;746'
-import wholeInnerAreaImage from '~/assets/images/panganiban/whole-inner-area.jpg?w=327;373;746'
 
 export const PricingType = {
   NONE: 'none',
@@ -61,13 +60,13 @@ export const pricingData: PricingOption[] = [
     color: 'amber',
     durationPrefix: 'for',
     coverImage: entranceAreaImage.img.src,
-    mainPricing: { duration: { value: 4, unit: 'hours' }, partnerPrice: 79, walkinPrice: 99 },
+    mainPricing: { duration: { value: 4, unit: 'hours' }, partnerPrice: 129, walkinPrice: 129 },
     additionalPricing: [
-      { duration: { value: 8, unit: 'hours' }, partnerPrice: 94, walkinPrice: 118 },
+      { duration: { value: 8, unit: 'hours' }, partnerPrice: 149, walkinPrice: 149 },
       {
         duration: { value: 1, unit: 'hours' },
-        partnerPrice: 24,
-        walkinPrice: 30,
+        partnerPrice: 39,
+        walkinPrice: 39,
         pricingType: PricingType.EXTENSION,
       },
     ],
@@ -80,13 +79,13 @@ export const pricingData: PricingOption[] = [
     color: 'blue',
     durationPrefix: 'for',
     coverImage: innerAreaImage.img.src,
-    mainPricing: { duration: { value: 4, unit: 'hours' }, partnerPrice: 119, walkinPrice: 149 },
+    mainPricing: { duration: { value: 4, unit: 'hours' }, partnerPrice: 189, walkinPrice: 189 },
     additionalPricing: [
-      { duration: { value: 8, unit: 'hours' }, partnerPrice: 142, walkinPrice: 178 },
+      { duration: { value: 8, unit: 'hours' }, partnerPrice: 229, walkinPrice: 229 },
       {
         duration: { value: 1, unit: 'hours' },
-        partnerPrice: 24,
-        walkinPrice: 30,
+        partnerPrice: 39,
+        walkinPrice: 39,
         pricingType: PricingType.EXTENSION,
       },
     ],
@@ -99,12 +98,12 @@ export const pricingData: PricingOption[] = [
     color: 'green',
     durationPrefix: 'for',
     coverImage: callBoothImage.img.src,
-    mainPricing: { duration: { value: 5, unit: 'hours' }, partnerPrice: 238, walkinPrice: 298 },
+    mainPricing: { duration: { value: 5, unit: 'hours' }, partnerPrice: 379, walkinPrice: 379 },
     additionalPricing: [
       {
         duration: { value: 1, unit: 'hours' },
-        partnerPrice: 57,
-        walkinPrice: 71,
+        partnerPrice: 89,
+        walkinPrice: 89,
         pricingType: PricingType.EXTENSION,
       },
     ],
@@ -113,24 +112,6 @@ export const pricingData: PricingOption[] = [
 
 export const additionalPricingData: PricingOption[] = [
   {
-    id: 'whole-inner-area',
-    name: 'Whole Inner Area',
-    description: 'Exclusive space for workshops and large groups (5-day advance booking)',
-    icon: 'sparkles',
-    color: 'purple',
-    durationPrefix: 'for',
-    coverImage: wholeInnerAreaImage.img.src,
-    mainPricing: { duration: { value: 2, unit: 'hours' }, partnerPrice: 1440, walkinPrice: 1800 },
-    additionalPricing: [
-      {
-        duration: { value: 1, unit: 'hours' },
-        partnerPrice: 720,
-        walkinPrice: 900,
-        pricingType: PricingType.EXTENSION,
-      },
-    ],
-  },
-  {
     id: 'all-access-membership',
     name: 'All-Access Membership',
     description: '24/7 biometric access - enter anytime without front desk hassle',
@@ -138,17 +119,9 @@ export const additionalPricingData: PricingOption[] = [
     color: 'amber',
     durationPrefix: 'for',
     coverImage: allAccessMembershipImage.img.src,
-    mainPricing: { duration: { value: 1, unit: 'months' }, partnerPrice: 2800, walkinPrice: 3500 },
+    mainPricing: { duration: { value: 1, unit: 'months' }, partnerPrice: 3999, walkinPrice: 3999 },
     additionalPricing: [
-      { duration: { value: 3, unit: 'months' }, partnerPrice: 7497, walkinPrice: 9371, savings: 'Save 11%' },
-      {
-        duration: { value: 0, unit: 'hours', customText: 'Renewal for existing members before Nov 1, 2025' },
-        partnerPrice: 1499,
-        walkinPrice: 2249,
-        partnerLabel: 'Entrance',
-        walkinLabel: 'All-Access',
-        pricingType: PricingType.LEGACY,
-      },
+      { duration: { value: 3, unit: 'months', customText: '3-Month Bundle' }, partnerPrice: 10499, walkinPrice: 10499 },
     ],
   },
 ]
