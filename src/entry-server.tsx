@@ -1,6 +1,7 @@
 import { createHandler, StartServer } from '@solidjs/start/server'
+import { transformSync } from 'esbuild'
 
-const googleAnalyticsBootstrap = `(function(){
+const googleAnalyticsBootstrapSource = `(function(){
   if (window.__kahitSanAnalyticsBootstrap) return;
   window.__kahitSanAnalyticsBootstrap = true;
 
@@ -61,6 +62,11 @@ const googleAnalyticsBootstrap = `(function(){
   }
   var fallbackTimer = setTimeout(loadGoogleAnalytics, 10000);
 })();`
+
+const googleAnalyticsBootstrap = transformSync(googleAnalyticsBootstrapSource, {
+  minify: true,
+  target: 'es2017',
+}).code.trim()
 
 export default createHandler(() => (
   <StartServer
