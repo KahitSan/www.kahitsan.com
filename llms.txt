@@ -1,0 +1,19 @@
+# KahitSan Solutions Corp.
+
+KahitSan Solutions Corp. is a Naga City company behind two current offerings:
+
+- KahitSan Coworking: a physical coworking space on Panganiban Drive, Naga City, with walk-in workspace rates and an All-Access Membership.
+- Hilinga: a business software product with its own website at https://www.hilinga.com.
+
+## Main pages
+
+- Company overview: https://www.kahitsan.com/
+- KahitSan Coworking and current pricing: https://www.kahitsan.com/coworking
+- Coworking community activity: https://www.kahitsan.com/community
+- Company news: https://www.kahitsan.com/announcements
+- About KahitSan Solutions Corp.: https://www.kahitsan.com/about
+- Contact: https://www.kahitsan.com/contact
+- Privacy: https://www.kahitsan.com/privacy
+- Terms: https://www.kahitsan.com/terms
+
+Old `/solutions` and `/spaces` URLs redirect to `/coworking`.
