@@ -30,21 +30,47 @@ function AppLayout(props: RouteSectionProps) {
       <script type="application/ld+json">
         {JSON.stringify({
           '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'KahitSan Solutions Corp.',
-          url: 'https://www.kahitsan.com',
-          sameAs: [
-            'https://www.facebook.com/KahitSan',
-            'https://www.instagram.com/kahitsan_com/',
-            'https://www.tiktok.com/@kahitsan21',
-          ],
-          brand: [
+          '@graph': [
             {
-              '@type': 'Brand',
-              name: 'KahitSan Coworking',
-              url: 'https://www.kahitsan.com/coworking',
+              '@type': 'Organization',
+              '@id': 'https://www.kahitsan.com/#organization',
+              name: 'KahitSan Solutions Corp.',
+              url: 'https://www.kahitsan.com',
+              sameAs: [
+                'https://www.facebook.com/KahitSan',
+                'https://www.instagram.com/kahitsan_com/',
+                'https://www.tiktok.com/@kahitsan21',
+              ],
+              brand: [
+                {
+                  '@type': 'Brand',
+                  name: 'KahitSan Coworking',
+                  url: 'https://www.kahitsan.com/coworking',
+                },
+                { '@type': 'Brand', name: 'Hilinga', url: 'https://www.hilinga.com' },
+              ],
             },
-            { '@type': 'Brand', name: 'Hilinga', url: 'https://www.hilinga.com' },
+            {
+              '@type': 'Person',
+              '@id': 'https://www.kahitsan.com/about#luis-edward-m-miranda',
+              name: 'Luis Edward M. Miranda',
+              url: 'https://www.kahitsan.com/about#website-credit',
+              sameAs: [
+                'https://github.com/llupRisinglll',
+                'https://www.linkedin.com/in/lluprisingll',
+                'https://www.instagram.com/lluprisingll/',
+              ],
+            },
+            {
+              '@type': 'WebSite',
+              '@id': 'https://www.kahitsan.com/#website',
+              name: 'KahitSan Solutions Corp.',
+              url: 'https://www.kahitsan.com',
+              publisher: { '@id': 'https://www.kahitsan.com/#organization' },
+              creator: {
+                '@id': 'https://www.kahitsan.com/about#luis-edward-m-miranda',
+              },
+            },
           ],
         })}
       </script>

@@ -197,11 +197,15 @@ const RecordDetails = (props: { record: CommunityRecord }) => {
 const CommunityRecordCard = (props: { record: CommunityRecord }) => (
   <article class="group flex min-w-0 flex-col border-t border-zinc-800/60 py-5 md:py-7">
     <div class="flex items-start gap-4">
-      <RecordLogo
-        src={props.record.icon}
-        alt={getRecordLogoAlt(props.record)}
-        logoKey={props.record.logoKey}
-      />
+      <Show when={props.record.icon} keyed>
+        {(icon) => (
+          <RecordLogo
+            src={icon}
+            alt={getRecordLogoAlt(props.record)}
+            logoKey={props.record.logoKey}
+          />
+        )}
+      </Show>
       <div class="min-w-0 flex-1 space-y-2">
         <RecordDate record={props.record} />
         <h3 class="ks-record-title">{getRecordTitle(props.record)}</h3>

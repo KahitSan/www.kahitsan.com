@@ -378,18 +378,22 @@ export default function SolutionsPage() {
               <For each={communityData.partnerships}>
                 {(partnership) => (
                   <div class="group min-h-40 bg-zinc-950/90 p-5 flex flex-col items-center justify-center text-center">
-                    <Picture
-                      src={partnership.icon}
-                      alt={`${partnership.name} logo`}
-                      class="ks-logo-media w-20 h-20 object-contain mb-4"
-                      title={`${partnership.name}: ${getPartnershipDiscountLabel(
-                        partnership.status,
-                        partnership.discount
-                      )}`}
-                      sizes="80px"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    <Show when={partnership.icon} keyed>
+                      {(icon) => (
+                        <Picture
+                          src={icon}
+                          alt={`${partnership.name} logo`}
+                          class="ks-logo-media w-20 h-20 object-contain mb-4"
+                          title={`${partnership.name}: ${getPartnershipDiscountLabel(
+                            partnership.status,
+                            partnership.discount
+                          )}`}
+                          sizes="80px"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                    </Show>
                     <p class="ks-record-title text-sm font-bold">{partnership.name}</p>
                     <p class="mt-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
                       {partnershipStatusLabels[partnership.status]}

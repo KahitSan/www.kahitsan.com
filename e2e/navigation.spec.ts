@@ -161,6 +161,38 @@ test.describe('Navigation', () => {
     await expect(facebookLink).toHaveAttribute('href', 'https://www.facebook.com/KahitSan')
     await expect(facebookLink).toHaveClass(/bg-slate-600\/20/)
   })
+
+  test('footer and About page credit the website creator', async ({ page }) => {
+    await page.goto('/')
+    const creditLink = page.getByRole('link', { name: 'Luis Edward M. Miranda' })
+    await expect(creditLink).toHaveAttribute('href', '/about#website-credit')
+
+    await creditLink.click()
+    await expect(page).toHaveURL('/about#website-credit')
+    const creditSection = page.locator('#website-credit')
+    await expect(creditSection.getByRole('heading', { name: 'Website credit' })).toBeVisible()
+    await expect(creditSection).toContainText(
+      'Luis Edward M. Miranda designed and developed this website for KahitSan Solutions Corp.'
+    )
+  })
+
+  test('structured data identifies company publisher and website creator', async ({ page }) => {
+    await page.goto('/')
+    const structuredData = await page.locator('script[type="application/ld+json"]').textContent()
+    const graph = JSON.parse(structuredData ?? '{}')['@graph'] as Array<{
+      '@type': string
+      '@id': string
+      name?: string
+      creator?: { '@id': string }
+      publisher?: { '@id': string }
+    }>
+
+    const person = graph.find((entity) => entity['@type'] === 'Person')
+    const website = graph.find((entity) => entity['@type'] === 'WebSite')
+    expect(person?.name).toBe('Luis Edward M. Miranda')
+    expect(website?.creator?.['@id']).toBe(person?.['@id'])
+    expect(website?.publisher?.['@id']).toBe('https://www.kahitsan.com/#organization')
+  })
 })
 
 test.describe('404 Page', () => {

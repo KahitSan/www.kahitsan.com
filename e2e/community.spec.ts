@@ -31,7 +31,7 @@ test.describe('Community Page', () => {
     await expect(partnerships.getByText('Partnership start')).toHaveCount(3)
     await expect(partnerships.getByText('End date not published in record.')).toHaveCount(3)
     await expect(featuredEvents.getByText('Event date')).toBeVisible()
-    await expect(sponsorships.getByText('Sponsorship period')).toHaveCount(2)
+    await expect(sponsorships.getByText('Sponsorship period')).toHaveCount(3)
     await expect(partnerships.getByText('Published benefit: 20% discount').first()).toBeVisible()
     await expect(
       page.getByText(/^(Current|Upcoming|Past) (partnership|event|sponsorship)$/)
@@ -42,6 +42,18 @@ test.describe('Community Page', () => {
     ).toBeVisible()
     await expect(partnerships.getByText('October 31, 2025')).toBeVisible()
     await expect(sponsorships.getByText('June 23-25, 2025')).toBeVisible()
+    await expect(sponsorships.getByText('August 21-24, 2026')).toBeVisible()
+    await expect(sponsorships.getByText('TOSP-Bikol Alumni Community')).toBeVisible()
+  })
+
+  test('presents TOSP Bikol sponsorship without inventing a logo', async ({ page }) => {
+    const card = page.getByRole('article').filter({ hasText: 'TOSP-Bikol Alumni Community' })
+
+    await expect(card).toContainText(
+      'Regional Search for the 59th Ten Outstanding Students of the Philippines'
+    )
+    await expect(card).toContainText('provided digital coworking vouchers')
+    await expect(card.getByRole('img')).toHaveCount(0)
   })
 
   test('keeps community social links as buttons', async ({ page }) => {

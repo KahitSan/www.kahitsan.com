@@ -1,12 +1,34 @@
 import { test, expect } from './fixtures'
 
 test.describe('KahitSan News', () => {
-  test('lists the Markdown-driven pricing notice', async ({ page }) => {
+  test('lists current and retained Markdown-driven pricing notices', async ({ page }) => {
     await page.goto('/announcements')
     await expect(page).toHaveTitle(/KahitSan News/)
     await expect(page.getByRole('heading', { name: 'KahitSan News' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Pricing Update: September 2026' })
+    ).toBeVisible()
+    await expect(page.getByText('Published', { exact: true })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Pricing Update: November 2025' })).toBeVisible()
     await expect(page.getByText('Superseded', { exact: true })).toBeVisible()
+  })
+
+  test('renders the September 2026 pricing update from Markdown', async ({ page }) => {
+    await page.goto('/announcement/pricing-update-september-2026')
+    await expect(page).toHaveTitle(/Pricing Update: September 2026/)
+    await expect(
+      page.getByRole('heading', { name: 'Pricing Update: September 2026' })
+    ).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Pricing effective September 1, 2026' })
+    ).toBeVisible()
+    await expect(page.getByText('September 1, 2026', { exact: true })).toHaveCount(2)
+    await expect(page.getByRole('table').first()).toContainText('₱129')
+    await expect(page.getByRole('table').nth(3)).toContainText('₱10,499')
+    await expect(page.getByRole('link', { name: 'KahitSan Coworking page' })).toHaveAttribute(
+      'href',
+      '/coworking'
+    )
   })
 
   test('renders the retained notice from Markdown', async ({ page }) => {

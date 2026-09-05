@@ -88,6 +88,20 @@ export const communityRecords: readonly CommunityRecord[] = [
     },
   },
   {
+    id: 'tosp-bikol-regional-search-2026',
+    category: 'sponsorship',
+    status: 'past',
+    date: {
+      start: '2026-08-21',
+      end: '2026-08-24',
+      label: 'August 21-24, 2026',
+    },
+    name: 'TOSP-Bikol Alumni Community',
+    event: 'Regional Search for the 59th Ten Outstanding Students of the Philippines',
+    description:
+      'KahitSan Coworking provided digital coworking vouchers in support of the regional search and its recognition of Bicolano student leaders.',
+  },
+  {
     id: 'adnu-orsem-2025',
     category: 'sponsorship',
     status: 'past',

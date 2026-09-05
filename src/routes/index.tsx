@@ -30,13 +30,13 @@ const organizations = communityRecords
     ): record is Extract<
       (typeof communityRecords)[number],
       { category: 'partnership' | 'sponsorship' }
-    > => Boolean(record.featured) && record.category !== 'event'
+    > => Boolean(record.featured) && record.category !== 'event' && Boolean(record.icon)
   )
   .map((record) => ({
     name: record.name,
     relationship:
       record.category === 'partnership' ? 'Coworking partnership' : 'Community sponsorship',
-    icon: record.icon,
+    icon: record.icon!,
     logoKey: record.logoKey,
   }))
 

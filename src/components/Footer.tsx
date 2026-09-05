@@ -83,9 +83,19 @@ const Footer: Component = () => {
             </div>
           </div>
         </div>
-        <p class="mt-12 pt-6 border-t border-zinc-800/70 text-xs text-zinc-500">
-          © {new Date().getFullYear()} KahitSan Solutions Corp.
-        </p>
+        <div class="mt-12 border-t border-zinc-800/70 pt-6 text-xs text-zinc-500">
+          <p>© {new Date().getFullYear()} KahitSan Solutions Corp.</p>
+          <p class="mt-2">
+            Website designed and developed by{' '}
+            <A
+              href="/about#website-credit"
+              class="text-zinc-400 underline decoration-zinc-700 underline-offset-4 transition-colors hover:text-amber-400 hover:decoration-amber-500 focus-visible:text-amber-400"
+            >
+              Luis Edward M. Miranda
+            </A>
+            .
+          </p>
+        </div>
       </div>
     </footer>
   )

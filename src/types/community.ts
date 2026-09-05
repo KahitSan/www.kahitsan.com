@@ -25,7 +25,7 @@ interface CommunityRecordBase {
   logoKey?: 'aces' | 'uapsa' | 'uapga' | 'ateneo'
   date: CommunityDate
   description: string
-  icon: PictureData
+  icon?: PictureData
   socialLinks?: SocialLinks
 }
 

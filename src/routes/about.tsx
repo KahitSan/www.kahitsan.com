@@ -175,6 +175,24 @@ const AboutPage: Component = () => {
             </div>
           </section>
 
+          <section id="website-credit" class="mb-16 scroll-mt-28 md:mb-28">
+            <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <header class="space-y-4 lg:col-span-3 lg:pr-3">
+                <h2 class="ks-section-title text-3xl font-bold tracking-tight md:text-4xl">
+                  Website credit
+                </h2>
+              </header>
+
+              <div class="border-y border-zinc-800/60 py-7 lg:col-span-9 md:py-9">
+                <p class="max-w-3xl leading-relaxed text-zinc-400 md:text-lg">
+                  <strong class="font-semibold text-zinc-200">Luis Edward M. Miranda</strong>{' '}
+                  designed and developed this website for KahitSan Solutions Corp. His work covers
+                  the site's design, frontend development, accessibility, and technical delivery.
+                </p>
+              </div>
+            </div>
+          </section>
+
           <section class="ks-grid-surface border-y border-zinc-800/60 px-6 py-9 md:px-10 md:py-12">
             <div class="grid grid-cols-1 gap-y-5 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
               <h2 class="ks-section-title text-3xl font-bold tracking-tight md:text-4xl lg:col-span-4">

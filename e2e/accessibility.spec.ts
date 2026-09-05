@@ -7,6 +7,7 @@ const routes = [
   '/community',
   '/announcements',
   '/announcement/pricing-update-nov-2025',
+  '/announcement/pricing-update-september-2026',
   '/about',
   '/contact',
   '/privacy',
