@@ -68,7 +68,8 @@
 }
 
 @keyframes ksHudPulse {
-  0%, 100% {
+  0%,
+  100% {
     background-color: var(--ks-effect-pulse-bg, rgba(201, 169, 97, 0.1));
     box-shadow: 0 0 5px var(--ks-effect-pulse-glow, rgba(201, 169, 97, 0.2));
   }

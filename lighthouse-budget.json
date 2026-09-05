@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "profiles": ["mobile", "desktop"],
+  "routes": [
+    { "name": "home", "path": "/" },
+    { "name": "coworking", "path": "/coworking" },
+    { "name": "community", "path": "/community" },
+    { "name": "announcements", "path": "/announcements" },
+    { "name": "about", "path": "/about" },
+    { "name": "contact", "path": "/contact" }
+  ],
+  "categories": [
+    { "id": "performance", "minimumScore": 1 },
+    { "id": "accessibility", "minimumScore": 1 },
+    { "id": "best-practices", "minimumScore": 1 },
+    { "id": "seo", "minimumScore": 1 }
+  ]
+}

@@ -1,36 +1,53 @@
-import { Router, useLocation } from "@solidjs/router";
-import { FileRoutes } from "@solidjs/start/router";
-import { type JSX, Suspense, ErrorBoundary, createEffect, onMount } from "solid-js";
-import { isServer } from "solid-js/web";
-import { MetaProvider, Title } from "@solidjs/meta";
-import NotFound from "~/components/ui/NotFound/NotFound";
-import Header from "~/components/Header";
-import Logo from "~/assets/kahitsan-coworking-logo-dark.png";
-import { ThemeProvider } from "~/lib/theme";
-import "./assets/css/app.css";
+import { Router, useLocation } from '@solidjs/router'
+import type { RouteSectionProps } from '@solidjs/router'
+import { FileRoutes } from '@solidjs/start/router'
+import { Suspense, ErrorBoundary, createEffect } from 'solid-js'
+import { isServer } from 'solid-js/web'
+import { MetaProvider, Title } from '@solidjs/meta'
+import NotFound from '~/components/ui/NotFound/NotFound'
+import Header from '~/components/Header'
+import DarkLogo from '~/assets/kahitsan-corp-logo-dark.png?w=132;226;263;452&as=picture'
+import LightLogo from '~/assets/kahitsan-corp-logo-light.png?w=132;226;263;452&as=picture'
+import { Picture } from '~/components/ui'
+import { ThemeProvider, useTheme } from '~/lib/theme'
+import './assets/css/app.css'
 
-function AppLayout(props: { children: JSX.Element }) {
-  const location = useLocation();
-  let pageRef: HTMLDivElement | undefined;
+const analyticsPageViewEvent = 'kahitsan:analytics-page-view'
 
-  // Re-trigger the CSS animation and track page view on every route change (client-only)
+function AppLayout(props: RouteSectionProps) {
+  const location = useLocation()
+  const { theme } = useTheme()
+
   createEffect(() => {
-    const path = location.pathname;
+    const path = location.pathname
     if (!isServer) {
-      if (pageRef) {
-        pageRef.style.animation = "none";
-        pageRef.offsetHeight; // force reflow
-        pageRef.style.animation = "";
-      }
-      // Track SPA navigation in Google Analytics
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'page_view', { page_path: path });
-      }
+      window.dispatchEvent(new CustomEvent(analyticsPageViewEvent, { detail: { pagePath: path } }))
     }
-  });
+  })
 
   return (
     <div class="page-transition-container relative min-h-screen">
+      <script type="application/ld+json">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'KahitSan Solutions Corp.',
+          url: 'https://www.kahitsan.com',
+          sameAs: [
+            'https://www.facebook.com/KahitSan',
+            'https://www.instagram.com/kahitsan_com/',
+            'https://www.tiktok.com/@kahitsan21',
+          ],
+          brand: [
+            {
+              '@type': 'Brand',
+              name: 'KahitSan Coworking',
+              url: 'https://www.kahitsan.com/coworking',
+            },
+            { '@type': 'Brand', name: 'Hilinga', url: 'https://www.hilinga.com' },
+          ],
+        })}
+      </script>
       <Header />
       <ErrorBoundary
         fallback={() => (
@@ -41,19 +58,24 @@ function AppLayout(props: { children: JSX.Element }) {
               heading="Something went wrong"
               message="An unexpected error occurred. Please try refreshing the page."
               buttonText="Go Back Home"
-              logo={<img src={Logo} alt="KahitSan Logo" width={200} height={200} loading="lazy" decoding="async" />}
+              logo={
+                <Picture
+                  src={theme() === 'dark' ? DarkLogo : LightLogo}
+                  alt="KahitSan Solutions Corp. logo"
+                  class="w-[226px] h-auto"
+                  sizes="226px"
+                  loading="lazy"
+                  decoding="async"
+                />
+              }
             />
           </div>
         )}
       >
-        <Suspense>
-          <div class="page-enter" ref={pageRef}>
-            {props.children}
-          </div>
-        </Suspense>
+        <Suspense>{props.children}</Suspense>
       </ErrorBoundary>
     </div>
-  );
+  )
 }
 
 export default function App() {
@@ -65,5 +87,5 @@ export default function App() {
         </Router>
       </MetaProvider>
     </ThemeProvider>
-  );
+  )
 }

@@ -10,11 +10,11 @@
   # No-cache floor for EVERY path. The _redirects /* → /404/index.html fallback
   # can serve the HTML 404 shell at a missing asset URL during a deploy-window
   # gap; if that HTML were tagged immutable it pins the wrong body for a year
-  # (the cache-poisoning incident — HTML served at a .css path). Real hashed
+  # (the cache-poisoning incident: HTML served at a .css path). Real hashed
   # assets override this below; everything else revalidates so a misroute heals.
   Cache-Control: public, max-age=0, must-revalidate
 
-# Content-hashed build assets are the only paths safe to cache immutably —
+# Content-hashed build assets are the only paths safe to cache immutably :
 # their filename changes on every build, so a stale entry can never shadow a
 # new one. Must be stated explicitly because /* above is no-cache.
 /_build/assets/*

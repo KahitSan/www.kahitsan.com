@@ -1,7 +1,8 @@
-import entranceAreaImage from '~/assets/images/panganiban/entrance-area.jpg?w=327;373;746'
-import innerAreaImage from '~/assets/images/panganiban/inner-area.jpg?w=327;373;746'
-import callBoothImage from '~/assets/images/panganiban/call-booth.jpg?w=327;373;746'
-import allAccessMembershipImage from '~/assets/images/panganiban/all-access-membership.jpg?w=327;373;746'
+import entranceAreaImage from '~/assets/images/panganiban/entrance-area.jpg?w=327;372;717;744;1303&as=picture'
+import innerAreaImage from '~/assets/images/panganiban/inner-area.jpg?w=327;372;717;744;1434&as=picture'
+import callBoothImage from '~/assets/images/panganiban/call-booth.jpg?w=327;372;717;744;1434&as=picture'
+import allAccessMembershipImage from '~/assets/images/panganiban/all-access-membership.jpg?w=327;493;717;925;985;1434;1850&as=picture'
+import type { PictureData } from '~/components/ui/Picture'
 
 export const PricingType = {
   NONE: 'none',
@@ -18,7 +19,7 @@ export interface PricingOption {
   icon: 'clock' | 'sparkles' | 'users' | 'star'
   color: 'amber' | 'blue' | 'green' | 'purple'
   durationPrefix?: string
-  coverImage?: string
+  coverImage?: PictureData
   mainPricing: {
     duration: { value: number; unit: 'hours' | 'months' }
     partnerPrice: number
@@ -59,7 +60,7 @@ export const pricingData: PricingOption[] = [
     icon: 'clock',
     color: 'amber',
     durationPrefix: 'for',
-    coverImage: entranceAreaImage.img.src,
+    coverImage: entranceAreaImage,
     mainPricing: { duration: { value: 4, unit: 'hours' }, partnerPrice: 129, walkinPrice: 129 },
     additionalPricing: [
       { duration: { value: 8, unit: 'hours' }, partnerPrice: 149, walkinPrice: 149 },
@@ -78,7 +79,7 @@ export const pricingData: PricingOption[] = [
     icon: 'sparkles',
     color: 'blue',
     durationPrefix: 'for',
-    coverImage: innerAreaImage.img.src,
+    coverImage: innerAreaImage,
     mainPricing: { duration: { value: 4, unit: 'hours' }, partnerPrice: 189, walkinPrice: 189 },
     additionalPricing: [
       { duration: { value: 8, unit: 'hours' }, partnerPrice: 229, walkinPrice: 229 },
@@ -97,7 +98,7 @@ export const pricingData: PricingOption[] = [
     icon: 'users',
     color: 'green',
     durationPrefix: 'for',
-    coverImage: callBoothImage.img.src,
+    coverImage: callBoothImage,
     mainPricing: { duration: { value: 5, unit: 'hours' }, partnerPrice: 379, walkinPrice: 379 },
     additionalPricing: [
       {
@@ -118,10 +119,14 @@ export const additionalPricingData: PricingOption[] = [
     icon: 'star',
     color: 'amber',
     durationPrefix: 'for',
-    coverImage: allAccessMembershipImage.img.src,
+    coverImage: allAccessMembershipImage,
     mainPricing: { duration: { value: 1, unit: 'months' }, partnerPrice: 3999, walkinPrice: 3999 },
     additionalPricing: [
-      { duration: { value: 3, unit: 'months', customText: '3-Month Bundle' }, partnerPrice: 10499, walkinPrice: 10499 },
+      {
+        duration: { value: 3, unit: 'months', customText: '3-Month Bundle' },
+        partnerPrice: 10499,
+        walkinPrice: 10499,
+      },
     ],
   },
 ]

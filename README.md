@@ -10,13 +10,18 @@
 
 ```bash
 npm install
-npm run dev       # starts dev server on port 3457
+npm run dev       # starts dev server on port 4200
 npm run build     # builds static site with SSR prerendering
 ```
 
 ## Deployment
 
 Pushes to `main` trigger a GitHub Actions workflow that builds the site and pushes the output to the `deploy` branch. Cloudflare Pages serves from the `deploy` branch.
+
+The contact proxy runs through the generated `_worker.js`. Configure these Cloudflare Pages runtime bindings:
+
+- `CONTACT_API_URL`: Base URL for the contact API.
+- `CONTACT_API_KEY`: Secret API key used only by the worker.
 
 ## Based On
 

@@ -1,456 +1,330 @@
-import { Title, Meta, Link } from "@solidjs/meta";
-import type { Component } from 'solid-js'
-import { createSignal, onMount, onCleanup, For } from 'solid-js'
+import { Link, Meta, Title } from '@solidjs/meta'
 import { A } from '@solidjs/router'
+import { For, type Component } from 'solid-js'
+import ExternalLink from 'lucide-solid/icons/external-link'
+import MapPin from 'lucide-solid/icons/map-pin'
+import ClickToLoadMap from '~/components/ClickToLoadMap'
 import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
-import Facebook from 'lucide-solid/icons/facebook'
-import Instagram from 'lucide-solid/icons/instagram'
-import TikTokIcon from '~/components/icons/TikTokIcon'
-import entranceArea from '~/assets/images/panganiban/entrance-area.jpg?w=327;580;1200'
-import innerArea from '~/assets/images/panganiban/inner-area.jpg?w=327;580;1152'
-import { communityData } from '~/data/community'
-import coworkingLogo from '~/assets/kahitsan-coworking-logo-dark.png?w=138;184;287'
 import { Picture } from '~/components/ui'
+import hilingaLogo from '~/assets/hilinga-logo.png?w=72;144&as=picture'
+import entranceArea from '~/assets/images/panganiban/entrance-area.jpg?w=327;558;717;925;1116;1303&as=picture'
+import innerArea from '~/assets/images/panganiban/inner-area.jpg?w=327;662;717;925;1324;1434;1850&as=picture'
+import { communityRecords } from '~/data/community'
+
+const homeEntranceSizes =
+  '(max-width: 767px) calc(100vw - 50px), (max-width: 1023px) calc(100vw - 98px), (max-width: 1279px) calc(50vw - 82px), 558px'
+const homeInnerSizes =
+  '(max-width: 767px) calc(100vw - 50px), (max-width: 1023px) calc(100vw - 98px), (max-width: 1279px) calc(58.333vw - 84.667px), 662px'
+const organizationLogoSizes = {
+  aces: '(max-width: 767px) 54px, 70px',
+  uapsa: '(max-width: 767px) 50px, 65px',
+  uapga: '(max-width: 767px) 72px, 93px',
+  ateneo: '(max-width: 767px) 61px, 79px',
+} as const
+
+const organizations = communityRecords
+  .filter(
+    (
+      record
+    ): record is Extract<
+      (typeof communityRecords)[number],
+      { category: 'partnership' | 'sponsorship' }
+    > => Boolean(record.featured) && record.category !== 'event'
+  )
+  .map((record) => ({
+    name: record.name,
+    relationship:
+      record.category === 'partnership' ? 'Coworking partnership' : 'Community sponsorship',
+    icon: record.icon,
+    logoKey: record.logoKey,
+  }))
 
 const HomePage: Component = () => {
-  // Collect all unique logos from partnerships and sponsorships
-  const allLogos = () => {
-    const seen = new Set<string>()
-    const logos: { icon: string; name: string }[] = []
-    for (const p of [...communityData.partnerships, ...communityData.sponsorships]) {
-      if (!seen.has(p.name)) {
-        seen.add(p.name)
-        logos.push({ icon: p.icon, name: p.name })
-      }
-    }
-    return logos
-  }
-
-  const [typedText, setTypedText] = createSignal('')
-  const words = ['anywhere', 'KahitSan']
-  const [showCursor, setShowCursor] = createSignal(true)
-
-  onMount(() => {
-    let currentIndex = 0
-    let isDeleting = false
-    let typingSpeed = 150
-    let wordIndex = 0
-    let timeoutId: ReturnType<typeof setTimeout>
-
-    const typeWriter = () => {
-      const currentWord = words[wordIndex]
-      if (!isDeleting && currentIndex < currentWord.length) {
-        setTypedText(currentWord.substring(0, currentIndex + 1))
-        currentIndex++
-        typingSpeed = 150
-      } else if (isDeleting && currentIndex > 0) {
-        setTypedText(currentWord.substring(0, currentIndex - 1))
-        currentIndex--
-        typingSpeed = 100
-      } else if (currentIndex === currentWord.length && !isDeleting) {
-        typingSpeed = 2000
-        isDeleting = true
-      } else if (currentIndex === 0 && isDeleting) {
-        isDeleting = false
-        wordIndex = (wordIndex + 1) % words.length
-        typingSpeed = 500
-      }
-      timeoutId = setTimeout(typeWriter, typingSpeed)
-    }
-
-    typeWriter()
-
-    const cursorInterval = setInterval(() => setShowCursor((prev) => !prev), 500)
-
-    onCleanup(() => {
-      clearTimeout(timeoutId)
-      clearInterval(cursorInterval)
-    })
-  })
-
   return (
     <>
-      <Title>KahitSan - Coworking Space in Naga City</Title>
-      <Meta name="description" content="Your productive workspace in the heart of Naga City. Premium coworking spaces with flexible memberships, high-speed internet, and a vibrant community." />
-      <Meta name="keywords" content="coworking space, naga city, workspace, office rental, kahitsan, shared office" />
-      <Meta property="og:title" content="KahitSan - Coworking Space in Naga City" />
-      <Meta property="og:description" content="Your productive workspace in the heart of Naga City." />
+      <Title>KahitSan Solutions Corp. | Coworking and Hilinga</Title>
+      <Meta
+        name="description"
+        content="KahitSan Solutions Corp. is the Naga City company behind KahitSan Coworking and Hilinga."
+      />
+      <Meta
+        name="keywords"
+        content="KahitSan Solutions Corp., KahitSan Coworking, Hilinga, coworking space, Naga City"
+      />
+      <Meta property="og:title" content="KahitSan Solutions Corp." />
+      <Meta
+        property="og:description"
+        content="The Naga City company behind KahitSan Coworking and Hilinga."
+      />
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com" />
       <Link rel="canonical" href="https://www.kahitsan.com" />
-      <Link rel="preload" as="image" imagesrcset={entranceArea.sources?.avif} imagesizes="(max-width: 768px) 327px, 465px" type="image/avif" fetchpriority="high" />
+      <Link
+        rel="preload"
+        as="image"
+        imagesrcset={entranceArea.sources?.avif}
+        imagesizes={homeEntranceSizes}
+        type="image/avif"
+        fetchpriority="high"
+      />
 
-      <main class="min-h-screen page-bg transition-colors duration-300">
-        {/* Hero Section */}
-        <section
-          id="hero"
-          class="relative flex items-center pt-20 pb-12 md:pt-32 md:pb-20 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden"
-          style={{ 'min-height': '600px' }}
-        >
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">
-            <div class="md:col-span-7 z-10">
-              <div class="inline-block mb-6 px-4 py-1 bg-amber-500/10 border-l-2 border-amber-500 text-amber-400 text-xs font-bold tracking-widest uppercase">
-                Coworking Space in Naga City
+      <main class="min-h-screen page-bg">
+        <section class="ks-grid-surface border-b border-zinc-800/60">
+          <div class="px-6 pt-24 pb-14 md:px-12 md:pt-28 md:pb-20 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+              <div class="lg:col-span-6">
+                <p class="ks-heading-kicker mb-4">Naga City, Philippines</p>
+                <h1 class="ks-display-heading text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight mb-6">
+                  KahitSan <span class="ks-heading-accent">Solutions Corp.</span>
+                </h1>
+                <p class="text-zinc-300 text-lg md:text-xl leading-relaxed max-w-2xl mb-8">
+                  We operate KahitSan Coworking and build Hilinga, combining a dependable place to
+                  work with practical business software.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                  <Button as={A} href="/coworking" intent="primary" variant="clip1">
+                    Explore Coworking
+                  </Button>
+                  <Button as={A} href="/about" intent="secondary" variant="clip1">
+                    About the Company
+                  </Button>
+                </div>
               </div>
-              <h1 class="text-[clamp(2rem,7vw,4.5rem)] font-bold leading-[0.95] tracking-tight mb-4 md:mb-8">
-                Productivity starts{' '}
-                <span class="gradient-text italic">
-                  {typedText()}
-                  <span class={showCursor() ? 'opacity-100' : 'opacity-0'}>|</span>
-                </span>
-                <noscript><span class="gradient-text italic">KahitSan</span></noscript>
-              </h1>
-              <p class="text-zinc-400 text-base md:text-lg lg:text-xl max-w-xl mb-6 md:mb-10 leading-relaxed">
-                Your comfy study tambayan. A fusion of{' '}
-                <span class="text-white">premium workspaces</span> and{' '}
-                <span class="text-white">vibrant community</span>.{' '}
-                KahitSan man pinanggalingan mo.
-              </p>
-              <div class="flex flex-wrap gap-4">
-                <Button as={A} href="/solutions" intent="primary" effect="scan-line">
-                  Explore Solutions
-                </Button>
-                <Button as={A} href="/community" intent="secondary">
-                  View Community
-                </Button>
-              </div>
-            </div>
-            <div class="md:col-span-5 relative">
-              <div class="clip-corner-both relative aspect-square overflow-hidden shadow-2xl" ref={(el) => onMount(() => el.classList.add('js-animate'))}>
+
+              <div class="lg:col-span-6 ks-media-frame clip-corner-both border border-zinc-800/70">
                 <Picture
                   src={entranceArea}
-                  alt="KahitSan Coworking Space"
-                  class="object-cover w-full h-full opacity-80 hero-ken-burns"
-                  width={1200}
-                  height={800}
+                  alt="KahitSan Coworking entrance area on Panganiban Drive in Naga City"
+                  class="ks-muted-media w-full h-full min-h-[320px] md:min-h-[480px] object-cover"
                   decoding="async"
-                  sizes="(max-width: 768px) 327px, 465px"
+                  sizes={homeEntranceSizes}
                   fetchpriority="high"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               </div>
-              <div class="absolute -bottom-6 -left-6 bg-zinc-900/80 backdrop-blur-xl clip-corner p-5 border border-amber-500/10">
-                <div class="flex items-center gap-4">
-                  <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.6)]" />
-                  <div>
-                    <div class="text-xs text-amber-400 font-bold tracking-widest uppercase">Status</div>
-                    <div class="text-sm font-bold text-white">Panganiban Drive — Open</div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="px-6 py-14 md:px-12 md:py-20 border-b border-zinc-800/60"
+          aria-labelledby="organization-proof"
+        >
+          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <header class="lg:col-span-4">
+              <p class="ks-heading-kicker mb-4">Community relationships</p>
+              <h2 id="organization-proof" class="ks-section-title mb-5">
+                Organizations we have worked with
+              </h2>
+              <p class="text-zinc-400 leading-relaxed mb-7">
+                These relationships include coworking partnerships, event participation, and
+                community sponsorships.
+              </p>
+              <Button as={A} href="/community" intent="secondary" variant="clip1">
+                View Community
+              </Button>
+            </header>
+
+            <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-800 border border-zinc-800">
+              <For each={organizations}>
+                {(organization) => (
+                  <article
+                    class="group card-bg min-h-52 p-5 flex flex-col items-center text-center"
+                    data-organization-card=""
+                  >
+                    <div
+                      class="h-20 md:h-24 w-full flex items-center justify-center"
+                      data-organization-logo-row=""
+                    >
+                      <div class="org-logo-wrap w-20 h-20 md:w-24 md:h-24 p-3 flex items-center justify-center">
+                        <Picture
+                          src={organization.icon}
+                          alt={`${organization.name} logo`}
+                          class="org-logo w-full h-full object-contain"
+                          data-logo={organization.logoKey}
+                          sizes={
+                            organization.logoKey
+                              ? organizationLogoSizes[organization.logoKey]
+                              : '80px'
+                          }
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="mt-5 w-full flex flex-1 flex-col items-center"
+                      data-organization-text=""
+                    >
+                      <h3 class="ks-record-title text-sm">{organization.name}</h3>
+                      <p class="mt-auto pt-2 text-xs text-zinc-400">{organization.relationship}</p>
+                    </div>
+                  </article>
+                )}
+              </For>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="px-6 py-14 md:px-12 md:py-20 border-b border-zinc-800/60"
+          aria-labelledby="coworking-heading"
+        >
+          <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+              <div class="lg:col-span-5">
+                <p class="ks-heading-kicker mb-4">Physical workspace</p>
+                <h2
+                  id="coworking-heading"
+                  class="ks-section-title text-3xl md:text-5xl font-bold tracking-tight mb-5"
+                >
+                  KahitSan Coworking
+                </h2>
+                <p class="text-zinc-300 text-lg leading-relaxed mb-3">
+                  Flexible workspace on Panganiban Drive, Naga City, with high-speed internet, power
+                  at each table, and unlimited coffee.
+                </p>
+                <p class="text-zinc-400 mb-8">
+                  Walk in for a few hours or choose monthly 24/7 access.
+                </p>
+
+                <dl class="border-t border-zinc-800/80 mb-8">
+                  <div class="flex items-baseline justify-between gap-6 py-4">
+                    <dt class="text-zinc-300">Entrance Area</dt>
+                    <dd class="font-bold tabular-nums text-amber-100">₱129 / 4 hours</dd>
                   </div>
+                  <div class="flex items-baseline justify-between gap-6 py-4 border-t border-zinc-800/80">
+                    <dt class="text-zinc-300">Inner Area</dt>
+                    <dd class="font-bold tabular-nums text-amber-100">₱189 / 4 hours</dd>
+                  </div>
+                  <div class="flex items-baseline justify-between gap-6 py-4 border-y border-zinc-800/80">
+                    <dt class="text-zinc-300">Call Booth</dt>
+                    <dd class="font-bold tabular-nums text-amber-100">₱379 / 5 hours</dd>
+                  </div>
+                </dl>
+
+                <Button as={A} href="/coworking" intent="primary" variant="clip1">
+                  View Spaces and Pricing
+                </Button>
+              </div>
+
+              <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <figure class="sm:col-span-2 ks-media-frame clip-corner-both border border-zinc-800/70">
+                  <Picture
+                    src={innerArea}
+                    alt="Desks and ergonomic chairs in the KahitSan Coworking inner area"
+                    class="ks-muted-media w-full h-[280px] md:h-[360px] object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    sizes={homeInnerSizes}
+                  />
+                </figure>
+                <div class="border border-zinc-800 p-5 clip-corner bg-zinc-950/35">
+                  <h3 class="ks-record-title font-bold mb-2">A place to focus</h3>
+                  <p class="text-sm text-zinc-400 leading-relaxed">
+                    Open seating and a quieter inner area for study, remote work, and individual
+                    projects.
+                  </p>
+                </div>
+                <div class="border border-zinc-800 p-5 clip-corner bg-zinc-950/35">
+                  <h3 class="ks-record-title font-bold mb-2">Room for private calls</h3>
+                  <p class="text-sm text-zinc-400 leading-relaxed">
+                    A sound-proof call booth for two-person meetings and focused conversations.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="absolute right-0 top-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px] -z-10" />
         </section>
 
-        {/* Trusted By */}
-        <section class="py-16 relative bg-zinc-900/20 border-y border-zinc-800/30 overflow-hidden">
-          <div class="absolute -top-10 -left-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px]" />
-          <div class="relative z-10">
-            <div class="text-center mb-10">
-              <span class="text-xs font-bold tracking-[0.3em] text-zinc-500 uppercase">Trusted By</span>
-            </div>
-            <div
-              ref={(el) => {
-                const checkOverflow = () => {
-                  const inner = el.querySelector('[data-logos]') as HTMLElement
-                  if (!inner) return
-                  // Measure only the original logos (first half), not the duplicates
-                  const imgs = inner.querySelectorAll('img:not([aria-hidden])')
-                  const gap = parseFloat(getComputedStyle(inner).columnGap) || 0
-                  let contentWidth = 0
-                  imgs.forEach((img, i) => {
-                    contentWidth += img.getBoundingClientRect().width
-                    if (i < imgs.length - 1) contentWidth += gap
-                  })
-                  const overflows = contentWidth > el.clientWidth
-                  el.classList.toggle('logo-marquee', overflows)
-                  el.classList.toggle('justify-center', !overflows)
-                  // Hide duplicates when not scrolling
-                  inner.querySelectorAll('img[aria-hidden]').forEach((img) => {
-                    ;(img as HTMLElement).style.display = overflows ? '' : 'none'
-                  })
-                }
-                onMount(() => {
-                  // Wait for images to load before measuring
-                  const imgs = el.querySelectorAll('img')
-                  let loaded = 0
-                  const onLoad = () => { if (++loaded >= imgs.length) checkOverflow() }
-                  imgs.forEach((img) => img.complete ? onLoad() : img.addEventListener('load', onLoad, { once: true }))
-                  window.addEventListener('resize', checkOverflow)
-                  onCleanup(() => window.removeEventListener('resize', checkOverflow))
-                })
-              }}
-              class="flex overflow-hidden px-6"
-            >
-              <div data-logos class="flex items-center gap-12 md:gap-20 w-max">
-                <For each={allLogos()}>
-                  {(org) => (
-                    <img
-                      src={org.icon}
-                      alt={org.name}
-                      class="h-24 w-auto shrink-0 object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
-                      title={org.name}
-                      width={80}
-                      height={80}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )}
-                </For>
-                {/* Duplicate for seamless marquee loop */}
-                <For each={allLogos()}>
-                  {(org) => (
-                    <img
-                      src={org.icon}
-                      alt={org.name}
-                      aria-hidden="true"
-                      class="h-24 w-auto shrink-0 object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
-                      title={org.name}
-                      width={80}
-                      height={80}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )}
-                </For>
+        <section
+          class="px-6 py-14 md:px-12 md:py-20 border-b border-zinc-800/60"
+          aria-labelledby="hilinga-heading"
+        >
+          <div class="max-w-7xl mx-auto">
+            <div class="ks-grid-surface grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center border border-zinc-800 p-7 md:p-10 clip-corner-both">
+              <div class="lg:col-span-5 flex items-center gap-5">
+                <div class="w-20 h-20 md:w-24 md:h-24 shrink-0 bg-[#f4efe4] p-3 clip-corner">
+                  <Picture
+                    src={hilingaLogo}
+                    alt="Hilinga logo"
+                    class="ks-logo-media w-full h-full object-contain"
+                    sizes="(max-width: 767px) 56px, 72px"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div>
+                  <p class="ks-heading-kicker mb-3">Software product</p>
+                  <h2 id="hilinga-heading" class="ks-section-title text-3xl md:text-4xl font-bold">
+                    Hilinga
+                  </h2>
+                </div>
               </div>
-            </div>
-            <div class="text-center mt-8">
-              <A href="/community" class="text-amber-400 hover:text-amber-300 text-sm font-bold tracking-widest uppercase transition-colors">
-                View Community &rarr;
-              </A>
-            </div>
-          </div>
-          <div class="absolute -bottom-16 -right-16 text-[10rem] font-black text-white/[0.015] select-none pointer-events-none uppercase">KHTS</div>
-        </section>
-
-        {/* Dual Services Section */}
-        <section id="services" class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto">
-          <div class="text-center mb-8 md:mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Our <span class="gradient-text">Services</span>
-            </h2>
-            <div class="w-20 h-1 bg-amber-500 mx-auto mb-6" />
-            <p class="text-zinc-400 max-w-2xl mx-auto text-lg">
-              We bridge the gap between premium physical spaces and digital solutions for growth.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-            {/* Coworking Spaces */}
-            <A href="/solutions" class="group relative clip-corner-both overflow-hidden min-h-[320px] md:min-h-[480px] flex items-end">
-              <Picture
-                src={innerArea}
-                alt="Coworking Spaces"
-                class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
-                width={800}
-                height={600}
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 768px) 327px, 576px"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div class="relative p-6 md:p-10 w-full">
-                <div class="flex items-center gap-3 mb-3 md:mb-4">
-                  <div class="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                  <div class="h-px w-12 bg-amber-500/30" />
-                </div>
-                <div class="flex flex-col gap-2 md:gap-3 mb-3 md:mb-4">
-                  <Picture src={coworkingLogo} alt="KahitSan Coworking" class="h-[60px] md:h-[80px] xl:h-[125px] w-auto self-start" width={200} height={60} loading="lazy" decoding="async" sizes="287px" />
-                  <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">Coworking Spaces</h3>
-                </div>
-                <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
-                  Premium workspaces with high-speed internet, unlimited coffee, and flexible hourly rates starting at ₱129.
+              <div class="lg:col-span-7">
+                <p class="text-zinc-300 text-lg leading-relaxed mb-7 max-w-2xl">
+                  Hilinga is business software shaped by the real operating problems we encounter
+                  while building and running services.
                 </p>
-                <span class="clip-corner border border-amber-500/40 text-amber-400 px-8 py-3 text-xs font-bold uppercase tracking-widest inline-block group-hover:bg-amber-500 group-hover:text-black transition-all">
-                  Explore Spaces
-                </span>
-              </div>
-            </A>
-
-            {/* Future Services */}
-            <div class="group relative clip-corner-both overflow-hidden min-h-[320px] md:min-h-[480px] flex items-end card-bg">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div class="relative p-6 md:p-10 w-full">
-                <div class="flex items-center gap-3 mb-3 md:mb-4">
-                  <div class="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                  <div class="h-px w-12 bg-blue-400/30" />
-                </div>
-                <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 tracking-tight">Software & Digital Solutions</h3>
-                <p class="text-zinc-400 max-w-md mb-6 leading-relaxed">
-                  Custom software development, business registration support, event management, and real estate consultation — coming soon.
-                </p>
-                <a
-                  href="https://www.facebook.com/KahitSan"
+                <Button
+                  as="a"
+                  href="https://www.hilinga.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="clip-corner border border-blue-400/40 text-blue-400 px-8 py-3 text-xs font-bold uppercase tracking-widest inline-block hover:bg-blue-400 hover:text-black transition-all"
+                  intent="secondary"
+                  variant="clip1"
+                  icon={() => <ExternalLink size={17} aria-hidden="true" />}
+                  iconPosition="right"
                 >
-                  Stay Updated
-                </a>
+                  Visit Hilinga
+                  <span class="sr-only"> (opens in a new tab)</span>
+                </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Coworking Spaces Bento Grid */}
-        <section class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto relative">
-          <div class="absolute -top-20 right-0 w-80 h-80 bg-amber-500/5 rounded-full blur-[120px] -z-10" />
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4">
-            <div>
-              <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                Our <span class="gradient-text">Spaces</span>
-              </h2>
-              <p class="text-zinc-400 max-w-md">
-                Curated environments designed for deep work, collaboration, and focused productivity.
-              </p>
-            </div>
-            <Button as={A} href="/solutions" intent="primary" variant="clip1" effect="scan-line">
-              View All & Pricing
-            </Button>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
-            {/* Large Feature — Entrance Area */}
-            <div class="md:col-span-2 md:row-span-2 relative clip-corner-both overflow-hidden group">
-              <Picture
-                src={entranceArea}
-                alt="Entrance Area"
-                class="w-full h-full min-h-[280px] md:min-h-[400px] object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
-                width={800}
-                height={600}
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 768px) 327px, 580px"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5 md:p-8">
-                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">From ₱129 / 4hrs</span>
-                <h3 class="text-xl md:text-2xl font-bold mb-2">Entrance Area</h3>
-                <p class="text-zinc-400 text-sm max-w-xs">Prime location near entrance with relaxed vibe and comfortable seating.</p>
-              </div>
-            </div>
-
-            {/* Inner Area */}
-            <div class="clip-corner bg-zinc-900 p-5 md:p-8 flex flex-col justify-between hover:bg-zinc-800/60 transition-colors border border-amber-500/5">
+        <section class="px-6 py-14 md:px-12 md:py-20" aria-labelledby="office-location">
+          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+            <div class="lg:col-span-4 border border-zinc-800 p-7 md:p-9 clip-corner-both flex flex-col justify-between bg-zinc-950/35">
               <div>
-                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">From ₱189 / 4hrs</span>
-                <h3 class="text-lg md:text-xl font-bold mb-2">Inner Area</h3>
-                <p class="text-zinc-400 text-sm">Premium workspace with ergonomic chairs and dedicated WiFi.</p>
-              </div>
-            </div>
-
-            {/* Call Booth */}
-            <div class="clip-corner bg-zinc-900 p-5 md:p-8 flex flex-col justify-between hover:bg-zinc-800/60 transition-colors border border-amber-500/5">
-              <div>
-                <span class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">From ₱379 / 5hrs</span>
-                <h3 class="text-lg md:text-xl font-bold mb-2">Call Booths</h3>
-                <p class="text-zinc-400 text-sm">Sound-proof private space for meetings and calls.</p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* Future Services — Numbered Cards */}
-        <section class="py-12 md:py-24 relative bg-zinc-900/20 border-y border-zinc-800/20 overflow-hidden">
-          <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px]" />
-          <div class="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
-          <div class="text-center mb-8 md:mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 italic">
-              Future <span class="gradient-text">Services</span>
-            </h2>
-            <div class="w-20 h-1 bg-amber-500 mx-auto mb-6" />
-            <p class="text-zinc-400 max-w-2xl mx-auto">
-              Expanding our network to bring you comprehensive business solutions beyond coworking.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-            <For each={[
-              { num: '01', title: 'Business Registration', desc: 'Legal support, company formation, and compliance services to help you launch and scale.' },
-              { num: '02', title: 'Event Management', desc: 'End-to-end event coordination for workshops, meetups, and corporate gatherings.' },
-              { num: '03', title: 'Custom Software', desc: 'Tailored SaaS solutions, AI integration, and enterprise-grade digital infrastructure.' },
-            ]}>
-              {(service) => (
-                <div class="relative group">
-                  <div class="absolute inset-0 bg-amber-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div class="relative clip-corner p-[1px] bg-gradient-to-br from-amber-500/30 to-transparent">
-                    <div class="bg-zinc-950 p-6 md:p-10 h-full clip-corner">
-                      <span class="text-5xl md:text-6xl font-black text-amber-500/10 absolute top-4 right-8">{service.num}</span>
-                      <div class="w-10 h-10 md:w-12 md:h-12 bg-amber-500/10 flex items-center justify-center clip-corner mb-4 md:mb-8">
-                        <div class="w-2 h-2 rounded-full bg-amber-500" />
-                      </div>
-                      <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">{service.title}</h3>
-                      <p class="text-zinc-400 leading-relaxed">{service.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </For>
-          </div>
-          </div>
-          <div class="absolute -top-16 -left-16 text-[10rem] font-black text-white/[0.015] select-none pointer-events-none uppercase">KHTS</div>
-        </section>
-
-        {/* Connect Section */}
-        <section id="connect" class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto">
-          <div class="clip-corner bg-zinc-900/30 relative border border-amber-500/10 overflow-hidden">
-            <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 items-stretch">
-              <div class="p-6 md:p-10 lg:p-16 flex flex-col justify-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                  Connect <span class="gradient-text">With Us</span>
+                <p class="ks-heading-kicker mb-4">Main office</p>
+                <h2
+                  id="office-location"
+                  class="ks-section-title text-3xl md:text-4xl font-bold mb-5"
+                >
+                  Panganiban Drive
                 </h2>
-                <p class="text-zinc-400 text-lg mb-8">
-                  Join the KahitSan community. Follow us for updates, events, and workspace tips.
+                <p class="text-zinc-300 leading-relaxed mb-6">
+                  KahitSan Solutions Corp. operates from KahitSan Coworking in Naga City.
                 </p>
-                <div class="flex gap-4 mb-10">
-                  <For each={[
-                    { href: 'https://www.facebook.com/KahitSan', icon: Facebook, label: 'Facebook' },
-                    { href: 'https://www.instagram.com/kahitsan_com/', icon: Instagram, label: 'Instagram' },
-                    { href: 'https://www.tiktok.com/@kahitsan21', icon: TikTokIcon, label: 'TikTok' },
-                  ]}>
-                    {(social) => (
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="w-12 h-12 flex items-center justify-center clip-corner bg-zinc-800 hover:bg-amber-500 hover:text-black text-zinc-400 transition-all"
-                        aria-label={social.label}
-                      >
-                        <social.icon size={20} />
-                      </a>
-                    )}
-                  </For>
-                </div>
-                <div class="flex flex-col gap-3">
-                  <div class="flex items-center gap-3 p-3 bg-black/40 clip-corner max-w-xs">
-                    <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.6)]" />
-                    <span class="text-xs font-bold tracking-widest uppercase">Panganiban Drive — Open</span>
-                  </div>
-                  <div class="flex items-center gap-3 p-3 bg-black/40 clip-corner max-w-xs">
-                    <div class="w-3 h-3 bg-red-400 rounded-full" />
-                    <span class="text-xs font-bold tracking-widest uppercase text-zinc-500">Diversion Road — Closed</span>
-                  </div>
+                <div class="flex items-start gap-3 text-sm text-zinc-400 mb-8">
+                  <MapPin size={18} class="text-amber-500 shrink-0 mt-0.5" aria-hidden="true" />
+                  <span>Panganiban Drive, Naga City, Camarines Sur, Philippines</span>
                 </div>
               </div>
-              <div class="relative min-h-[280px] md:min-h-0">
-                <iframe
-                  src="https://maps.google.com/maps?q=KahitSan+Coworking+Space,+Panganiban+Drive,+Naga+City,+Philippines&t=&z=17&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="100%"
-                  class="absolute inset-0"
-                  style="border:0;"
-                  allowfullscreen
-                  loading="lazy"
-                  fetchpriority="low"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="KahitSan Coworking Space location"
-                />
-              </div>
+              <Button
+                as="a"
+                href="https://share.google/TFC9YSJ3R8ExKdnUH"
+                target="_blank"
+                rel="noopener noreferrer"
+                intent="primary"
+                variant="clip1"
+                icon={() => <ExternalLink size={16} aria-hidden="true" />}
+                iconPosition="right"
+              >
+                Open in Google Maps
+              </Button>
             </div>
-            <div class="absolute -bottom-16 -right-16 text-[12rem] font-black text-white/[0.02] select-none pointer-events-none uppercase">KHTS</div>
+
+            <ClickToLoadMap
+              testId="home-location-map"
+              locationName="KahitSan Coworking, Panganiban Drive"
+              address="Panganiban Drive, Naga City, Camarines Sur, Philippines"
+              embedUrl="https://maps.google.com/maps?q=KahitSan+Coworking+Space,+Panganiban+Drive,+Naga+City,+Philippines&t=&z=17&ie=UTF8&iwloc=&output=embed"
+              title="KahitSan Solutions Corp. main office at KahitSan Coworking"
+              class="lg:col-span-8 min-h-[340px] md:min-h-[430px]"
+            />
           </div>
         </section>
 

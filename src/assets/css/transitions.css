@@ -1,4 +1,4 @@
-/* Page transitions — CSS animation re-triggered via JS on route change */
+/* Page transitions: CSS animation re-triggered via JS on route change */
 
 @keyframes pageEnter {
   from {
@@ -21,7 +21,7 @@
   min-height: 100dvh;
 }
 
-/* Subtle ken-burns zoom — only applied via .js-animate class added by JS */
+/* Subtle ken-burns zoom: only applied via .js-animate class added by JS */
 @keyframes kenBurns {
   0% {
     transform: scale(1);

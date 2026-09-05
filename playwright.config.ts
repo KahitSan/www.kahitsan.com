@@ -21,7 +21,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npx serve .output/public -p 3458',
+    command: 'npm run serve:test',
     url: 'http://localhost:3458',
     reuseExistingServer: !process.env.CI,
     timeout: 30000,

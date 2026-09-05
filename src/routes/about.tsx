@@ -1,242 +1,217 @@
-import { Title, Meta, Link } from "@solidjs/meta";
+import { Title, Meta, Link } from '@solidjs/meta'
 import type { Component } from 'solid-js'
+import { A } from '@solidjs/router'
 import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import Facebook from 'lucide-solid/icons/facebook'
-import Target from 'lucide-solid/icons/target'
-import Eye from 'lucide-solid/icons/eye'
-import Users from 'lucide-solid/icons/users'
-import MapPin from 'lucide-solid/icons/map-pin'
-import Rocket from 'lucide-solid/icons/rocket'
-import Heart from 'lucide-solid/icons/heart'
 
 const AboutPage: Component = () => {
   return (
     <>
-      <Title>About - KahitSan</Title>
-      <Meta name="description" content="KahitSan is a tech-driven coworking space in Naga City, Philippines. Affordable workspaces for students, professionals, and anyone who needs productivity." />
-      <Meta property="og:title" content="About - KahitSan" />
+      <Title>About KahitSan Solutions Corp.</Title>
+      <Meta
+        name="description"
+        content="KahitSan Solutions Corp. is the Naga City company behind KahitSan Coworking and Hilinga. We are a bootstrapped team building practical physical and digital services."
+      />
+      <Meta property="og:title" content="About KahitSan Solutions Corp." />
+      <Meta
+        property="og:description"
+        content="Meet the Naga City company behind KahitSan Coworking and Hilinga."
+      />
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com/about" />
       <Link rel="canonical" href="https://www.kahitsan.com/about" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
         <main class="pt-20 pb-12 md:pt-32 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-          {/* Hero */}
-          <section class="mb-12 md:mb-24">
-            <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">ABOUT US</div>
-            <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-6 max-w-4xl">
-              Productivity, made <span class="gradient-text">affordable</span>.
-            </h1>
-            <p class="text-zinc-400 text-base md:text-lg max-w-2xl">
-              KahitSan is a coworking space built for students, professionals, and anyone who needs a reliable place to focus. We started in Naga City, Philippines — and we're just getting started.
-            </p>
-          </section>
-
-          {/* Mission & Vision */}
-          <section class="mb-16 md:mb-32 relative">
-            <div class="absolute -top-10 -left-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              {/* Mission */}
-              <div class="relative group">
-                <div class="absolute inset-0 bg-amber-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div class="relative clip-corner p-[1px] bg-gradient-to-br from-amber-500/20 to-transparent">
-                  <div class="bg-zinc-950 p-6 md:p-10 h-full clip-corner">
-                    <div class="flex items-center gap-3 mb-6">
-                      <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                        <Target size={20} class="text-amber-400" />
-                      </div>
-                      <h2 class="text-xl md:text-2xl font-bold text-white">Our Mission</h2>
-                    </div>
-                    <p class="text-zinc-400 leading-relaxed">
-                      To provide affordable, productive workspaces for students, professionals, and anyone who needs a place to get things done. We're built for the days when there's no internet at home, no electricity, or when you just need a real desk and focus. That's why our spaces are designed like offices — not cafés.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Vision */}
-              <div class="relative group">
-                <div class="absolute inset-0 bg-amber-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div class="relative clip-corner p-[1px] bg-gradient-to-br from-amber-500/20 to-transparent">
-                  <div class="bg-zinc-950 p-6 md:p-10 h-full clip-corner">
-                    <div class="flex items-center gap-3 mb-6">
-                      <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                        <Eye size={20} class="text-amber-400" />
-                      </div>
-                      <h2 class="text-xl md:text-2xl font-bold text-white">Our Vision</h2>
-                    </div>
-                    <p class="text-zinc-400 leading-relaxed">
-                      To deliver trackable, fair services for the community — powered by technology. We sit at the intersection of real estate and software engineering, and we use our technical skills to build systems that are transparent, efficient, and honest.
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <section class="ks-grid-surface mb-16 border-y border-zinc-800/60 px-6 py-10 md:mb-24 md:px-10 md:py-14">
+            <div class="grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <h1 class="ks-display-heading text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:col-span-8 lg:text-7xl">
+                KahitSan <span class="ks-heading-accent">Solutions Corp.</span>
+              </h1>
+              <p class="max-w-3xl text-lg leading-relaxed text-zinc-300 md:text-xl lg:col-span-4 lg:pt-2">
+                We are the Naga City company behind KahitSan Coworking and Hilinga. One serves
+                people who need a dependable place to work; the other builds software for running a
+                business.
+              </p>
             </div>
           </section>
 
-          {/* Our Story */}
-          <section class="mb-16 md:mb-32 relative">
-            <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="mb-8 md:mb-12">
-              <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">OUR STORY</div>
-              <h2 class="text-3xl md:text-4xl font-bold text-white">From college projects to a corporation.</h2>
-            </div>
-
-            <div class="relative md:pl-[140px]">
-              {/* Vertical rail line connecting the dots (desktop only) */}
-              <div class="hidden md:block absolute left-[60px] top-8 bottom-8 w-px bg-zinc-800/60" />
-
-              <div class="space-y-6">
-                {/* Timeline items */}
-                <div class="relative group">
-                  <div class="hidden md:flex flex-col items-center absolute -left-[140px] top-8 w-[120px]">
-                    <div class="w-[18px] h-[18px] rounded-full bg-amber-500 border-4 border-zinc-950 z-10 group-hover:scale-125 transition-transform" />
-                    <div class="mt-3 flex flex-col items-center gap-1">
-                      <Users size={14} class="text-amber-400" />
-                      <span class="text-amber-400 text-xs font-black tracking-widest uppercase">Origins</span>
-                    </div>
-                  </div>
-                  <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group-hover:border-amber-500/20 transition-all">
-                    <div class="flex md:hidden items-center justify-center p-4 bg-zinc-900/60 border-b border-zinc-800/30">
-                      <div class="flex items-center gap-2">
-                        <Users size={16} class="text-amber-400" />
-                        <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">Origins</span>
-                      </div>
-                    </div>
-                    <div class="p-5 md:p-10">
-                      <h3 class="text-lg md:text-xl font-bold text-white mb-3">Met in college, built for fun</h3>
-                      <p class="text-zinc-400 leading-relaxed">
-                        The founding members of KahitSan met in college. We started working on fun projects together — building things, breaking things, and learning as we went. That shared energy eventually became the foundation for something bigger.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="relative group">
-                  <div class="hidden md:flex flex-col items-center absolute -left-[140px] top-8 w-[120px]">
-                    <div class="w-[18px] h-[18px] rounded-full bg-amber-500 border-4 border-zinc-950 z-10 group-hover:scale-125 transition-transform" />
-                    <div class="mt-3 flex flex-col items-center gap-1">
-                      <MapPin size={14} class="text-amber-400" />
-                      <span class="text-amber-400 text-xs font-black tracking-widest uppercase">2025</span>
-                    </div>
-                  </div>
-                  <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group-hover:border-amber-500/20 transition-all">
-                    <div class="flex md:hidden items-center justify-center p-4 bg-zinc-900/60 border-b border-zinc-800/30">
-                      <div class="flex items-center gap-2">
-                        <MapPin size={16} class="text-amber-400" />
-                        <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">2025</span>
-                      </div>
-                    </div>
-                    <div class="p-5 md:p-10">
-                      <h3 class="text-lg md:text-xl font-bold text-white mb-3">Testing the market in Naga City</h3>
-                      <p class="text-zinc-400 leading-relaxed">
-                        Before any formal business structure, we were already on the ground — testing the coworking space concept in Naga City, Philippines. We wanted to know if there was real demand for an affordable, reliable workspace. There was.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="relative group">
-                  <div class="hidden md:flex flex-col items-center absolute -left-[140px] top-8 w-[120px]">
-                    <div class="w-[18px] h-[18px] rounded-full bg-amber-500 border-4 border-zinc-950 z-10 group-hover:scale-125 transition-transform" />
-                    <div class="mt-3 flex flex-col items-center gap-1">
-                      <Rocket size={14} class="text-amber-400" />
-                      <span class="text-amber-400 text-xs font-black tracking-widest uppercase">2026</span>
-                    </div>
-                  </div>
-                  <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group-hover:border-amber-500/20 transition-all">
-                    <div class="flex md:hidden items-center justify-center p-4 bg-zinc-900/60 border-b border-zinc-800/30">
-                      <div class="flex items-center gap-2">
-                        <Rocket size={16} class="text-amber-400" />
-                        <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">2026</span>
-                      </div>
-                    </div>
-                    <div class="p-5 md:p-10">
-                      <h3 class="text-lg md:text-xl font-bold text-white mb-3">KahitSan Corporation</h3>
-                      <p class="text-zinc-400 leading-relaxed">
-                        In 2026, we formalized the team — registering KahitSan as a corporation in the Philippines and establishing the directors who will continue to manage the company. We're fully bootstrapped, funding everything from our own pockets as we explore different target markets and figure out how to scale on our own terms.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Built by Tech People */}
-          <section class="mb-16 md:mb-32">
-            <div class="clip-corner-both bg-zinc-900/30 p-6 md:p-12 lg:p-16 relative border border-zinc-800/30 overflow-hidden">
-              <span class="text-6xl font-black text-amber-500/10 absolute top-4 right-8">01</span>
-              <div class="relative z-10 max-w-3xl">
-                <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">BUILT DIFFERENT</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                  A coworking space run by <span class="gradient-text">tech people</span>.
+          <section class="mb-16 md:mb-28">
+            <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <header class="space-y-4 lg:col-span-3 lg:pr-3">
+                <h2 class="ks-section-title text-3xl font-bold tracking-tight md:text-4xl">
+                  What we operate
                 </h2>
-                <p class="text-zinc-400 text-base md:text-lg leading-relaxed mb-6">
-                  The founders and the people driving KahitSan are engineers and builders. We don't just rent desks — we use our technical skills to create value at the intersection of real estate and software. From booking systems to space management, everything we build is designed to make the experience better and more transparent.
+                <p class="max-w-sm leading-relaxed text-zinc-400">
+                  Our work spans a physical service and a software product. Both come from the same
+                  practical goal: make everyday business tools and services easier to access and
+                  understand.
                 </p>
-                <p class="text-zinc-400 text-base md:text-lg leading-relaxed">
-                  We know there are customers who are unsatisfied with our current facilities. We hear them. But we stay focused on our goal, and honest about the reality: this is what we can provide right now, with the resources we have. Every peso we invest comes from the team — no outside funding, no shortcuts.
-                </p>
+              </header>
+
+              <div class="grid grid-cols-1 border-y border-zinc-800/60 md:grid-cols-2 lg:col-span-9">
+                <article class="py-7 md:pr-7 md:py-9 xl:pr-10">
+                  <h3 class="ks-record-title mb-3 text-xl font-bold">KahitSan Coworking</h3>
+                  <p class="max-w-3xl leading-relaxed text-zinc-400">
+                    An affordable workspace in Naga City for students, professionals, and anyone who
+                    needs stable internet, electricity, a desk, and room to focus.
+                  </p>
+                </article>
+                <article class="border-t border-zinc-800/60 py-7 md:border-t-0 md:border-l md:pl-7 md:py-9 xl:pl-10">
+                  <h3 class="ks-record-title mb-3 text-xl font-bold">Hilinga</h3>
+                  <p class="max-w-3xl leading-relaxed text-zinc-400">
+                    Business software shaped by the problems we encounter while operating real
+                    services. It is our digital product under KahitSan Solutions Corp.
+                  </p>
+                </article>
               </div>
             </div>
           </section>
 
-          {/* Looking Ahead */}
-          <section class="mb-16 md:mb-32 relative">
-            <div class="absolute -top-10 left-20 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="mb-8 md:mb-12">
-              <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">WHAT'S NEXT</div>
-              <h2 class="text-3xl md:text-4xl font-bold text-white">Looking ahead.</h2>
-            </div>
+          <section class="mb-16 md:mb-28">
+            <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <header class="space-y-4 lg:col-span-3 lg:pr-3">
+                <h2 class="ks-section-title text-3xl font-bold tracking-tight md:text-4xl">
+                  How we got here
+                </h2>
+                <p class="max-w-sm leading-relaxed text-zinc-400">
+                  KahitSan grew in small, testable steps. The company remains fully bootstrapped by
+                  its founding team.
+                </p>
+              </header>
 
-            <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group hover:border-amber-500/20 transition-all">
-              <div class="p-6 md:p-10 lg:p-12">
-                <div class="flex items-start gap-4 mb-6">
-                  <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 mt-1">
-                    <Heart size={20} class="text-amber-400" />
-                  </div>
-                  <div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3">Expanding our reach</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                      We're planning to expand to more places across the Philippines — and eventually, beyond. Our goal remains the same: affordable, reliable spaces where people can be productive. As we grow, we'll keep building the tools and systems that make our services fair and trackable for every community we serve.
+              <div class="divide-y divide-zinc-800/60 border-y border-zinc-800/60 lg:col-span-9">
+                <article class="grid grid-cols-1 gap-3 py-7 sm:grid-cols-12 sm:gap-6 md:py-9">
+                  <p class="text-sm font-bold uppercase tracking-widest text-amber-400 sm:col-span-2">
+                    College
+                  </p>
+                  <div class="max-w-3xl sm:col-span-10">
+                    <h3 class="ks-record-title mb-3 text-xl font-bold">
+                      A team formed through small projects
+                    </h3>
+                    <p class="leading-relaxed text-zinc-400">
+                      The founding members met in college and kept working on software projects
+                      together. Those projects established the working relationship that later
+                      became KahitSan.
                     </p>
                   </div>
-                </div>
+                </article>
+                <article class="grid grid-cols-1 gap-3 py-7 sm:grid-cols-12 sm:gap-6 md:py-9">
+                  <p class="text-sm font-bold uppercase tracking-widest text-amber-400 sm:col-span-2">
+                    2025
+                  </p>
+                  <div class="max-w-3xl sm:col-span-10">
+                    <h3 class="ks-record-title mb-3 text-xl font-bold">
+                      Testing coworking in Naga City
+                    </h3>
+                    <p class="leading-relaxed text-zinc-400">
+                      Before forming the corporation, the team tested whether Naga needed a
+                      reasonably priced, reliable place to work. KahitSan Coworking began as that
+                      local test.
+                    </p>
+                  </div>
+                </article>
+                <article class="grid grid-cols-1 gap-3 py-7 sm:grid-cols-12 sm:gap-6 md:py-9">
+                  <p class="text-sm font-bold uppercase tracking-widest text-amber-400 sm:col-span-2">
+                    2026
+                  </p>
+                  <div class="max-w-3xl sm:col-span-10">
+                    <h3 class="ks-record-title mb-3 text-xl font-bold">
+                      Forming KahitSan Solutions Corp.
+                    </h3>
+                    <p class="leading-relaxed text-zinc-400">
+                      The team registered KahitSan Solutions Corp. in the Philippines and formalized
+                      its directors. The company is funded from the team's own pockets, without
+                      outside investment.
+                    </p>
+                  </div>
+                </article>
               </div>
             </div>
           </section>
 
-          {/* CTA */}
-          <section>
-            <div class="clip-corner-both bg-zinc-900/30 p-6 md:p-12 lg:p-20 relative border border-amber-500/10 overflow-hidden">
-              <div class="relative z-10 text-center max-w-2xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                  Want to <span class="gradient-text">work with us</span>?
+          <section class="mb-16 md:mb-28">
+            <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <header class="space-y-4 lg:col-span-3 lg:pr-3">
+                <h2 class="ks-section-title text-3xl font-bold tracking-tight md:text-4xl">
+                  How we work
                 </h2>
-                <p class="text-zinc-400 text-base md:text-lg mb-6 md:mb-8">
-                  Whether you need a desk, want to partner, or just want to say hi — reach out. We'd love to hear from you.
+                <p class="max-w-sm leading-relaxed text-zinc-400">
+                  Running a physical workspace keeps our plans grounded. We see what customers use,
+                  what breaks, and what still needs work.
                 </p>
-                <Button
-                  as="a"
-                  href="https://www.facebook.com/KahitSan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  intent="primary"
-                  variant="clip1"
-                  effect="scan-line"
-                  icon={() => <Facebook size={18} />}
-                  iconPosition="left"
-                >
-                  Get in Touch
-                </Button>
+              </header>
+
+              <ul class="divide-y divide-zinc-800/60 border-y border-zinc-800/60 lg:col-span-9">
+                <li class="grid grid-cols-1 gap-2 py-6 sm:grid-cols-12 sm:gap-6 md:py-7">
+                  <strong class="ks-record-title font-bold sm:col-span-4">
+                    Build for real constraints
+                  </strong>
+                  <span class="leading-relaxed text-zinc-400 sm:col-span-8">
+                    Price, reliability, internet access, and power interruptions matter more than
+                    polished claims.
+                  </span>
+                </li>
+                <li class="grid grid-cols-1 gap-2 py-6 sm:grid-cols-12 sm:gap-6 md:py-7">
+                  <strong class="ks-record-title font-bold sm:col-span-4">
+                    Use technology where it helps
+                  </strong>
+                  <span class="leading-relaxed text-zinc-400 sm:col-span-8">
+                    We build systems to make bookings, records, and day-to-day operations clearer
+                    and easier to track.
+                  </span>
+                </li>
+                <li class="grid grid-cols-1 gap-2 py-6 sm:grid-cols-12 sm:gap-6 md:py-7">
+                  <strong class="ks-record-title font-bold sm:col-span-4">
+                    Grow within our means
+                  </strong>
+                  <span class="leading-relaxed text-zinc-400 sm:col-span-8">
+                    Our facilities are still improving. We listen to customers, set honest
+                    expectations, and invest what the business can support.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="ks-grid-surface border-y border-zinc-800/60 px-6 py-9 md:px-10 md:py-12">
+            <div class="grid grid-cols-1 gap-y-5 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <h2 class="ks-section-title text-3xl font-bold tracking-tight md:text-4xl lg:col-span-4">
+                Talk to the team
+              </h2>
+              <div class="max-w-2xl lg:col-span-8">
+                <p class="mb-7 text-base text-zinc-400 md:text-lg">
+                  Ask about KahitSan Coworking, Hilinga, or working with KahitSan Solutions Corp.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                  <Button
+                    as={A}
+                    href="/contact"
+                    intent="primary"
+                    variant="clip1"
+                    effect="scan-line"
+                  >
+                    Contact KahitSan
+                  </Button>
+                  <Button
+                    as="a"
+                    href="https://www.facebook.com/KahitSan"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    intent="secondary"
+                    variant="clip1"
+                    icon={() => <Facebook size={18} aria-hidden="true" />}
+                    iconPosition="left"
+                  >
+                    Message on Facebook
+                    <span class="sr-only"> (opens in a new tab)</span>
+                  </Button>
+                </div>
               </div>
-              <div class="absolute -bottom-16 -right-16 text-[12rem] font-black text-white/[0.02] select-none pointer-events-none uppercase">KHTS</div>
             </div>
           </section>
         </main>
-
         <Footer />
       </div>
     </>

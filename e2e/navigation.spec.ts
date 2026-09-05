@@ -1,78 +1,178 @@
 import { test, expect } from './fixtures'
+import { expectResponsivePicture } from './imageAssertions'
 
 test.describe('Navigation', () => {
-  test('all nav links work from home', async ({ page, viewport }) => {
-    const isMobile = (viewport?.width ?? 1280) < 1024
-
-    const clickNavLink = async (name: string) => {
-      if (isMobile) {
-        // Tablet/mobile use the fixed bottom nav; desktop uses the header nav
-        await page.locator('nav.fixed').getByRole('link', { name, exact: true }).click()
-      } else {
-        await page.getByRole('link', { name, exact: true }).first().click()
-      }
-    }
-
+  test('desktop navigation exposes company offerings', async ({ page, viewport }) => {
+    if ((viewport?.width ?? 1280) < 992) test.skip()
     await page.goto('/')
-
-    await clickNavLink('Solutions')
-    await expect(page).toHaveURL('/solutions')
-
-    await clickNavLink('Community')
-    await expect(page).toHaveURL('/community')
-
-    await clickNavLink('Announcements')
-    await expect(page).toHaveURL('/announcements')
-
-    await clickNavLink('Home')
-    await expect(page).toHaveURL('/')
+    const nav = page.getByRole('navigation', { name: 'Main navigation' })
+    await expect(nav.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
+    await expect(nav.getByRole('link', { name: 'Coworking' })).toHaveAttribute('href', '/coworking')
+    await expect(nav.getByRole('link', { name: /Hilinga/ })).toHaveAttribute(
+      'href',
+      'https://www.hilinga.com'
+    )
+    await expect(nav.getByRole('link', { name: 'News' })).toHaveAttribute('href', '/announcements')
+    await expect(nav.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/contact')
   })
 
-  test('logo links back to home', async ({ page }) => {
+  test('logo links home', async ({ page }) => {
     await page.goto('/community')
-    await page.locator('header img[alt="KahitSan"]').click()
+    await page.locator('header img[alt="KahitSan Solutions Corp."]').click()
     await expect(page).toHaveURL('/')
   })
 
-  test('mobile bottom nav is visible', async ({ page, viewport }) => {
-    if ((viewport?.width ?? 1280) >= 1024) {
-      test.skip()
-    }
+  test('header logo uses shared responsive corporate variants', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('nav.fixed')).toBeVisible()
+    await expectResponsivePicture(page.locator('header img[alt="KahitSan Solutions Corp."]'), {
+      widths: [132, 226, 263, 452],
+      sizes: '132px',
+      metadataWidth: 452,
+    })
+  })
+
+  test('mobile navigation uses native-style bottom tabs', async ({ page, viewport }) => {
+    if ((viewport?.width ?? 1280) >= 768) test.skip()
+    await page.goto('/')
+    const nav = page.getByRole('navigation', { name: 'Mobile navigation' })
+    await expect(nav).toBeVisible()
+    await expect(nav.getByRole('link', { name: 'Home' })).toBeVisible()
+    await expect(nav.getByRole('link', { name: 'Coworking' })).toBeVisible()
+    const hilingaLink = nav.getByRole('link', { name: /Hilinga.*opens in a new tab/i })
+    await expect(hilingaLink).toBeVisible()
+    await expect(hilingaLink).toHaveAttribute('target', '_blank')
+    await expect(hilingaLink.locator('svg.lucide-external-link')).toBeVisible()
+    await expect(nav.getByRole('link', { name: 'Community' })).toBeVisible()
+    await expect(nav.getByRole('button', { name: 'More' })).toBeVisible()
+  })
+
+  test('mobile More sheet exposes company pages', async ({ page, viewport }) => {
+    if ((viewport?.width ?? 1280) >= 768) test.skip()
+    await page.goto('/')
+    const moreButton = page.getByRole('button', { name: 'More' })
+    await moreButton.click()
+    const dialog = page.getByRole('dialog', { name: 'More menu' })
+    const nav = page.getByRole('navigation', { name: 'More navigation' })
+    await expect(dialog).toHaveJSProperty('open', true)
+    await expect(page.locator('html')).toHaveCSS('overflow', 'hidden')
+    await expect(dialog.getByRole('button', { name: 'Close more menu' })).toBeFocused()
+    await expect(nav.getByRole('link', { name: /News/ })).toBeVisible()
+    await expect(nav.getByRole('link', { name: /About/ })).toBeVisible()
+    await expect(nav.getByRole('link', { name: /Contact/ })).toBeVisible()
+
+    await page.keyboard.press('Shift+Tab')
+    await expect(nav.getByRole('link', { name: /Contact/ })).toBeFocused()
+    await page.keyboard.press('Tab')
+    await expect(dialog.getByRole('button', { name: 'Close more menu' })).toBeFocused()
+
+    await page.keyboard.press('Escape')
+    await expect(dialog).toBeHidden()
+    await expect(page.locator('html')).not.toHaveCSS('overflow', 'hidden')
+    await expect(moreButton).toBeFocused()
+  })
+
+  test('tablet navigation exposes every company destination', async ({ page }) => {
+    await page.setViewportSize({ width: 900, height: 900 })
+    await page.goto('/')
+
+    await page.locator('summary[aria-label="Navigation menu"]').click()
+    const nav = page.getByRole('navigation', { name: 'Tablet navigation' })
+
+    await expect(nav).toBeVisible()
+    await expect(nav.getByRole('link', { name: 'Coworking' })).toHaveAttribute('href', '/coworking')
+    await expect(nav.getByRole('link', { name: /Hilinga/ })).toHaveAttribute(
+      'href',
+      'https://www.hilinga.com'
+    )
+    await expect(nav.getByRole('link', { name: 'News' })).toHaveAttribute('href', '/announcements')
+    await expect(nav.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/contact')
+  })
+
+  test('navigation switches at its content-fit breakpoint without JavaScript', async ({
+    browser,
+  }) => {
+    for (const expectation of [
+      { width: 991, desktopVisible: false, tabletVisible: true },
+      { width: 992, desktopVisible: true, tabletVisible: false },
+    ]) {
+      const context = await browser.newContext({
+        baseURL: 'http://localhost:3458',
+        javaScriptEnabled: false,
+        viewport: { width: expectation.width, height: 800 },
+      })
+      const page = await context.newPage()
+      await page.goto('/')
+
+      const desktopNav = page.getByRole('navigation', { name: 'Main navigation' })
+      const tabletButton = page.locator('summary[aria-label="Navigation menu"]')
+      if (expectation.desktopVisible) {
+        await expect(desktopNav).toBeVisible()
+      } else {
+        await expect(desktopNav).toBeHidden()
+      }
+      if (expectation.tabletVisible) {
+        await expect(tabletButton).toBeVisible()
+        await tabletButton.click()
+        await expect(page.getByRole('navigation', { name: 'Tablet navigation' })).toBeVisible()
+      } else {
+        await expect(tabletButton).toBeHidden()
+      }
+
+      const widths = await page.evaluate(() => ({
+        client: document.documentElement.clientWidth,
+        scroll: document.documentElement.scrollWidth,
+      }))
+      expect(widths.scroll).toBe(widths.client)
+      await context.close()
+    }
+  })
+
+  test('News navigation stays active on article pages', async ({ page, viewport }) => {
+    await page.goto('/announcement/pricing-update-nov-2025')
+
+    if ((viewport?.width ?? 1280) >= 992) {
+      await expect(
+        page
+          .getByRole('navigation', { name: 'Main navigation' })
+          .getByRole('link', { name: 'News' })
+      ).toHaveAttribute('aria-current', 'page')
+      return
+    }
+
+    if ((viewport?.width ?? 1280) < 768) {
+      await expect(
+        page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('button', {
+          name: 'More',
+        })
+      ).toHaveAttribute('aria-current', 'page')
+    }
+  })
+
+  test('about page prioritizes contact and keeps Facebook secondary', async ({ page }) => {
+    await page.goto('/about')
+    const section = page.locator('section').filter({
+      has: page.getByRole('heading', { name: 'Talk to the team' }),
+    })
+    const contactLink = section.getByRole('link', { name: 'Contact KahitSan' })
+    const facebookLink = section.getByRole('link', { name: /Message on Facebook/ })
+
+    await expect(contactLink).toHaveAttribute('href', '/contact')
+    await expect(contactLink).toHaveClass(/bg-amber-600\/20/)
+    await expect(facebookLink).toHaveAttribute('href', 'https://www.facebook.com/KahitSan')
+    await expect(facebookLink).toHaveClass(/bg-slate-600\/20/)
   })
 })
 
 test.describe('404 Page', () => {
-  test('shows not found page', async ({ page }) => {
-    // Static server (npx serve) does not do SPA fallback, so test /404 directly
+  test('shows corporate not found page', async ({ page }) => {
     await page.goto('/404')
     await expect(page.getByText('404')).toBeVisible()
     await expect(page.getByText('Page Not Found')).toBeVisible()
-    await expect(page.getByRole('button', { name: 'Go Back Home' })).toBeVisible()
-  })
-
-  test('404 go back home button works', async ({ page }) => {
-    await page.goto('/404')
-    await page.getByRole('button', { name: 'Go Back Home' }).click()
-    await expect(page).toHaveURL('/')
-  })
-})
-
-test.describe('Page Transitions', () => {
-  test('slide-up transition class is applied on navigation', async ({ page }) => {
-    await page.goto('/')
-    // Verify page transition container exists
-    await expect(page.locator('.page-transition-container')).toBeVisible()
-  })
-
-  test('navigation feels smooth (no flash)', async ({ page }) => {
-    await page.goto('/')
-    // Navigate and immediately check no white flash (via background color)
-    const bg = await page.locator('div.min-h-screen').first().evaluate((el) =>
-      window.getComputedStyle(el).background
-    )
-    // Background should be dark gradient, not white
-    expect(bg).not.toContain('rgb(255, 255, 255)')
+    const logo = page.locator('img[alt="KahitSan Solutions Corp. logo"]')
+    await expectResponsivePicture(logo, {
+      widths: [132, 226, 263, 452],
+      sizes: '226px',
+      metadataWidth: 452,
+    })
   })
 })

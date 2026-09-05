@@ -3,6 +3,11 @@
 # Redirect non-www to www
 https://kahitsan.com/*    https://www.kahitsan.com/:splat    301
 
+# Legacy coworking routes
+/solutions    /coworking    301
+/spaces       /coworking    301
+/spaces/*     /coworking    301
+
 # Build assets that don't exist must fail, not fall through to the HTML shell.
 # During a deploy-window gap a missing /_build/assets/* request would otherwise
 # hit the /* fallback below, serve the 404 HTML body at the asset URL, and (under

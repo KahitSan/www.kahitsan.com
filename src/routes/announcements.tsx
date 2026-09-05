@@ -1,132 +1,66 @@
-import { Title, Meta, Link } from "@solidjs/meta";
-import { For, Show } from 'solid-js'
-import type { Component } from 'solid-js'
+import { Link, Meta, Title } from '@solidjs/meta'
 import { A } from '@solidjs/router'
+import { For } from 'solid-js'
+import type { Component } from 'solid-js'
 import Footer from '~/components/Footer'
-import DollarSign from 'lucide-solid/icons/dollar-sign'
+import { formatNewsDate, newsPosts } from '~/lib/news'
 
 const AnnouncementsPage: Component = () => {
-  const announcements = [
-    {
-      id: 1,
-      title: 'Pricing Update - Effective November 1, 2025',
-      date: 'November 1, 2025',
-      month: 'NOV',
-      day: '01',
-      year: '2025',
-      type: 'Pricing',
-      icon: DollarSign,
-      content:
-        "We are announcing a pricing update for KahitSan—effective November 1, 2025. This adjustment accelerates our growth, enabling us to invest in improvements and strengthen KahitSan's infrastructure for long-term sustainability.",
-      isPast: false,
-      slug: 'pricing-update-nov-2025',
-    },
-  ]
-
   return (
     <>
-      <Title>Announcements - KahitSan</Title>
-      <Meta name="description" content="Stay updated with the latest news, pricing updates, and announcements from KahitSan coworking space." />
-      <Meta property="og:title" content="Announcements - KahitSan" />
+      <Title>KahitSan News</Title>
+      <Meta name="description" content="News and updates from KahitSan Solutions Corp." />
+      <Meta property="og:title" content="KahitSan News" />
+      <Meta property="og:description" content="News and updates from KahitSan Solutions Corp." />
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com/announcements" />
       <Link rel="canonical" href="https://www.kahitsan.com/announcements" />
 
       <div class="min-h-screen page-bg transition-colors duration-300">
         <main class="pt-20 pb-12 md:pt-32 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-          {/* Hero */}
-          <section class="mb-12 md:mb-20">
-            <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">NEWS & UPDATES</div>
-            <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-6 max-w-4xl">
-              Stay in the <span class="gradient-text">loop</span>.
-            </h1>
-            <p class="text-zinc-400 text-base md:text-lg max-w-2xl">
-              Important updates, pricing changes, and news from KahitSan. We keep things transparent so you always know what's happening.
-            </p>
+          <section class="mb-12 border-y border-zinc-800/60 py-10 md:mb-16 md:py-14">
+            <div class="grid grid-cols-1 gap-y-5 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <h1 class="ks-display-heading lg:col-span-8">
+                KahitSan <span class="ks-heading-accent">News</span>
+              </h1>
+              <p class="max-w-2xl text-base leading-relaxed text-zinc-400 md:text-lg lg:col-span-4 lg:pt-2">
+                Company updates, product notes, and notices from KahitSan Solutions Corp.
+              </p>
+            </div>
           </section>
 
-          {/* Timeline */}
-          <section>
-            <div class="relative">
-              {/* Timeline line */}
-              <div class="absolute left-[39px] top-0 bottom-0 w-px bg-zinc-800/50 hidden md:block" />
-
-              <div class="space-y-10">
-                <For each={announcements}>{(announcement, i) => (
-                  <A href={`/announcement/${announcement.slug}`} class="block group">
-                    <div class="grid grid-cols-1 md:grid-cols-[80px_1fr] gap-6 md:gap-10">
-                      {/* Date badge */}
-                      <div class="hidden md:flex flex-col items-center relative">
-                        <div class="w-[18px] h-[18px] rounded-full bg-amber-500 border-4 border-zinc-950 z-10 group-hover:scale-125 transition-transform" />
-                        <div class="mt-3 text-center">
-                          <div class="text-amber-400 text-xs font-black tracking-widest">{announcement.month}</div>
-                          <div class="text-2xl font-black text-white leading-none">{announcement.day}</div>
-                          <div class="text-zinc-500 text-[10px] tracking-widest">{announcement.year}</div>
-                        </div>
-                      </div>
-
-                      {/* Card */}
-                      <div class="relative">
-                        <div class="clip-corner-both p-[1px] bg-gradient-to-br from-amber-500/20 to-transparent group-hover:from-amber-500/40 transition-all">
-                          <div class="bg-zinc-950 clip-corner-both p-8 md:p-10 relative overflow-hidden">
-                            {/* Background number */}
-                            <span class="text-[8rem] font-black text-amber-500/[0.03] absolute -top-6 -right-2 select-none pointer-events-none leading-none">
-                              {String(i() + 1).padStart(2, '0')}
-                            </span>
-
-                            <div class="relative z-10">
-                              {/* Mobile date */}
-                              <div class="flex items-center gap-3 mb-4 md:hidden">
-                                <div class="w-3 h-3 rounded-full bg-amber-500" />
-                                <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">{announcement.date}</span>
-                              </div>
-
-                              <div class="flex items-start gap-5">
-                                <div class="p-3 bg-amber-500/10 clip-corner shrink-0 group-hover:bg-amber-500/20 transition-colors">
-                                  <announcement.icon size={24} class="text-amber-400" />
-                                </div>
-                                <div class="flex-1">
-                                  <div class="flex flex-wrap items-center gap-3 mb-3">
-                                    <span class="px-3 py-1 bg-zinc-800/60 text-zinc-400 text-[10px] font-bold uppercase tracking-widest clip-corner">
-                                      {announcement.type}
-                                    </span>
-                                    <Show when={announcement.isPast}>
-                                      <span class="px-3 py-1 bg-zinc-800/40 text-zinc-600 text-[10px] font-bold uppercase tracking-widest clip-corner">
-                                        Past
-                                      </span>
-                                    </Show>
-                                  </div>
-                                  <h2 class="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-amber-400 transition-colors">
-                                    {announcement.title}
-                                  </h2>
-                                  <p class="text-zinc-400 leading-relaxed mb-6">{announcement.content}</p>
-                                  <span class="inline-flex items-center gap-2 text-amber-400 text-sm font-bold tracking-widest uppercase group-hover:gap-3 transition-all">
-                                    Read More
-                                    <span class="text-lg">&rarr;</span>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+          <section aria-label="News posts" class="border-y border-zinc-800/60">
+            <For each={newsPosts}>
+              {(post) => (
+                <article class="grid grid-cols-1 gap-y-5 border-b border-zinc-800/60 py-8 last:border-b-0 md:py-10 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+                  <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-bold uppercase tracking-widest lg:col-span-3 lg:items-start lg:content-start">
+                    <span class="text-amber-400">{post.category}</span>
+                    <span class="text-zinc-600 lg:hidden" aria-hidden="true">
+                      /
+                    </span>
+                    <time class="text-zinc-500" datetime={post.published}>
+                      {formatNewsDate(post.published)}
+                    </time>
+                    <span class="border border-zinc-700 px-2.5 py-1 text-zinc-400 lg:basis-full lg:w-fit">
+                      {post.statusLabel}
+                    </span>
+                  </div>
+                  <A
+                    href={`/announcement/${post.slug}`}
+                    class="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950 lg:col-span-9"
+                  >
+                    <h2 class="ks-record-title mb-3 text-2xl transition-colors group-hover:text-amber-400 md:text-3xl">
+                      {post.title}
+                    </h2>
+                    <p class="mb-4 max-w-3xl leading-relaxed text-zinc-400">{post.summary}</p>
+                    <span class="text-amber-400 text-sm font-bold">
+                      Read article <span aria-hidden="true">&rarr;</span>
+                    </span>
                   </A>
-                )}</For>
-              </div>
-            </div>
+                </article>
+              )}
+            </For>
           </section>
-
-          {/* Empty state hint */}
-          <Show when={announcements.length === 1}>
-            <div class="mt-20 text-center">
-              <div class="inline-block clip-corner bg-zinc-900/30 border border-zinc-800/30 px-8 py-6">
-                <p class="text-zinc-500 text-sm">
-                  More announcements will appear here as they are published.
-                </p>
-              </div>
-            </div>
-          </Show>
         </main>
 
         <Footer />

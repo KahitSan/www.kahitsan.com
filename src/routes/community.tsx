@@ -1,245 +1,325 @@
-import { Title, Meta, Link } from "@solidjs/meta";
-import { For, Show } from 'solid-js'
+import { Link, Meta, Title } from '@solidjs/meta'
+import { For, Match, Show, Switch } from 'solid-js'
 import type { Component } from 'solid-js'
-import Footer from '~/components/Footer'
+import ExternalLink from 'lucide-solid/icons/external-link'
 import Facebook from 'lucide-solid/icons/facebook'
 import Instagram from 'lucide-solid/icons/instagram'
-import ExternalLink from 'lucide-solid/icons/external-link'
 import Video from 'lucide-solid/icons/video'
+import Footer from '~/components/Footer'
+import { Picture } from '~/components/ui'
 import Button from '~/components/ui/Button/Button'
-import type { FeaturedEvent, Partnership, Sponsorship } from '~/types/community'
 import { communityData } from '~/data/community'
+import type { CommunityRecord, SocialLinks } from '~/types/community'
+import type { PictureData } from '~/components/ui/Picture'
 
-const SocialMediaButtons = (props: { socialLinks?: any }) => {
-  if (!props.socialLinks) return null
-  const getSocialIcon = (platform: string) => {
-    switch (platform) {
-      case 'facebook': return () => <Facebook size={14} />
-      case 'instagram': return () => <Instagram size={14} />
-      case 'tiktok': return () => <Video size={14} />
-      default: return () => <ExternalLink size={14} />
-    }
+const socialPlatforms = [
+  { key: 'facebook', label: 'Facebook', icon: () => <Facebook size={14} /> },
+  { key: 'instagram', label: 'Instagram', icon: () => <Instagram size={14} /> },
+  { key: 'tiktok', label: 'TikTok', icon: () => <Video size={14} /> },
+  { key: 'website', label: 'Website', icon: () => <ExternalLink size={14} /> },
+] satisfies readonly {
+  key: keyof SocialLinks
+  label: string
+  icon: Component
+}[]
+
+const byMostRecentDate = <Record extends CommunityRecord>(left: Record, right: Record) =>
+  (right.date.end ?? right.date.start).localeCompare(left.date.end ?? left.date.start)
+
+const partnershipRecords = [...communityData.partnerships].sort(byMostRecentDate)
+const featuredEventRecords = [...communityData.events].sort(byMostRecentDate)
+const sponsorshipRecords = [...communityData.sponsorships].sort(byMostRecentDate)
+
+const SocialMediaButtons = (props: { socialLinks?: SocialLinks }) => (
+  <Show when={props.socialLinks} keyed>
+    {(socialLinks) => (
+      <div class="mt-4 flex flex-wrap gap-2">
+        <For each={socialPlatforms}>
+          {(platform) => (
+            <Show when={socialLinks[platform.key]} keyed>
+              {(socialUrl) => (
+                <Button
+                  as="a"
+                  href={socialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  intent="secondary"
+                  variant="clip1"
+                  size="sm"
+                  icon={platform.icon}
+                  iconPosition="left"
+                  class="border-blue-500/40 bg-blue-500/20 text-xs text-blue-400 hover:bg-blue-500/30"
+                  noPulse
+                  noGlow
+                >
+                  {platform.label}
+                </Button>
+              )}
+            </Show>
+          )}
+        </For>
+      </div>
+    )}
+  </Show>
+)
+
+const getRecordTitle = (record: CommunityRecord) => {
+  switch (record.category) {
+    case 'event':
+      return record.title
+    case 'partnership':
+    case 'sponsorship':
+      return record.name
   }
+}
+
+const getRecordLogoAlt = (record: CommunityRecord) => {
+  const organization = record.category === 'event' ? record.organization : record.name
+  return `${organization} logo`
+}
+
+const communityLogoSizes = {
+  aces: '(max-width: 639px) 42px, 50px',
+  uapsa: '(max-width: 639px) 39px, 46px',
+  uapga: '(max-width: 639px) 56px, 66px',
+  ateneo: '(max-width: 639px) 48px, 56px',
+} as const
+
+const RecordLogo = (props: {
+  src: PictureData
+  alt: string
+  logoKey?: CommunityRecord['logoKey']
+}) => (
+  <div class="org-logo-wrap flex h-16 w-16 shrink-0 items-center justify-center p-2.5 sm:h-[72px] sm:w-[72px]">
+    <Picture
+      src={props.src}
+      alt={props.alt}
+      class="org-logo h-full w-full object-contain"
+      data-logo={props.logoKey}
+      sizes={props.logoKey ? communityLogoSizes[props.logoKey] : '50px'}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+)
+
+const RecordDate = (props: { record: CommunityRecord }) => {
+  const partnership = () => (props.record.category === 'partnership' ? props.record : undefined)
+  const event = () => (props.record.category === 'event' ? props.record : undefined)
+  const sponsorship = () => (props.record.category === 'sponsorship' ? props.record : undefined)
+
   return (
-    <div class="flex flex-wrap gap-2 mt-4">
-      <For each={Object.entries(props.socialLinks)}>{([platform, url]) => (
-        <Show when={url}>
-          {(() => (
-            <Button
-              as="a"
-              href={url as string}
-              target="_blank"
-              rel="noopener noreferrer"
-              intent="secondary"
-              variant="clip1"
-              size="sm"
-              icon={getSocialIcon(platform)}
-              iconPosition="left"
-              class="text-xs bg-blue-500/20 border-blue-500/40 text-blue-400 hover:bg-blue-500/30"
-              noPulse
-              noGlow
-            >
-              {platform.charAt(0).toUpperCase() + platform.slice(1)}
-            </Button>
-          ))()}
-        </Show>
-      )}</For>
-    </div>
+    <Switch>
+      <Match when={partnership()} keyed>
+        {(record) => (
+          <div class="space-y-1">
+            <p class="text-xs font-bold uppercase tracking-widest text-amber-400">
+              Partnership start
+            </p>
+            <time dateTime={record.date.start} class="block text-sm text-zinc-500">
+              {record.date.label}
+            </time>
+            <p class="text-xs leading-relaxed text-zinc-500">End date not published in record.</p>
+          </div>
+        )}
+      </Match>
+      <Match when={event()} keyed>
+        {(record) => (
+          <div class="space-y-1">
+            <p class="text-xs font-bold uppercase tracking-widest text-amber-400">Event date</p>
+            <time dateTime={record.date.start} class="block text-sm text-zinc-500">
+              {record.date.label}
+            </time>
+          </div>
+        )}
+      </Match>
+      <Match when={sponsorship()} keyed>
+        {(record) => (
+          <div class="space-y-1">
+            <p class="text-xs font-bold uppercase tracking-widest text-amber-400">
+              Sponsorship period
+            </p>
+            <time dateTime={record.date.start} class="block text-sm text-zinc-500">
+              {record.date.label}
+            </time>
+          </div>
+        )}
+      </Match>
+    </Switch>
   )
 }
 
-const CommunityPage: Component = () => {
-  const community = communityData
+const RecordDetails = (props: { record: CommunityRecord }) => {
+  const event = () => (props.record.category === 'event' ? props.record : undefined)
+  const partnership = () => (props.record.category === 'partnership' ? props.record : undefined)
+  const sponsorship = () => (props.record.category === 'sponsorship' ? props.record : undefined)
 
   return (
+    <Switch>
+      <Match when={event()} keyed>
+        {(record) => (
+          <>
+            <p class="text-sm leading-relaxed text-zinc-400 md:text-base">{record.description}</p>
+            <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-500">
+              <span>{record.location}</span>
+              <span>{record.organization}</span>
+            </div>
+          </>
+        )}
+      </Match>
+      <Match when={partnership()} keyed>
+        {(record) => (
+          <>
+            <p class="font-bold text-amber-400">Published benefit: {record.discount}</p>
+            <p class="mt-3 text-sm leading-relaxed text-zinc-400 md:text-base">
+              {record.description}
+            </p>
+          </>
+        )}
+      </Match>
+      <Match when={sponsorship()} keyed>
+        {(record) => (
+          <>
+            <p class="font-bold text-zinc-300">{record.event}</p>
+            <Show when={record.theme} keyed>
+              {(theme) => <p class="mt-1 text-sm text-zinc-500">Theme: “{theme}”</p>}
+            </Show>
+            <p class="mt-3 text-sm leading-relaxed text-zinc-400 md:text-base">
+              {record.description}
+            </p>
+          </>
+        )}
+      </Match>
+    </Switch>
+  )
+}
+
+const CommunityRecordCard = (props: { record: CommunityRecord }) => (
+  <article class="group flex min-w-0 flex-col border-t border-zinc-800/60 py-5 md:py-7">
+    <div class="flex items-start gap-4">
+      <RecordLogo
+        src={props.record.icon}
+        alt={getRecordLogoAlt(props.record)}
+        logoKey={props.record.logoKey}
+      />
+      <div class="min-w-0 flex-1 space-y-2">
+        <RecordDate record={props.record} />
+        <h3 class="ks-record-title">{getRecordTitle(props.record)}</h3>
+      </div>
+    </div>
+    <div class="mt-4 flex-1">
+      <RecordDetails record={props.record} />
+    </div>
+    <SocialMediaButtons socialLinks={props.record.socialLinks} />
+  </article>
+)
+
+const CommunitySection = (props: {
+  id: string
+  title: string
+  description: string
+  records: readonly CommunityRecord[]
+  emptyMessage: string
+  class?: string
+}) => (
+  <section
+    id={props.id}
+    class={`scroll-mt-24 md:scroll-mt-32 ${props.class ?? ''}`}
+    aria-labelledby={`${props.id}-heading`}
+  >
+    <div class="grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+      <header class="space-y-3 lg:col-span-3 lg:pr-3">
+        <h2 id={`${props.id}-heading`} class="ks-section-title">
+          {props.title}
+        </h2>
+        <p class="max-w-sm text-sm leading-relaxed text-zinc-400 md:text-base">
+          {props.description}
+        </p>
+      </header>
+
+      <div class="lg:col-span-9">
+        <Show
+          when={props.records.length > 0}
+          fallback={
+            <div class="border-y border-zinc-800/60 py-6 md:py-8">
+              <p class="max-w-2xl text-sm leading-relaxed text-zinc-400 md:text-base">
+                {props.emptyMessage}
+              </p>
+            </div>
+          }
+        >
+          <div class="grid grid-cols-1 border-b border-zinc-800/60 md:grid-cols-2 md:gap-x-7 xl:gap-x-10">
+            <For each={props.records}>{(record) => <CommunityRecordCard record={record} />}</For>
+          </div>
+        </Show>
+      </div>
+    </div>
+  </section>
+)
+
+const CommunityPage: Component = () => {
+  return (
     <>
-      <Title>Community Engagement - KahitSan</Title>
-      <Meta name="description" content="Join our vibrant community. Events, partnerships with BISCAST ACES and UAPSA, and sponsorship programs." />
-      <Meta property="og:title" content="Community Engagement - KahitSan" />
+      <Title>Community | KahitSan Coworking</Title>
+      <Meta
+        name="description"
+        content="A continually updated record of KahitSan Coworking partnerships, sponsorships, and events in Naga City."
+      />
+      <Meta property="og:title" content="Community | KahitSan Coworking" />
+      <Meta
+        property="og:description"
+        content="Follow KahitSan Coworking partnerships, sponsorships, and events in Naga City."
+      />
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com/community" />
       <Link rel="canonical" href="https://www.kahitsan.com/community" />
 
-      <div class="min-h-screen page-bg transition-colors duration-300">
-        <main class="pt-20 pb-12 md:pt-32 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-          {/* Hero */}
-          <section class="mb-12 md:mb-24">
-            <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-4">COMMUNITY</div>
-            <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-6 max-w-4xl">
-              Building <span class="gradient-text">together</span> with our community.
-            </h1>
-            <p class="text-zinc-400 text-base md:text-lg max-w-2xl">
-              We support local organizations, sponsor educational programs, and host events that bring people together. Here's what we've been up to.
-            </p>
-          </section>
-
-          {/* Partnerships — Full-width cards */}
-          <section class="mb-16 md:mb-32 relative">
-            <div class="absolute -top-10 -right-10 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="flex items-end justify-between mb-8 md:mb-12">
-              <div>
-                <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">PARTNER ORGANIZATIONS</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Partnerships</h2>
-              </div>
-              <div class="hidden md:block text-zinc-500 text-right max-w-xs text-sm">
-                Members of these organizations enjoy exclusive discounts on all workspace bookings.
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              <For each={community.partnerships}>{(partner: Partnership) => (
-                <div class="bg-zinc-900/60 clip-corner-both p-[1px] group hover:bg-amber-500/20 transition-colors duration-500">
-                  <div class="bg-zinc-950 clip-corner-both h-full flex flex-col">
-                    {/* Logo area */}
-                    <div class="flex items-center justify-center p-4 bg-zinc-900/50 min-h-[120px] md:min-h-[160px]">
-                      <img
-                        src={partner.icon}
-                        alt={partner.name}
-                        class="h-36 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
-                        width={80}
-                        height={80}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    {/* Details */}
-                    <div class="flex flex-col flex-1 p-5 md:p-8">
-                      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-tighter w-fit mb-4">
-                        {partner.discount}
-                      </span>
-                      <h3 class="text-lg font-bold text-white mb-2">{partner.name}</h3>
-                      <p class="text-zinc-500 text-xs mb-3">{partner.effectiveDate}</p>
-                      <p class="text-zinc-400 text-sm leading-relaxed mb-auto">{partner.description}</p>
-                      <SocialMediaButtons socialLinks={partner.socialLinks} />
-                    </div>
-                  </div>
-                </div>
-              )}</For>
-            </div>
-          </section>
-
-          {/* Featured Events — Timeline style */}
-          <section class="mb-16 md:mb-32 relative">
-            <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="mb-8 md:mb-12">
-              <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">HIGHLIGHTS</div>
-              <h2 class="text-3xl md:text-4xl font-bold text-white">Featured Events</h2>
-            </div>
-
-            <div class="space-y-4 md:space-y-8">
-              <For each={community.featuredEvents}>{(event: FeaturedEvent) => (
-                <div class="relative clip-corner-both bg-zinc-900/40 border border-zinc-800/30 overflow-hidden group hover:border-amber-500/20 transition-all">
-                  <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-0">
-                    {/* Left — Logo + Date */}
-                    <div class="flex flex-col items-center justify-center p-4 md:p-8 bg-zinc-900/60 border-b md:border-b-0 md:border-r border-zinc-800/30">
-                      <img
-                        src={event.icon}
-                        alt={event.organization}
-                        class="h-20 w-auto object-contain mb-4 grayscale group-hover:grayscale-0 transition-all duration-500"
-                        width={80}
-                        height={80}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">{event.date}</span>
-                    </div>
-                    {/* Right — Content */}
-                    <div class="p-5 md:p-10">
-                      <h3 class="text-xl md:text-2xl font-bold text-white mb-3">{event.title}</h3>
-                      <p class="text-zinc-400 leading-relaxed mb-4">{event.description}</p>
-                      <div class="flex flex-wrap gap-4 text-xs text-zinc-500 mb-2">
-                        <span class="flex items-center gap-1.5">
-                          <div class="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                          {event.location}
-                        </span>
-                        <span class="flex items-center gap-1.5">
-                          <div class="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                          {event.organization}
-                        </span>
-                      </div>
-                      <SocialMediaButtons socialLinks={event.socialLinks} />
-                    </div>
-                  </div>
-                </div>
-              )}</For>
-            </div>
-          </section>
-
-          {/* Sponsorships — Numbered cards */}
-          <section class="mb-16 md:mb-32 relative">
-            <div class="absolute -top-10 right-20 w-64 h-64 bg-amber-500/5 rounded-full blur-[100px] -z-10" />
-            <div class="mb-8 md:mb-12">
-              <div class="text-xs font-bold tracking-[0.3em] gradient-text mb-2">GIVING BACK</div>
-              <h2 class="text-3xl md:text-4xl font-bold text-white">Sponsorships</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              <For each={community.sponsorships}>{(sponsorship: Sponsorship, i) => (
-                <div class="relative group">
-                  <div class="absolute inset-0 bg-amber-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div class="relative clip-corner p-[1px] bg-gradient-to-br from-amber-500/20 to-transparent">
-                    <div class="bg-zinc-950 p-6 md:p-10 h-full clip-corner">
-                      <span class="text-6xl font-black text-amber-500/10 absolute top-4 right-8">
-                        {String(i() + 1).padStart(2, '0')}
-                      </span>
-                      <div class="flex items-center gap-4 mb-6">
-                        <img
-                          src={sponsorship.icon}
-                          alt={sponsorship.name}
-                          class="h-14 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
-                          width={80}
-                          height={80}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div class="h-px flex-1 bg-zinc-800/50" />
-                      </div>
-                      <h3 class="text-xl font-bold text-white mb-2">{sponsorship.name}</h3>
-                      <div class="mb-4">
-                        <p class="text-amber-400 font-bold text-sm">{sponsorship.event}</p>
-                        <p class="text-zinc-500 text-xs">{sponsorship.eventDate}</p>
-                        <Show when={sponsorship.theme}>
-                          <p class="text-zinc-400 text-xs italic mt-1">"{sponsorship.theme}"</p>
-                        </Show>
-                      </div>
-                      <p class="text-zinc-400 leading-relaxed">{sponsorship.description}</p>
-                      <SocialMediaButtons socialLinks={sponsorship.socialLinks} />
-                    </div>
-                  </div>
-                </div>
-              )}</For>
-            </div>
-          </section>
-
-          {/* CTA */}
-          <section>
-            <div class="clip-corner-both bg-zinc-900/30 p-6 md:p-12 lg:p-20 relative border border-amber-500/10 overflow-hidden">
-              <div class="relative z-10 text-center max-w-2xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                  Host Your Event <span class="gradient-text">With Us</span>
-                </h2>
-                <p class="text-zinc-400 text-base md:text-lg mb-6 md:mb-8">
-                  Looking to organize a workshop, meetup, or community event? Our spaces are built for gatherings that matter.
+      <div class="page-bg min-h-screen transition-colors duration-300">
+        <main class="mx-auto max-w-7xl px-6 pt-20 pb-12 md:px-12 md:pt-32 md:pb-24">
+          <section
+            id="community"
+            class="mb-14 scroll-mt-24 md:mb-24 md:scroll-mt-32"
+            aria-labelledby="community-heading"
+          >
+            <div class="grid grid-cols-1 gap-y-5 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <div class="space-y-5 lg:col-span-9 lg:col-start-4">
+                <h1 id="community-heading" class="ks-display-heading max-w-4xl">
+                  KahitSan Coworking in the <span class="ks-heading-accent">community</span>
+                </h1>
+                <p class="max-w-3xl text-lg leading-relaxed text-zinc-300 md:text-xl">
+                  Partnerships, sponsorships, and events connecting our coworking space with student
+                  and professional organizations in Naga City.
                 </p>
-                <Button
-                  as="a"
-                  href="https://www.facebook.com/KahitSan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  intent="primary"
-                  variant="clip1"
-                  effect="scan-line"
-                  icon={() => <Facebook size={18} />}
-                  iconPosition="left"
-                >
-                  Get in Touch
-                </Button>
               </div>
-              <div class="absolute -bottom-16 -right-16 text-[12rem] font-black text-white/[0.02] select-none pointer-events-none uppercase">KHTS</div>
             </div>
           </section>
-        </main>
 
+          <CommunitySection
+            id="partnerships"
+            title="Partnerships"
+            description="Published partnerships with student and professional organizations. Records show known start dates without assuming contract end dates."
+            records={partnershipRecords}
+            emptyMessage="No partnership records are published yet."
+            class="mb-14 md:mb-24"
+          />
+
+          <CommunitySection
+            id="featured-events"
+            title="Featured events"
+            description="Selected community events where KahitSan Coworking participated."
+            records={featuredEventRecords}
+            emptyMessage="No featured event records are published yet."
+            class="mb-14 md:mb-24"
+          />
+
+          <CommunitySection
+            id="sponsorships"
+            title="Sponsorships"
+            description="Programs KahitSan Coworking supported through coworking vouchers."
+            records={sponsorshipRecords}
+            emptyMessage="No sponsorship records are published yet."
+          />
+        </main>
         <Footer />
       </div>
     </>

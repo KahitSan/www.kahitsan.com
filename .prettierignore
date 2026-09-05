@@ -1,0 +1,12 @@
+node_modules/
+.vinxi/
+.output/
+dist/
+test-results/
+playwright-report/
+.bobonyo/
+.playwright-mcp/
+.screenshots/
+/desktop-*.jpeg
+/light-mode-*.png
+/mobile-*.jpeg

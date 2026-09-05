@@ -1,14 +1,26 @@
-import { Title, Meta } from "@solidjs/meta";
+import { Title, Meta } from '@solidjs/meta'
 import NotFound from '~/components/ui/NotFound/NotFound'
-import Logo from '~/assets/kahitsan-coworking-logo-dark.png'
+import DarkLogo from '~/assets/kahitsan-corp-logo-dark.png?w=132;226;263;452&as=picture'
+import LightLogo from '~/assets/kahitsan-corp-logo-light.png?w=132;226;263;452&as=picture'
+import { Picture } from '~/components/ui'
+import { useTheme } from '~/lib/theme'
 
 export default function NotFoundPage() {
+  const { theme } = useTheme()
+
   return (
     <>
       <Title>404 - Page Not Found - KahitSan</Title>
       <Meta name="description" content="The page you are looking for could not be found." />
       <NotFound
-        logo={<img src={Logo} alt="KahitSan Logo" width={200} height={200} />}
+        logo={
+          <Picture
+            src={theme() === 'dark' ? DarkLogo : LightLogo}
+            alt="KahitSan Solutions Corp. logo"
+            class="w-[226px] h-auto"
+            sizes="226px"
+          />
+        }
       />
     </>
   )

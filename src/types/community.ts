@@ -1,3 +1,5 @@
+import type { PictureData } from '~/components/ui/Picture'
+
 export interface SocialLinks {
   facebook?: string
   instagram?: string
@@ -5,40 +7,53 @@ export interface SocialLinks {
   website?: string
 }
 
-export interface FeaturedEvent {
-  id: number
+export type CommunityCategory = 'event' | 'partnership' | 'sponsorship'
+
+export type CommunityStatus = 'current' | 'upcoming' | 'past'
+
+export interface CommunityDate {
+  start: string
+  end?: string
+  label: string
+}
+
+interface CommunityRecordBase {
+  id: string
+  category: CommunityCategory
+  status: CommunityStatus
+  featured?: boolean
+  logoKey?: 'aces' | 'uapsa' | 'uapga' | 'ateneo'
+  date: CommunityDate
+  description: string
+  icon: PictureData
+  socialLinks?: SocialLinks
+}
+
+export interface FeaturedEvent extends CommunityRecordBase {
+  category: 'event'
   title: string
-  date: string
   location: string
   organization: string
-  description: string
-  icon: string
-  socialLinks?: SocialLinks
 }
 
-export interface Partnership {
-  id: number
+export interface Partnership extends CommunityRecordBase {
+  category: 'partnership'
   name: string
   discount: string
-  effectiveDate: string
-  description: string
-  icon: string
-  socialLinks?: SocialLinks
 }
 
-export interface Sponsorship {
-  id: number
+export interface Sponsorship extends CommunityRecordBase {
+  category: 'sponsorship'
   name: string
   event: string
-  eventDate: string
   theme?: string
-  description: string
-  icon: string
-  socialLinks?: SocialLinks
 }
 
+export type CommunityRecord = FeaturedEvent | Partnership | Sponsorship
+
 export interface CommunityData {
-  featuredEvents: FeaturedEvent[]
-  partnerships: Partnership[]
-  sponsorships: Sponsorship[]
+  records: readonly CommunityRecord[]
+  events: readonly FeaturedEvent[]
+  partnerships: readonly Partnership[]
+  sponsorships: readonly Sponsorship[]
 }

@@ -1,20 +1,19 @@
-# KahitSan
+# KahitSan Solutions Corp.
 
-> Affordable coworking space in Naga City, Philippines. Built for students, professionals, and anyone who needs a reliable place to focus.
+KahitSan Solutions Corp. is a Naga City company behind two current offerings:
 
-KahitSan is a tech-driven coworking space offering flexible hourly rates, memberships, and private spaces with 24/7 access, high-speed internet, and unlimited coffee.
+- KahitSan Coworking: a physical coworking space on Panganiban Drive, Naga City, with walk-in workspace rates and an All-Access Membership.
+- Hilinga: a business software product with its own website at https://www.hilinga.com.
 
-## Location
+## Main pages
 
-- Panganiban Drive, Naga City, Philippines (currently open)
+- Company overview: https://www.kahitsan.com/
+- KahitSan Coworking and current pricing: https://www.kahitsan.com/coworking
+- Coworking community activity: https://www.kahitsan.com/community
+- Company news: https://www.kahitsan.com/announcements
+- About KahitSan Solutions Corp.: https://www.kahitsan.com/about
+- Contact: https://www.kahitsan.com/contact
+- Privacy: https://www.kahitsan.com/privacy
+- Terms: https://www.kahitsan.com/terms
 
-## Pages
-
-- [Home](https://www.kahitsan.com/): Overview of KahitSan coworking space, features, and community
-- [Solutions & Pricing](https://www.kahitsan.com/solutions): Flexible coworking plans — hourly rates, memberships, private spaces
-- [Community](https://www.kahitsan.com/community): Partnerships, sponsorships, and community involvement
-- [Announcements](https://www.kahitsan.com/announcements): Latest news and updates
-- [About](https://www.kahitsan.com/about): Mission, vision, and story behind KahitSan
-- [Contact](https://www.kahitsan.com/contact): Get in touch with KahitSan
-- [Terms of Service](https://www.kahitsan.com/terms): Terms and conditions
-- [Privacy Policy](https://www.kahitsan.com/privacy): Privacy policy
+Old `/solutions` and `/spaces` URLs redirect to `/coworking`.

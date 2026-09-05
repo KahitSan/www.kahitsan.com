@@ -6,3 +6,9 @@ test-results/
 playwright-report/
 .env
 .env.local
+.bobonyo/
+.playwright-mcp/
+.screenshots/
+/desktop-*.jpeg
+/light-mode-*.png
+/mobile-*.jpeg

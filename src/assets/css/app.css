@@ -1,11 +1,11 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @source "../../../node_modules/@kahitsan/ksui/src";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@import "./design-system.css";
-@import "./transitions.css";
-@import "./button.css";
+@import './design-system.css';
+@import './transitions.css';
+@import './button.css';
 
 /* Logo marquee: auto-scroll when content overflows */
 .logo-marquee [data-logos] {
@@ -15,6 +15,10 @@
   animation-play-state: paused;
 }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

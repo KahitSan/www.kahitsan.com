@@ -9,7 +9,7 @@
     @apply bg-zinc-950 text-zinc-200 transition-colors duration-300;
   }
 
-  /* Light mode — inspired by Material Design 3 editorial palette */
+  /* Light mode: inspired by Material Design 3 editorial palette */
   .light body {
     background-color: #f7f9fb;
     color: #191c1e;
@@ -34,6 +34,316 @@
     background: #f2f4f6;
     border: 1px solid #d3c5ac33;
   }
+
+  .ks-display-heading,
+  .ks-section-title,
+  .ks-record-title {
+    color: #f1e7d0;
+    text-wrap: balance;
+  }
+
+  .ks-display-heading {
+    font-size: clamp(2.5rem, 6vw, 4.75rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    text-shadow: 0 10px 36px rgba(201, 169, 97, 0.08);
+  }
+
+  .ks-heading-accent {
+    color: #c9a961;
+  }
+
+  .ks-section-title {
+    position: relative;
+    padding-left: 1rem;
+    font-size: clamp(1.65rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+  }
+
+  .ks-section-title::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: linear-gradient(180deg, #f0d58f, #8f6923);
+  }
+
+  .ks-heading-kicker {
+    color: #c9a961;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ks-record-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.012em;
+    line-height: 1.3;
+  }
+
+  .ks-grid-surface {
+    background-color: rgba(9, 9, 11, 0.46);
+    background-image:
+      linear-gradient(rgba(201, 169, 97, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 169, 97, 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .ks-media-frame {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: #111113;
+  }
+
+  .ks-media-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(9, 9, 11, 0.05), rgba(9, 9, 11, 0.24));
+    transition: opacity 300ms ease;
+  }
+
+  .ks-muted-media {
+    opacity: 0.72;
+    filter: saturate(0.8) contrast(0.96);
+    transition:
+      opacity 300ms ease,
+      filter 300ms ease,
+      transform 500ms ease;
+  }
+
+  .ks-media-frame:hover .ks-muted-media,
+  .ks-media-frame:focus-within .ks-muted-media {
+    opacity: 0.9;
+    filter: saturate(0.94) contrast(1);
+    transform: scale(1.012);
+  }
+
+  .ks-media-frame:hover::after,
+  .ks-media-frame:focus-within::after {
+    opacity: 0.55;
+  }
+
+  .ks-logo-media {
+    opacity: 0.78;
+    filter: saturate(0.82);
+    transition:
+      opacity 200ms ease,
+      filter 200ms ease;
+  }
+
+  .org-logo {
+    opacity: 0.72;
+    filter: saturate(0.72) contrast(0.96);
+    object-fit: contain;
+    transition:
+      opacity 200ms ease,
+      filter 200ms ease;
+  }
+
+  .org-logo[data-logo='uapsa'] {
+    transform: scale(0.92);
+  }
+
+  .org-logo[data-logo='uapga'] {
+    transform: scale(1.32);
+  }
+
+  .org-logo[data-logo='ateneo'] {
+    transform: scale(1.12);
+  }
+
+  .dark .org-logo[data-logo='aces'] {
+    filter: brightness(1.35) saturate(0.72) contrast(1.02);
+  }
+
+  .dark .org-logo[data-logo='ateneo'] {
+    filter: brightness(1.25) saturate(0.72);
+  }
+
+  .dark .org-logo[data-logo='uapsa'],
+  .dark .org-logo[data-logo='uapga'] {
+    filter: brightness(1.08) saturate(0.72) contrast(1.02);
+  }
+
+  .group:hover .org-logo,
+  .group:focus-within .org-logo {
+    opacity: 1;
+    filter: saturate(1) contrast(1);
+  }
+
+  .dark .group:hover .org-logo[data-logo='aces'],
+  .dark .group:focus-within .org-logo[data-logo='aces'] {
+    filter: brightness(1.45) saturate(1) contrast(1.04);
+  }
+
+  .dark .group:hover .org-logo[data-logo='ateneo'],
+  .dark .group:focus-within .org-logo[data-logo='ateneo'] {
+    filter: brightness(1.35) saturate(1);
+  }
+
+  .dark .group:hover .org-logo[data-logo='uapsa'],
+  .dark .group:focus-within .org-logo[data-logo='uapsa'],
+  .dark .group:hover .org-logo[data-logo='uapga'],
+  .dark .group:focus-within .org-logo[data-logo='uapga'] {
+    filter: brightness(1.12) saturate(1) contrast(1.03);
+  }
+
+  [data-map-state='idle'] div:has(> .lucide-map-pin) {
+    width: auto !important;
+    height: auto !important;
+    margin-bottom: 1rem;
+    border: 0 !important;
+    background: transparent !important;
+    clip-path: none !important;
+  }
+
+  .light .ks-form-control {
+    border-color: rgba(91, 82, 67, 0.48);
+    background-color: rgba(255, 255, 255, 0.98);
+  }
+
+  .ks-mobile-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(2px);
+  }
+
+  .ks-desktop-navigation {
+    display: none;
+  }
+
+  .ks-tablet-navigation-controls {
+    display: flex;
+  }
+
+  .ks-tablet-menu,
+  .ks-tablet-navigation {
+    display: none;
+  }
+
+  .ks-tablet-menu-close-icon {
+    display: none;
+  }
+
+  .ks-tablet-menu > summary {
+    list-style: none;
+  }
+
+  .ks-tablet-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ks-tablet-menu[open] .ks-tablet-menu-open-icon {
+    display: none;
+  }
+
+  .ks-tablet-menu[open] .ks-tablet-menu-close-icon {
+    display: inline-flex;
+  }
+
+  @media (min-width: 48rem) {
+    .ks-tablet-menu {
+      display: block;
+    }
+
+    .ks-tablet-menu-button {
+      display: inline-flex;
+    }
+
+    .ks-tablet-menu[open] .ks-tablet-navigation {
+      display: block;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
+    }
+  }
+
+  /* Header fit breakpoint. Update this single value when nav labels change. */
+  @media (min-width: 62rem) {
+    .ks-desktop-navigation {
+      display: flex;
+    }
+
+    .ks-tablet-navigation-controls,
+    .ks-tablet-navigation {
+      display: none;
+    }
+  }
+
+  .group:hover .ks-logo-media,
+  .group:focus-within .ks-logo-media {
+    opacity: 1;
+    filter: saturate(1);
+  }
+
+  .light .ks-display-heading {
+    color: #352b1a;
+    text-shadow: none;
+  }
+
+  .light .ks-heading-accent {
+    color: #785a00;
+  }
+
+  .light .ks-section-title,
+  .light .ks-record-title {
+    color: #352b1a;
+  }
+
+  .light .ks-heading-kicker {
+    color: #6b4f00;
+  }
+
+  .light .ks-grid-surface {
+    background-color: rgba(242, 244, 246, 0.8);
+    background-image:
+      linear-gradient(rgba(120, 90, 0, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120, 90, 0, 0.055) 1px, transparent 1px);
+  }
+
+  .light .ks-media-frame {
+    background: #e6e8ea;
+  }
+
+  .light .ks-media-frame::after {
+    background: linear-gradient(180deg, rgba(25, 28, 30, 0.02), rgba(25, 28, 30, 0.14));
+  }
+}
+
+.dark .text-zinc-500 {
+  color: #a1a1aa;
+}
+
+.dark .text-zinc-600 {
+  color: #8f8f98;
+}
+
+.light .text-amber-500 {
+  color: #6b4f00;
+}
+
+@media (max-width: 767px) {
+  .page-transition-container {
+    padding-bottom: calc(4.25rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ks-muted-media,
+  .ks-logo-media,
+  .org-logo,
+  .ks-media-frame::after {
+    transition: none;
+  }
 }
 
 /* Minimal custom utilities */
@@ -45,17 +355,10 @@
   .clip-corner-both {
     clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
   }
-
-  .gradient-text {
-    background: linear-gradient(135deg, #c9a961, #e5d4a1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
 }
 
 /* =============================================================================
-   Light mode — global color remapping
+   Light mode: global color remapping
 
    Color palette derived from Material Design 3 editorial scheme:
 
@@ -68,8 +371,8 @@
    Secondary (muted):     #5f5e5e  (body copy)
    Outline:               #817660  (warm gray borders)
    Outline variant:       #d3c5ac  (warm light borders)
-   Primary:               #785a00  (dark gold — accent text)
-   Primary container:     #eab308  (bright gold — accent bg)
+   Primary:               #785a00  (dark gold: accent text)
+   Primary container:     #eab308  (bright gold: accent bg)
    ============================================================================= */
 
 /* --- Text: headings & primary content ---
@@ -83,7 +386,7 @@
 
 /*
  * Image overlay cards: containers with a background <img> + dark gradient
- * are unaffected by theme — the overlays are always dark. So we UNDO all
+ * are unaffected by theme: the overlays are always dark. So we UNDO all
  * light-mode color remappings inside them to preserve dark-mode colors.
  */
 .light :has(> img.object-cover) > .relative,
@@ -128,7 +431,7 @@
   opacity: 0.4;
 }
 
-/* group-hover overrides inside overlays — only on actual hover */
+/* group-hover overrides inside overlays: only on actual hover */
 .light .group:hover :has(> img.object-cover) > .relative .group-hover\:bg-amber-500 {
   background-color: #f59e0b;
 }
@@ -151,35 +454,32 @@
 }
 
 .light .text-zinc-500 {
-  color: #817660;
+  color: #655f55;
 }
 
 .light .text-zinc-600 {
   color: #5f5e5e;
 }
 
-/* --- Accent: amber/gold — darker for contrast on light --- */
+/* --- Accent: amber/gold: darker for contrast on light --- */
 .light .text-amber-400 {
   color: #785a00;
+}
+
+.light .text-amber-100 {
+  color: #6b4f00;
 }
 
 .light .text-amber-300 {
   color: #785a00;
 }
 
-.light .gradient-text {
-  background: linear-gradient(135deg, #785a00, #a07d2e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Blue accent — darker for the "future services" card */
+/* Blue accent: darker for light backgrounds */
 .light .text-blue-400 {
   color: #2563eb;
 }
 
-/* Status colors — slightly deeper for contrast */
+/* Status colors: slightly deeper for contrast */
 .light .text-emerald-400 {
   color: #059669;
 }
@@ -238,6 +538,18 @@
   background-color: rgba(255, 255, 255, 0.85);
 }
 
+.light .bg-zinc-950\/35 {
+  background-color: rgba(255, 255, 255, 0.72);
+}
+
+.light .bg-zinc-950\/90 {
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+.light .bg-zinc-950\/98 {
+  background-color: rgba(255, 255, 255, 0.99);
+}
+
 .light .bg-zinc-800\/50 {
   background-color: rgba(230, 232, 234, 0.5);
 }
@@ -250,7 +562,7 @@
   background-color: rgba(230, 232, 234, 0.4);
 }
 
-/* Black overlays on images — soften to warm white */
+/* Black overlays on images: soften to warm white */
 .light .bg-black\/40 {
   background-color: rgba(255, 255, 255, 0.55);
 }
@@ -259,7 +571,7 @@
   background-color: rgba(255, 255, 255, 0.65);
 }
 
-/* Amber tints — warm and gentle */
+/* Amber tints: warm and gentle */
 .light .bg-amber-500\/5 {
   background-color: rgba(120, 90, 0, 0.03);
 }
@@ -291,7 +603,7 @@
   background-color: #dc2626;
 }
 
-/* --- Border colors — warm outlines from the editorial palette --- */
+/* --- Border colors: warm outlines from the editorial palette --- */
 .light .border-zinc-800\/50,
 .light .border-zinc-800\/30,
 .light .border-zinc-800\/20 {
@@ -322,7 +634,7 @@
   border-color: rgba(37, 99, 235, 0.25);
 }
 
-/* --- Gradient overlays on images — leave UNCHANGED ---
+/* --- Gradient overlays on images: leave UNCHANGED ---
  * These sit on photos and are always dark regardless of theme.
  * No remapping needed.
  */
@@ -435,16 +747,9 @@
 }
 
 /* Light mode bottom nav bar */
-.light nav.fixed[class*="bottom-0"] {
+.light nav.fixed[class*='bottom-0'] {
   background-color: rgba(255, 255, 255, 0.9);
   border-top-color: #e0e3e5;
-}
-
-/* Pad page bottom so content isn't hidden behind bottom nav on mobile */
-@media (max-width: 1023px) {
-  .page-transition-container {
-    padding-bottom: 3.5rem;
-  }
 }
 
 /* --- Header --- */
@@ -494,7 +799,7 @@
 
 /* --- Button overrides --- */
 
-/* Primary button — make amber bg and border much more visible */
+/* Primary button: make amber bg and border much more visible */
 .light .bg-amber-600\/20 {
   background-color: rgba(120, 90, 0, 0.1);
 }
@@ -511,7 +816,7 @@
   border-color: rgba(120, 90, 0, 0.6);
 }
 
-/* Secondary / nav inactive — neutral gray, visible on white */
+/* Secondary / nav inactive: neutral gray, visible on white */
 .light .text-slate-400 {
   color: #64748b;
 }
@@ -551,14 +856,16 @@
 
 /* --- Shadows for cards on light (adds depth that dark mode gets from contrast) --- */
 .light .clip-corner-both {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 .light .clip-corner {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-/* --- Emerald glow — less intense on light --- */
+/* --- Emerald glow: less intense on light --- */
 .light .shadow-\[0_0_10px_rgba\(52\,211\,153\,0\.6\)\] {
   box-shadow: 0 0 8px rgba(5, 150, 105, 0.4);
 }
@@ -570,7 +877,7 @@
 
 /* --- Backdrop blur stays the same --- */
 
-/* --- Grayscale filters — slightly less aggressive on light --- */
+/* --- Grayscale filters: slightly less aggressive on light --- */
 .light .grayscale {
   filter: grayscale(0.6);
 }
@@ -583,4 +890,108 @@
 .light ::selection {
   background-color: rgba(234, 179, 8, 0.25);
   color: #191c1e;
+}
+
+.ks-news-body {
+  color: #c7c7cf;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.ks-news-body > * + * {
+  margin-top: 1.25rem;
+}
+
+.ks-news-body h2,
+.ks-news-body h3 {
+  color: #f1e7d0;
+  text-wrap: balance;
+}
+
+.ks-news-body h2 {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(113, 113, 122, 0.45);
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.ks-news-body h3 {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ks-news-body a {
+  color: #f0c95d;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.ks-news-body blockquote {
+  margin: 0 0 2rem;
+  border-left: 3px solid #d6a834;
+  background: rgba(201, 169, 97, 0.08);
+  padding: 1rem 1.25rem;
+  color: #e3e3e8;
+}
+
+.ks-news-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.ks-news-table-scroll:focus-visible {
+  outline: 2px solid #d6a834;
+  outline-offset: 3px;
+}
+
+.ks-news-body table {
+  display: table;
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(113, 113, 122, 0.45);
+  font-variant-numeric: tabular-nums;
+}
+
+.ks-news-body th,
+.ks-news-body td {
+  min-width: 8rem;
+  border-bottom: 1px solid rgba(113, 113, 122, 0.35);
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ks-news-body th {
+  background: rgba(201, 169, 97, 0.1);
+  color: #f1e7d0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.light .ks-news-body {
+  color: #4f4a42;
+}
+
+.light .ks-news-body h2,
+.light .ks-news-body h3,
+.light .ks-news-body th {
+  color: #352b1a;
+}
+
+.light .ks-news-body a {
+  color: #6b4f00;
+}
+
+.light .ks-news-body blockquote {
+  background: rgba(120, 90, 0, 0.08);
+  color: #3f3a32;
 }

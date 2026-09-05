@@ -38,9 +38,7 @@ export const ThemeProvider: ParentComponent = (props) => {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {props.children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>{props.children}</ThemeContext.Provider>
   )
 }
 

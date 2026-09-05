@@ -1,54 +1,60 @@
 import { test, expect } from './fixtures'
 
-test.describe('Announcements Page', () => {
-  test.beforeEach(async ({ page }) => {
+test.describe('KahitSan News', () => {
+  test('lists the Markdown-driven pricing notice', async ({ page }) => {
     await page.goto('/announcements')
+    await expect(page).toHaveTitle(/KahitSan News/)
+    await expect(page.getByRole('heading', { name: 'KahitSan News' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Pricing Update: November 2025' })).toBeVisible()
+    await expect(page.getByText('Superseded', { exact: true })).toBeVisible()
   })
 
-  test('has correct page title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Announcements - KahitSan/)
-  })
-
-  test('shows Announcements heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: /Stay in the loop/i })).toBeVisible()
-  })
-
-  test('shows pricing update announcement', async ({ page }) => {
-    await expect(page.getByText('Pricing Update - Effective November 1, 2025')).toBeVisible()
-  })
-
-  test('announcement is clickable', async ({ page }) => {
-    await page.getByText('Pricing Update - Effective November 1, 2025').click()
-    await expect(page).toHaveURL('/announcement/pricing-update-nov-2025')
-  })
-
-})
-
-test.describe('Pricing Update Announcement', () => {
-  test.beforeEach(async ({ page }) => {
+  test('renders the retained notice from Markdown', async ({ page }) => {
     await page.goto('/announcement/pricing-update-nov-2025')
-  })
-
-  test('has correct page title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Pricing Update - November 2025 - KahitSan/)
-  })
-
-  test('shows pricing update heading', async ({ page }) => {
+    await expect(page).toHaveTitle(/Pricing Update: November 2025/)
+    await expect(page.getByRole('heading', { name: 'Pricing Update: November 2025' })).toBeVisible()
     await expect(
-      page.getByRole('heading', { name: /Pricing Update - Effective November 1, 2025/ })
+      page.getByRole('heading', { name: 'Pricing effective November 1, 2025' })
     ).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Entrance Area' })).toBeVisible()
+    await expect(page.getByRole('table').first()).toContainText('₱118')
+    await expect(page.getByRole('link', { name: /current coworking rates/i })).toHaveAttribute(
+      'href',
+      '/coworking'
+    )
   })
 
-  test('shows pricing tables', async ({ page }) => {
-    await expect(page.getByText('Entrance Area').first()).toBeVisible()
-    await expect(page.getByText('Inner Area').first()).toBeVisible()
-    await expect(page.getByText('Call Booth').first()).toBeVisible()
-    await expect(page.getByText('All-Access Membership').first()).toBeVisible()
-  })
+  test('uses full table width on desktop and preserves mobile scrolling', async ({
+    page,
+    viewport,
+  }) => {
+    await page.goto('/announcement/pricing-update-nov-2025')
+    const table = page.getByRole('table').first()
+    const scrollRegion = page.locator('.ks-news-table-scroll').first()
 
-  test('shows Why This Change section', async ({ page }) => {
-    await expect(page.getByText('Why This Change?')).toBeVisible()
-    await expect(page.getByText('Hasten KahitSan Development')).toBeVisible()
-  })
+    const geometry = await table.evaluate((element) => {
+      const firstRow = element.querySelector('tr')
+      const tableBounds = element.getBoundingClientRect()
+      const rowBounds = firstRow?.getBoundingClientRect()
+      return {
+        clientWidth: element.clientWidth,
+        scrollWidth: element.scrollWidth,
+        tableRight: tableBounds.right,
+        rowRight: rowBounds?.right ?? 0,
+      }
+    })
 
+    if ((viewport?.width ?? 1280) >= 768) {
+      expect(Math.abs(geometry.tableRight - geometry.rowRight)).toBeLessThanOrEqual(2)
+      return
+    }
+
+    const scrollGeometry = await scrollRegion.evaluate((element) => ({
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+    }))
+    expect(scrollGeometry.scrollWidth).toBeGreaterThan(scrollGeometry.clientWidth)
+    await scrollRegion.focus()
+    await expect(scrollRegion).toBeFocused()
+  })
 })
