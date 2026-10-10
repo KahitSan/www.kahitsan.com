@@ -66,6 +66,9 @@ test.describe('WCAG accessibility', () => {
           (selectedTheme) => document.documentElement.classList.contains(selectedTheme),
           theme
         )
+        if (theme === 'light') {
+          await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(247, 249, 251)')
+        }
         await page.addScriptTag({ content: axe.source })
 
         const violations = await page.evaluate(async () => {
