@@ -157,6 +157,12 @@
     transform: scale(1.32);
   }
 
+  .org-logo[data-logo='adnu'] {
+    opacity: 0.78;
+    transform: scale(1.12);
+    filter: brightness(0.72) saturate(1.25) contrast(1.35);
+  }
+
   .org-logo[data-logo='ateneo'] {
     transform: scale(1.12);
   }
@@ -172,6 +178,11 @@
   .dark .org-logo[data-logo='uapsa'],
   .dark .org-logo[data-logo='uapga'] {
     filter: brightness(1.08) saturate(0.72) contrast(1.02);
+  }
+
+  .dark .org-logo[data-logo='adnu'] {
+    opacity: 0.62;
+    filter: brightness(0.78) saturate(0.7) contrast(1.05);
   }
 
   .group:hover .org-logo,
@@ -195,6 +206,16 @@
   .dark .group:hover .org-logo[data-logo='uapga'],
   .dark .group:focus-within .org-logo[data-logo='uapga'] {
     filter: brightness(1.12) saturate(1) contrast(1.03);
+  }
+
+  .group:hover .org-logo[data-logo='adnu'],
+  .group:focus-within .org-logo[data-logo='adnu'] {
+    filter: brightness(0.72) saturate(1.25) contrast(1.35);
+  }
+
+  .dark .group:hover .org-logo[data-logo='adnu'],
+  .dark .group:focus-within .org-logo[data-logo='adnu'] {
+    filter: brightness(1.1) saturate(1) contrast(1.12);
   }
 
   [data-map-state='idle'] div:has(> .lucide-map-pin) {

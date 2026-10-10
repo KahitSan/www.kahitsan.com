@@ -23,24 +23,28 @@ test.describe('Community Page', () => {
     ).toHaveCount(0)
   })
 
-  test('shows category-appropriate dates without status labels', async ({ page }) => {
+  test('distinguishes current offers from expired partner records', async ({ page }) => {
     const partnerships = page.getByRole('region', { name: 'Partnerships' })
     const featuredEvents = page.getByRole('region', { name: 'Featured events' })
     const sponsorships = page.getByRole('region', { name: 'Sponsorships' })
 
-    await expect(partnerships.getByText('Partnership start')).toHaveCount(3)
-    await expect(partnerships.getByText('End date not published in record.')).toHaveCount(3)
+    await expect(partnerships.getByText('End date not published in record.')).toHaveCount(2)
+    await expect(partnerships.getByText('Current partnership')).toHaveCount(2)
+    await expect(partnerships.getByText('Expired partner offer')).toHaveCount(2)
+    await expect(partnerships.getByText('Expired partner offer').first()).toHaveClass(
+      /text-red-700/
+    )
+    await expect(partnerships.getByText('Offer valid through October 30, 2027.')).toHaveCount(2)
+    await expect(partnerships.getByText('Renewed October 10, 2026')).toBeVisible()
     await expect(featuredEvents.getByText('Event date')).toBeVisible()
     await expect(sponsorships.getByText('Sponsorship period')).toHaveCount(3)
-    await expect(partnerships.getByText('Published benefit: 20% discount').first()).toBeVisible()
-    await expect(
-      page.getByText(/^(Current|Upcoming|Past) (partnership|event|sponsorship)$/)
-    ).toHaveCount(0)
+    await expect(partnerships.getByText('Current benefit: 20% discount').first()).toBeVisible()
+    await expect(partnerships.getByText('Historical benefit: 20% discount').first()).toBeVisible()
     await expect(featuredEvents.getByText('CE BLAZE')).toBeVisible()
     await expect(
       partnerships.getByText('BISCAST Association of Civil Engineering Students')
     ).toBeVisible()
-    await expect(partnerships.getByText('October 31, 2025')).toBeVisible()
+    await expect(partnerships.getByText('Partner since October 31, 2025')).toBeVisible()
     await expect(sponsorships.getByText('June 23-25, 2025')).toBeVisible()
     await expect(sponsorships.getByText('August 21-24, 2026')).toBeVisible()
     await expect(sponsorships.getByText('TOSP-Bikol Alumni Community')).toBeVisible()
@@ -85,6 +89,12 @@ test.describe('Community Page', () => {
         metadataWidth: 185,
       },
       {
+        key: 'adnu',
+        widths: [80, 160],
+        sizes: '(max-width: 639px) 42px, 50px',
+        metadataWidth: 160,
+      },
+      {
         key: 'ateneo',
         widths: [79, 157],
         sizes: '(max-width: 639px) 48px, 56px',
@@ -109,6 +119,22 @@ test.describe('Community Page', () => {
 
     await card.getByRole('link').first().focus()
     await expect(logo).toHaveCSS('opacity', '1')
+  })
+
+  test('dims the ADNU logo in dark mode and brightens it on hover', async ({ page }) => {
+    await page.locator('html').evaluate((element) => {
+      element.classList.remove('light')
+      element.classList.add('dark')
+    })
+
+    const card = page.getByRole('article').filter({ hasText: 'UAPSA–ADNU Chapter' })
+    const logo = card.locator('.org-logo')
+    await expect(logo).toHaveCSS('opacity', '0.62')
+    await expect(logo).toHaveCSS('filter', 'brightness(0.78) saturate(0.7) contrast(1.05)')
+
+    await card.hover()
+    await expect(logo).toHaveCSS('opacity', '1')
+    await expect(logo).toHaveCSS('filter', 'brightness(1.1) saturate(1) contrast(1.12)')
   })
 
   test('removes archive framing and unsupported event hosting', async ({ page }) => {

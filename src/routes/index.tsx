@@ -1,6 +1,6 @@
 import { Link, Meta, Title } from '@solidjs/meta'
 import { A } from '@solidjs/router'
-import { For, type Component } from 'solid-js'
+import { For, Show, type Component } from 'solid-js'
 import ExternalLink from 'lucide-solid/icons/external-link'
 import MapPin from 'lucide-solid/icons/map-pin'
 import ClickToLoadMap from '~/components/ClickToLoadMap'
@@ -11,6 +11,7 @@ import hilingaLogo from '~/assets/hilinga-logo.png?w=72;144&as=picture'
 import entranceArea from '~/assets/images/panganiban/entrance-area.jpg?w=327;558;717;925;1116;1303&as=picture'
 import innerArea from '~/assets/images/panganiban/inner-area.jpg?w=327;662;717;925;1324;1434;1850&as=picture'
 import { communityRecords } from '~/data/community'
+import { getPartnershipStatus } from '~/lib/partnershipStatus'
 
 const homeEntranceSizes =
   '(max-width: 767px) calc(100vw - 50px), (max-width: 1023px) calc(100vw - 98px), (max-width: 1279px) calc(50vw - 82px), 558px'
@@ -20,6 +21,7 @@ const organizationLogoSizes = {
   aces: '(max-width: 767px) 54px, 70px',
   uapsa: '(max-width: 767px) 50px, 65px',
   uapga: '(max-width: 767px) 72px, 93px',
+  adnu: '(max-width: 767px) 54px, 70px',
   ateneo: '(max-width: 767px) 61px, 79px',
 } as const
 
@@ -30,13 +32,27 @@ const organizations = communityRecords
     ): record is Extract<
       (typeof communityRecords)[number],
       { category: 'partnership' | 'sponsorship' }
-    > => Boolean(record.featured) && record.category !== 'event' && Boolean(record.icon)
+    > => Boolean(record.featured) && record.category !== 'event'
   )
+  .sort((left, right) => {
+    const rank = (
+      record: Extract<
+        (typeof communityRecords)[number],
+        { category: 'partnership' | 'sponsorship' }
+      >
+    ) =>
+      record.category === 'sponsorship' ? 2 : getPartnershipStatus(record) === 'current' ? 0 : 1
+    return rank(left) - rank(right)
+  })
   .map((record) => ({
     name: record.name,
     relationship:
-      record.category === 'partnership' ? 'Coworking partnership' : 'Community sponsorship',
-    icon: record.icon!,
+      record.category === 'partnership'
+        ? getPartnershipStatus(record) === 'past'
+          ? 'Expired partner offer'
+          : 'Current coworking partnership'
+        : 'Community sponsorship',
+    icon: record.icon,
     logoKey: record.logoKey,
   }))
 
@@ -125,39 +141,57 @@ const HomePage: Component = () => {
               </Button>
             </header>
 
-            <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-800 border border-zinc-800">
+            <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-6 gap-px bg-zinc-800 border border-zinc-800">
               <For each={organizations}>
-                {(organization) => (
+                {(organization, index) => (
                   <article
-                    class="group card-bg min-h-52 p-5 flex flex-col items-center text-center"
+                    class={`group card-bg min-h-52 p-5 flex flex-col items-center text-center ${
+                      index() < 3 ? 'md:col-span-2' : 'md:col-span-3'
+                    } ${index() === 4 ? 'col-span-2 md:col-span-3' : ''}`}
                     data-organization-card=""
                   >
+                    <Show when={organization.icon} keyed>
+                      {(icon) => (
+                        <div
+                          class="h-20 md:h-24 w-full flex items-center justify-center"
+                          data-organization-logo-row=""
+                        >
+                          <div class="org-logo-wrap w-20 h-20 md:w-24 md:h-24 p-3 flex items-center justify-center">
+                            <Picture
+                              src={icon}
+                              alt={`${organization.name} logo`}
+                              class="org-logo h-full w-full object-contain"
+                              data-logo={organization.logoKey}
+                              sizes={
+                                organization.logoKey
+                                  ? organizationLogoSizes[organization.logoKey]
+                                  : '80px'
+                              }
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </Show>
                     <div
-                      class="h-20 md:h-24 w-full flex items-center justify-center"
-                      data-organization-logo-row=""
-                    >
-                      <div class="org-logo-wrap w-20 h-20 md:w-24 md:h-24 p-3 flex items-center justify-center">
-                        <Picture
-                          src={organization.icon}
-                          alt={`${organization.name} logo`}
-                          class="org-logo w-full h-full object-contain"
-                          data-logo={organization.logoKey}
-                          sizes={
-                            organization.logoKey
-                              ? organizationLogoSizes[organization.logoKey]
-                              : '80px'
-                          }
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="mt-5 w-full flex flex-1 flex-col items-center"
+                      class={
+                        organization.icon
+                          ? 'mt-5 w-full flex flex-1 flex-col items-center'
+                          : 'w-full flex flex-1 flex-col items-center justify-center gap-3'
+                      }
                       data-organization-text=""
                     >
                       <h3 class="ks-record-title text-sm">{organization.name}</h3>
-                      <p class="mt-auto pt-2 text-xs text-zinc-400">{organization.relationship}</p>
+                      <p
+                        class={`${organization.icon ? 'mt-auto pt-2' : ''} text-xs ${
+                          organization.relationship === 'Expired partner offer'
+                            ? 'text-red-700 dark:text-red-400'
+                            : 'text-zinc-400'
+                        }`}
+                      >
+                        {organization.relationship}
+                      </p>
                     </div>
                   </article>
                 )}

@@ -78,6 +78,12 @@ test.describe('Home Page', () => {
         metadataWidth: 185,
       },
       {
+        key: 'adnu',
+        widths: [80, 160],
+        sizes: '(max-width: 767px) 54px, 70px',
+        metadataWidth: 160,
+      },
+      {
         key: 'ateneo',
         widths: [79, 157],
         sizes: '(max-width: 767px) 61px, 79px',
@@ -93,16 +99,18 @@ test.describe('Home Page', () => {
 
   test('aligns organization logo and text rows without clipping UAPGA', async ({ page }) => {
     const cards = page.locator('[data-organization-card]')
-    await expect(cards).toHaveCount(4)
+    const logoCards = cards.filter({ has: page.locator('.org-logo') })
+    await expect(cards).toHaveCount(5)
+    await expect(cards.filter({ hasText: 'UAPSA–ADNU Chapter' }).locator('img')).toHaveCount(1)
     await cards.first().scrollIntoViewIfNeeded()
-    await expect(cards.locator('img')).toHaveCount(4)
+    await expect(cards.locator('img')).toHaveCount(5)
     await page.waitForFunction(() =>
       [...document.querySelectorAll<HTMLImageElement>('[data-organization-card] img')].every(
         (image) => image.complete && image.naturalWidth > 0
       )
     )
 
-    const geometry = await cards.evaluateAll((elements) =>
+    const geometry = await logoCards.evaluateAll((elements) =>
       elements.map((card) => {
         const bounds = (element: Element) => {
           const rect = element.getBoundingClientRect()

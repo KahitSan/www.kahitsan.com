@@ -9,6 +9,7 @@ import {
   type PricingOption,
 } from './SpacesPage/Panganiban/pricingData'
 import { communityData } from '~/data/community'
+import { formatPartnershipDate, getPartnershipStatus } from '~/lib/partnershipStatus'
 import floorPlan from '~/assets/floor_plan.png?w=327;640;717;1182&as=picture'
 import { Picture } from '~/components/ui'
 import ExternalLink from 'lucide-solid/icons/external-link'
@@ -24,10 +25,16 @@ const floorPlanSizes =
 
 type PartnershipStatus = (typeof communityData.partnerships)[number]['status']
 
+const partnershipRecords = [...communityData.partnerships].sort((left, right) => {
+  const rank = (status: PartnershipStatus) =>
+    status === 'current' ? 0 : status === 'upcoming' ? 1 : 2
+  return rank(getPartnershipStatus(left)) - rank(getPartnershipStatus(right))
+})
+
 const partnershipStatusLabels: Record<PartnershipStatus, string> = {
   current: 'Current partnership',
   upcoming: 'Upcoming partnership',
-  past: 'Past partnership',
+  past: 'Expired partner offer',
 }
 
 const getPartnershipDiscountLabel = (status: PartnershipStatus, discount: string) => {
@@ -374,8 +381,8 @@ export default function SolutionsPage() {
               </p>
             </header>
 
-            <div class="lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800">
-              <For each={communityData.partnerships}>
+            <div class="lg:col-span-9 grid grid-cols-2 gap-px bg-zinc-800 border border-zinc-800">
+              <For each={partnershipRecords}>
                 {(partnership) => (
                   <div class="group min-h-40 bg-zinc-950/90 p-5 flex flex-col items-center justify-center text-center">
                     <Show when={partnership.icon} keyed>
@@ -385,7 +392,7 @@ export default function SolutionsPage() {
                           alt={`${partnership.name} logo`}
                           class="ks-logo-media w-20 h-20 object-contain mb-4"
                           title={`${partnership.name}: ${getPartnershipDiscountLabel(
-                            partnership.status,
+                            getPartnershipStatus(partnership),
                             partnership.discount
                           )}`}
                           sizes="80px"
@@ -395,15 +402,42 @@ export default function SolutionsPage() {
                       )}
                     </Show>
                     <p class="ks-record-title text-sm font-bold">{partnership.name}</p>
-                    <p class="mt-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
-                      {partnershipStatusLabels[partnership.status]}
+                    <p
+                      class={`mt-2 text-[10px] font-bold uppercase tracking-widest ${
+                        getPartnershipStatus(partnership) === 'past'
+                          ? 'text-red-700 dark:text-red-400'
+                          : 'text-zinc-500'
+                      }`}
+                    >
+                      {partnershipStatusLabels[getPartnershipStatus(partnership)]}
                     </p>
-                    <p class="text-xs text-amber-400 mt-1">
-                      {getPartnershipDiscountLabel(partnership.status, partnership.discount)}
+                    <p
+                      class={`mt-1 text-xs ${
+                        getPartnershipStatus(partnership) === 'past'
+                          ? 'text-zinc-400'
+                          : 'text-amber-400'
+                      }`}
+                    >
+                      {getPartnershipDiscountLabel(
+                        getPartnershipStatus(partnership),
+                        partnership.discount
+                      )}
                     </p>
-                    <time dateTime={partnership.date.start} class="mt-1 text-xs text-zinc-500">
-                      {partnership.date.label}
+                    <time
+                      dateTime={partnership.date.renewed ?? partnership.date.start}
+                      class="mt-1 text-xs text-zinc-500"
+                    >
+                      {partnership.date.renewed
+                        ? `Renewed ${formatPartnershipDate(partnership.date.renewed)}`
+                        : partnership.date.label}
                     </time>
+                    <Show when={partnership.date.end} keyed>
+                      {(end) => (
+                        <p class="mt-1 text-xs text-zinc-500">
+                          Valid through {formatPartnershipDate(end)}
+                        </p>
+                      )}
+                    </Show>
                   </div>
                 )}
               </For>

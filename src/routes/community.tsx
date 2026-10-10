@@ -9,6 +9,7 @@ import Footer from '~/components/Footer'
 import { Picture } from '~/components/ui'
 import Button from '~/components/ui/Button/Button'
 import { communityData } from '~/data/community'
+import { formatPartnershipDate, getPartnershipStatus } from '~/lib/partnershipStatus'
 import type { CommunityRecord, SocialLinks } from '~/types/community'
 import type { PictureData } from '~/components/ui/Picture'
 
@@ -82,6 +83,7 @@ const communityLogoSizes = {
   aces: '(max-width: 639px) 42px, 50px',
   uapsa: '(max-width: 639px) 39px, 46px',
   uapga: '(max-width: 639px) 56px, 66px',
+  adnu: '(max-width: 639px) 42px, 50px',
   ateneo: '(max-width: 639px) 48px, 56px',
 } as const
 
@@ -113,13 +115,44 @@ const RecordDate = (props: { record: CommunityRecord }) => {
       <Match when={partnership()} keyed>
         {(record) => (
           <div class="space-y-1">
-            <p class="text-xs font-bold uppercase tracking-widest text-amber-400">
-              Partnership start
+            <p
+              class={`text-xs font-bold uppercase tracking-widest ${
+                getPartnershipStatus(record) === 'past'
+                  ? 'text-red-700 dark:text-red-400'
+                  : 'text-amber-400'
+              }`}
+            >
+              {getPartnershipStatus(record) === 'past'
+                ? 'Expired partner offer'
+                : getPartnershipStatus(record) === 'upcoming'
+                  ? 'Upcoming partnership'
+                  : 'Current partnership'}
             </p>
             <time dateTime={record.date.start} class="block text-sm text-zinc-500">
-              {record.date.label}
+              Partner since {record.date.label}
             </time>
-            <p class="text-xs leading-relaxed text-zinc-500">End date not published in record.</p>
+            <Show when={record.date.renewed} keyed>
+              {(renewed) => (
+                <time dateTime={renewed} class="block text-sm text-zinc-500">
+                  Renewed {formatPartnershipDate(renewed)}
+                </time>
+              )}
+            </Show>
+            <Show
+              when={record.date.end}
+              fallback={
+                <p class="text-xs leading-relaxed text-zinc-500">
+                  End date not published in record.
+                </p>
+              }
+            >
+              {(end) => (
+                <p class="text-xs leading-relaxed text-zinc-500">
+                  {getPartnershipStatus(record) === 'past' ? 'Offer ended' : 'Offer valid through'}{' '}
+                  <time dateTime={end()}>{formatPartnershipDate(end())}</time>.
+                </p>
+              )}
+            </Show>
           </div>
         )}
       </Match>
@@ -170,7 +203,14 @@ const RecordDetails = (props: { record: CommunityRecord }) => {
       <Match when={partnership()} keyed>
         {(record) => (
           <>
-            <p class="font-bold text-amber-400">Published benefit: {record.discount}</p>
+            <p
+              class={`font-bold ${
+                getPartnershipStatus(record) === 'past' ? 'text-zinc-400' : 'text-amber-400'
+              }`}
+            >
+              {getPartnershipStatus(record) === 'past' ? 'Historical benefit' : 'Current benefit'}:{' '}
+              {record.discount}
+            </p>
             <p class="mt-3 text-sm leading-relaxed text-zinc-400 md:text-base">
               {record.description}
             </p>
@@ -207,8 +247,18 @@ const CommunityRecordCard = (props: { record: CommunityRecord }) => (
         )}
       </Show>
       <div class="min-w-0 flex-1 space-y-2">
-        <RecordDate record={props.record} />
-        <h3 class="ks-record-title">{getRecordTitle(props.record)}</h3>
+        <Show
+          when={props.record.category === 'partnership'}
+          fallback={
+            <>
+              <RecordDate record={props.record} />
+              <h3 class="ks-record-title">{getRecordTitle(props.record)}</h3>
+            </>
+          }
+        >
+          <h3 class="ks-record-title">{getRecordTitle(props.record)}</h3>
+          <RecordDate record={props.record} />
+        </Show>
       </div>
     </div>
     <div class="mt-4 flex-1">
@@ -301,7 +351,7 @@ const CommunityPage: Component = () => {
           <CommunitySection
             id="partnerships"
             title="Partnerships"
-            description="Published partnerships with student and professional organizations. Records show known start dates without assuming contract end dates."
+            description="Current offers and past partnerships with student and professional organizations. Dates appear when confirmed."
             records={partnershipRecords}
             emptyMessage="No partnership records are published yet."
             class="mb-14 md:mb-24"

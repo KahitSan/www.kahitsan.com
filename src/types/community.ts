@@ -14,6 +14,7 @@ export type CommunityStatus = 'current' | 'upcoming' | 'past'
 export interface CommunityDate {
   start: string
   end?: string
+  renewed?: string
   label: string
 }
 
@@ -22,7 +23,7 @@ interface CommunityRecordBase {
   category: CommunityCategory
   status: CommunityStatus
   featured?: boolean
-  logoKey?: 'aces' | 'uapsa' | 'uapga' | 'ateneo'
+  logoKey?: 'aces' | 'uapsa' | 'uapga' | 'adnu' | 'ateneo'
   date: CommunityDate
   description: string
   icon?: PictureData

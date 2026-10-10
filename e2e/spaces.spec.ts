@@ -93,11 +93,11 @@ test.describe('Coworking Page', () => {
     )
   })
 
-  test('labels dated partnerships without presenting them as current discounts', async ({
-    page,
-  }) => {
+  test('distinguishes current discounts from expired partnership offers', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Partnership records' })).toBeVisible()
-    await expect(page.getByText('Past partnership').first()).toBeVisible()
+    await expect(page.getByText('Expired partner offer').first()).toBeVisible()
+    await expect(page.getByText('Expired partner offer').first()).toHaveClass(/text-red-700/)
+    await expect(page.getByText('Current partnership').first()).toBeVisible()
     await expect(page.getByText(/20% discount at the time/).first()).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Partner discounts' })).toHaveCount(0)
   })

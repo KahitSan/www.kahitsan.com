@@ -2,6 +2,7 @@ import ateneoLogo from '~/assets/images/community/Ateneo.png?w=79;157&as=picture
 import uapsaLogo from '~/assets/images/community/UAPSA BISCAST Logo.png?w=80;160&as=picture'
 import acesLogo from '~/assets/images/community/ACES_LOGO.png?w=80;160&as=picture'
 import uapgaLogo from '~/assets/images/community/UAPGA CAMARINES-TERM LOGO.png?w=93;185&as=picture'
+import adnuLogo from '~/assets/images/community/UAPSA-ADNU-emblem.png?w=80;160&as=picture'
 import type {
   CommunityData,
   CommunityRecord,
@@ -71,21 +72,40 @@ export const communityRecords: readonly CommunityRecord[] = [
   {
     id: 'uapga-camarines-partnership-2025',
     category: 'partnership',
-    status: 'past',
+    status: 'current',
     featured: true,
     logoKey: 'uapga',
     date: {
       start: '2025-10-31',
+      renewed: '2026-10-10',
+      end: '2027-10-30',
       label: 'October 31, 2025',
     },
     name: 'UAPGA CAMARINES CHAPTER',
     discount: '20% discount',
     description:
-      'Published terms list discounted access to KahitSan Coworking for UAPGA Camarines Chapter members.',
+      'The offer covers all Panganiban packages. Current UAPGA Camarines membership proof is required.',
     icon: uapgaLogo,
     socialLinks: {
       facebook: 'https://www.facebook.com/uapgacamarines',
     },
+  },
+  {
+    id: 'uapsa-adnu-partnership-2026',
+    category: 'partnership',
+    status: 'current',
+    featured: true,
+    logoKey: 'adnu',
+    date: {
+      start: '2026-10-10',
+      end: '2027-10-30',
+      label: 'October 10, 2026',
+    },
+    name: 'UAPSA–ADNU Chapter',
+    discount: '20% discount',
+    description:
+      'The offer covers all Panganiban packages. Current UAPSA–ADNU membership proof is required.',
+    icon: adnuLogo,
   },
   {
     id: 'tosp-bikol-regional-search-2026',
