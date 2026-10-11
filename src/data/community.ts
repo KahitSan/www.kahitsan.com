@@ -3,6 +3,7 @@ import uapsaLogo from '~/assets/images/community/UAPSA BISCAST Logo.png?w=80;160
 import acesLogo from '~/assets/images/community/ACES_LOGO.png?w=80;160&as=picture'
 import uapgaLogo from '~/assets/images/community/UAPGA CAMARINES-TERM LOGO.png?w=93;185&as=picture'
 import adnuLogo from '~/assets/images/community/UAPSA-ADNU-emblem.png?w=80;160&as=picture'
+import tospLogo from '~/assets/images/community/tosp-bikol-emblem.png?w=88;176&as=picture'
 import type {
   CommunityData,
   CommunityRecord,
@@ -111,15 +112,21 @@ export const communityRecords: readonly CommunityRecord[] = [
     id: 'tosp-bikol-regional-search-2026',
     category: 'sponsorship',
     status: 'past',
+    featured: true,
+    logoKey: 'tosp',
     date: {
       start: '2026-08-21',
       end: '2026-08-24',
       label: 'August 21-24, 2026',
     },
     name: 'TOSP-Bikol Alumni Community',
-    event: 'Regional Search for the 59th Ten Outstanding Students of the Philippines',
+    event:
+      'Regional Search for the 59th Ten Outstanding Students of the Philippines (TOSP) — Bicol Region, 2026',
     description:
-      'KahitSan Coworking provided digital coworking vouchers in support of the regional search and its recognition of Bicolano student leaders.',
+      'KahitSan Coworking in Naga City provided digital coworking vouchers to support the TOSP-Bikol Alumni Community’s 2026 regional search, recognizing Bicolano student leaders for excellence in academics, leadership, and social responsibility.',
+    // KS-27: user-approved transparent emblem with a white outline, based on
+    // TOSP Bikol's revised community support proposal emailed on 9 August 2026.
+    icon: tospLogo,
   },
   {
     id: 'adnu-orsem-2025',

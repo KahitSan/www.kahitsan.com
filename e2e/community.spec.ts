@@ -47,17 +47,40 @@ test.describe('Community Page', () => {
     await expect(partnerships.getByText('Partner since October 31, 2025')).toBeVisible()
     await expect(sponsorships.getByText('June 23-25, 2025')).toBeVisible()
     await expect(sponsorships.getByText('August 21-24, 2026')).toBeVisible()
-    await expect(sponsorships.getByText('TOSP-Bikol Alumni Community')).toBeVisible()
+    await expect(
+      sponsorships.getByRole('heading', { name: 'TOSP-Bikol Alumni Community', exact: true })
+    ).toBeVisible()
   })
 
-  test('presents TOSP Bikol sponsorship without inventing a logo', async ({ page }) => {
+  test('presents the approved TOSP Bikol logo and searchable sponsorship context', async ({
+    page,
+    consoleErrors,
+  }) => {
     const card = page.getByRole('article').filter({ hasText: 'TOSP-Bikol Alumni Community' })
 
     await expect(card).toContainText(
       'Regional Search for the 59th Ten Outstanding Students of the Philippines'
     )
     await expect(card).toContainText('provided digital coworking vouchers')
-    await expect(card.getByRole('img')).toHaveCount(0)
+    await expect(card).toContainText('(TOSP) — Bicol Region, 2026')
+    await expect(card).toHaveAttribute('id', 'tosp-bikol-regional-search-2026')
+    await expectResponsivePicture(
+      card.getByRole('img', { name: 'TOSP-Bikol Alumni Community logo' }),
+      {
+        widths: [88, 176],
+        sizes: '(max-width: 639px) 44px, 52px',
+        metadataWidth: 176,
+      }
+    )
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      'content',
+      /TOSP-Bikol.*Ten Outstanding Students of the Philippines/
+    )
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://www.kahitsan.com/community'
+    )
+    expect(consoleErrors).toEqual([])
   })
 
   test('keeps community social links as buttons', async ({ page }) => {

@@ -23,7 +23,7 @@ interface CommunityRecordBase {
   category: CommunityCategory
   status: CommunityStatus
   featured?: boolean
-  logoKey?: 'aces' | 'uapsa' | 'uapga' | 'adnu' | 'ateneo'
+  logoKey?: 'aces' | 'uapsa' | 'uapga' | 'adnu' | 'ateneo' | 'tosp'
   date: CommunityDate
   description: string
   icon?: PictureData

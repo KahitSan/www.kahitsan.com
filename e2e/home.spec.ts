@@ -84,6 +84,12 @@ test.describe('Home Page', () => {
         metadataWidth: 160,
       },
       {
+        key: 'tosp',
+        widths: [88, 176],
+        sizes: '(max-width: 767px) 54px, 70px',
+        metadataWidth: 176,
+      },
+      {
         key: 'ateneo',
         widths: [79, 157],
         sizes: '(max-width: 767px) 61px, 79px',
@@ -100,10 +106,23 @@ test.describe('Home Page', () => {
   test('aligns organization logo and text rows without clipping UAPGA', async ({ page }) => {
     const cards = page.locator('[data-organization-card]')
     const logoCards = cards.filter({ has: page.locator('.org-logo') })
-    await expect(cards).toHaveCount(5)
+    await expect(cards).toHaveCount(6)
+    await expect(cards.getByRole('heading')).toHaveText([
+      'UAPGA CAMARINES CHAPTER',
+      'UAPSA–ADNU Chapter',
+      'TOSP-Bikol Alumni Community',
+      'Ateneo De Naga University - Senior High School Guidance Office',
+      'BISCAST Association of Civil Engineering Students (ACES)',
+      'UAPSA BISCAST Chapter',
+    ])
+    await expect(cards.nth(0)).toContainText('Current coworking partnership')
+    await expect(cards.nth(1)).toContainText('Current coworking partnership')
+    await expect(cards.nth(2)).toContainText('Community sponsorship')
+    await expect(cards.nth(4)).toContainText('Expired partner offer')
+    await expect(cards.nth(5)).toContainText('Expired partner offer')
     await expect(cards.filter({ hasText: 'UAPSA–ADNU Chapter' }).locator('img')).toHaveCount(1)
     await cards.first().scrollIntoViewIfNeeded()
-    await expect(cards.locator('img')).toHaveCount(5)
+    await expect(cards.locator('img')).toHaveCount(6)
     await page.waitForFunction(() =>
       [...document.querySelectorAll<HTMLImageElement>('[data-organization-card] img')].every(
         (image) => image.complete && image.naturalWidth > 0

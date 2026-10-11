@@ -30,6 +30,8 @@ const byMostRecentDate = <Record extends CommunityRecord>(left: Record, right: R
 const partnershipRecords = [...communityData.partnerships].sort(byMostRecentDate)
 const featuredEventRecords = [...communityData.events].sort(byMostRecentDate)
 const sponsorshipRecords = [...communityData.sponsorships].sort(byMostRecentDate)
+const communityDescription =
+  'Explore KahitSan Coworking’s community partnerships in Naga City, including support for TOSP-Bikol and the 2026 Ten Outstanding Students of the Philippines search.'
 
 const SocialMediaButtons = (props: { socialLinks?: SocialLinks }) => (
   <Show when={props.socialLinks} keyed>
@@ -85,6 +87,7 @@ const communityLogoSizes = {
   uapga: '(max-width: 639px) 56px, 66px',
   adnu: '(max-width: 639px) 42px, 50px',
   ateneo: '(max-width: 639px) 48px, 56px',
+  tosp: '(max-width: 639px) 44px, 52px',
 } as const
 
 const RecordLogo = (props: {
@@ -235,7 +238,10 @@ const RecordDetails = (props: { record: CommunityRecord }) => {
 }
 
 const CommunityRecordCard = (props: { record: CommunityRecord }) => (
-  <article class="group flex min-w-0 flex-col border-t border-zinc-800/60 py-5 md:py-7">
+  <article
+    id={props.record.id}
+    class="group flex min-w-0 scroll-mt-24 flex-col border-t border-zinc-800/60 py-5 md:py-7"
+  >
     <div class="flex items-start gap-4">
       <Show when={props.record.icon} keyed>
         {(icon) => (
@@ -315,15 +321,9 @@ const CommunityPage: Component = () => {
   return (
     <>
       <Title>Community | KahitSan Coworking</Title>
-      <Meta
-        name="description"
-        content="A continually updated record of KahitSan Coworking partnerships, sponsorships, and events in Naga City."
-      />
+      <Meta name="description" content={communityDescription} />
       <Meta property="og:title" content="Community | KahitSan Coworking" />
-      <Meta
-        property="og:description"
-        content="Follow KahitSan Coworking partnerships, sponsorships, and events in Naga City."
-      />
+      <Meta property="og:description" content={communityDescription} />
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com/community" />
       <Link rel="canonical" href="https://www.kahitsan.com/community" />

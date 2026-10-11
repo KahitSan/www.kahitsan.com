@@ -23,6 +23,7 @@ const organizationLogoSizes = {
   uapga: '(max-width: 767px) 72px, 93px',
   adnu: '(max-width: 767px) 54px, 70px',
   ateneo: '(max-width: 767px) 61px, 79px',
+  tosp: '(max-width: 767px) 54px, 70px',
 } as const
 
 const organizations = communityRecords
@@ -41,7 +42,7 @@ const organizations = communityRecords
         { category: 'partnership' | 'sponsorship' }
       >
     ) =>
-      record.category === 'sponsorship' ? 2 : getPartnershipStatus(record) === 'current' ? 0 : 1
+      record.category === 'sponsorship' ? 1 : getPartnershipStatus(record) === 'current' ? 0 : 2
     return rank(left) - rank(right)
   })
   .map((record) => ({
@@ -141,13 +142,11 @@ const HomePage: Component = () => {
               </Button>
             </header>
 
-            <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-6 gap-px bg-zinc-800 border border-zinc-800">
+            <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800">
               <For each={organizations}>
-                {(organization, index) => (
+                {(organization) => (
                   <article
-                    class={`group card-bg min-h-52 p-5 flex flex-col items-center text-center ${
-                      index() < 3 ? 'md:col-span-2' : 'md:col-span-3'
-                    } ${index() === 4 ? 'col-span-2 md:col-span-3' : ''}`}
+                    class="group card-bg min-h-52 p-5 flex flex-col items-center text-center"
                     data-organization-card=""
                   >
                     <Show when={organization.icon} keyed>
