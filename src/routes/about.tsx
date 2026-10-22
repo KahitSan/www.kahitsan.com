@@ -69,6 +69,33 @@ const AboutPage: Component = () => {
             </div>
           </section>
 
+          <section id="bir-registration" class="mb-16 scroll-mt-28 md:mb-28">
+            <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+              <header class="space-y-4 lg:col-span-3 lg:pr-3">
+                <h2 class="ks-section-title text-3xl font-bold tracking-tight md:text-4xl">
+                  BIR registration
+                </h2>
+                <p class="max-w-sm leading-relaxed text-zinc-400">
+                  KahitSan Solutions Corp. is registered with the Bureau of Internal Revenue. Scan
+                  the QR code to verify.
+                </p>
+              </header>
+
+              <div class="border-y border-zinc-800/60 py-7 lg:col-span-9 md:py-9">
+                {/* White backing keeps the QR code scannable in dark theme */}
+                <img
+                  src="/bir-registration-seal-badge.png"
+                  alt="BIR Registration Seal Badge for KahitSan Solutions Corp."
+                  width="1590"
+                  height="515"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-auto w-full max-w-xl rounded-md bg-white p-2"
+                />
+              </div>
+            </div>
+          </section>
+
           <section class="mb-16 md:mb-28">
             <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
               <header class="space-y-4 lg:col-span-3 lg:pr-3">
