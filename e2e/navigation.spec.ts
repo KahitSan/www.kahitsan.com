@@ -162,6 +162,19 @@ test.describe('Navigation', () => {
     await expect(facebookLink).toHaveClass(/bg-slate-600\/20/)
   })
 
+  test('about page displays the BIR Registration Seal Badge', async ({ page }) => {
+    await page.goto('/about')
+    const badge = page.locator('#bir-registration').getByRole('img', {
+      name: /BIR Registration Seal Badge/,
+    })
+
+    await badge.scrollIntoViewIfNeeded()
+    await expect(badge).toBeVisible()
+    await expect
+      .poll(() => badge.evaluate((img: HTMLImageElement) => img.naturalWidth))
+      .toBeGreaterThan(0)
+  })
+
   test('footer and About page credit the website creator', async ({ page }) => {
     await page.goto('/')
     const creditLink = page.getByRole('link', { name: 'Luis Edward M. Miranda' })
