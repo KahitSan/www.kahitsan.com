@@ -802,6 +802,11 @@
  * Custom class that mirrors intent="primary" exactly, including CSS vars.
  * This ensures active nav looks identical to "Explore Solutions" in both modes.
  */
+/* Navigation links share the button appearance without button effect state. */
+.ks-nav-link {
+  --ks-effect-color: rgba(148, 163, 184, 0.4);
+}
+
 .ks-nav-active {
   color: #fbbf24 !important;
   background-color: rgba(217, 119, 6, 0.2) !important;

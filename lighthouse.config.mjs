@@ -1,6 +1,12 @@
 import process from 'node:process'
 
-export const lighthouseCategories = ['performance', 'accessibility', 'best-practices', 'seo']
+export const lighthouseCategories = [
+  'performance',
+  'accessibility',
+  'best-practices',
+  'seo',
+  'agentic-browsing',
+]
 
 const profiles = {
   mobile: {

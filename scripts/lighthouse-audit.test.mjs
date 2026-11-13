@@ -8,7 +8,7 @@ const readJson = async (path) => JSON.parse(await readFile(path, 'utf8'))
 
 test('pins Lighthouse and runs audits against a fresh production build', async () => {
   const packageJson = await readJson('package.json')
-  assert.equal(packageJson.devDependencies.lighthouse, '13.4.1')
+  assert.equal(packageJson.devDependencies.lighthouse, '13.6.0')
   assert.match(packageJson.scripts['audit:lighthouse'], /^npm run build && /)
   assert.match(packageJson.scripts['audit:lighthouse:mobile'], /^npm run build && /)
   assert.match(packageJson.scripts['audit:lighthouse:desktop'], /^npm run build && /)
@@ -53,7 +53,7 @@ test('summarizes exact category scores and scored audit failures', () => {
   })
   const summary = summarizeLighthouseResult(
     {
-      lighthouseVersion: '13.4.1',
+      lighthouseVersion: '13.6.0',
       requestedUrl: 'http://127.0.0.1:1234/',
       finalDisplayedUrl: 'http://127.0.0.1:1234/',
       fetchTime: '2026-09-05T00:00:00.000Z',
@@ -95,5 +95,38 @@ test('summarizes exact category scores and scored audit failures', () => {
   assert.deepEqual(
     summary.failingAudits.map((audit) => audit.id),
     ['largest-contentful-paint']
+  )
+})
+
+test('agentic pass count excludes informative and inapplicable audits', () => {
+  const summary = summarizeLighthouseResult(
+    {
+      categories: {
+        'agentic-browsing': {
+          title: 'Agentic Browsing',
+          categoryScoreDisplayMode: 'fraction',
+          score: 0.5,
+          auditRefs: ['tree', 'cls', 'llms', 'ard', 'tools', 'forms'].map((id) => ({ id })),
+        },
+      },
+      audits: Object.fromEntries(
+        [
+          ['tree', 1, 'binary'],
+          ['cls', 1, 'numeric'],
+          ['llms', 0, 'binary'],
+          ['ard', 0, 'binary'],
+          ['tools', 1, 'informative'],
+          ['forms', null, 'notApplicable'],
+        ].map(([id, score, scoreDisplayMode]) => [id, { id, score, scoreDisplayMode }])
+      ),
+    },
+    { categories: [{ id: 'agentic-browsing', minimumScore: 1 }] }
+  )
+
+  assert.deepEqual(summary.categories['agentic-browsing'].fraction, { passed: 2, total: 4 })
+  assert.equal(summary.passed, false)
+  assert.deepEqual(
+    summary.failingAudits.map(({ id }) => id),
+    ['llms', 'ard']
   )
 })

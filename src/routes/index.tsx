@@ -8,13 +8,11 @@ import Footer from '~/components/Footer'
 import Button from '~/components/ui/Button/Button'
 import { Picture } from '~/components/ui'
 import hilingaLogo from '~/assets/hilinga-logo.png?w=72;144&as=picture'
-import entranceArea from '~/assets/images/panganiban/entrance-area.jpg?w=327;558;717;925;1116;1303&as=picture'
-import innerArea from '~/assets/images/panganiban/inner-area.jpg?w=327;662;717;925;1324;1434;1850&as=picture'
+import { entranceArea, homeEntranceSizes } from '~/lib/homeHero'
+import innerArea from '~/assets/images/panganiban/inner-area.jpg?w=327;662;717;925;1324;1434;1850&quality=65&as=picture'
 import { communityRecords } from '~/data/community'
 import { getPartnershipStatus } from '~/lib/partnershipStatus'
 
-const homeEntranceSizes =
-  '(max-width: 767px) calc(100vw - 50px), (max-width: 1023px) calc(100vw - 98px), (max-width: 1279px) calc(50vw - 82px), 558px'
 const homeInnerSizes =
   '(max-width: 767px) calc(100vw - 50px), (max-width: 1023px) calc(100vw - 98px), (max-width: 1279px) calc(58.333vw - 84.667px), 662px'
 const organizationLogoSizes = {
@@ -77,14 +75,6 @@ const HomePage: Component = () => {
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://www.kahitsan.com" />
       <Link rel="canonical" href="https://www.kahitsan.com" />
-      <Link
-        rel="preload"
-        as="image"
-        imagesrcset={entranceArea.sources?.avif}
-        imagesizes={homeEntranceSizes}
-        type="image/avif"
-        fetchpriority="high"
-      />
 
       <main class="min-h-screen page-bg">
         <section class="ks-grid-surface border-b border-zinc-800/60">

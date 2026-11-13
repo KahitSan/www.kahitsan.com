@@ -1,9 +1,9 @@
-import ateneoLogo from '~/assets/images/community/Ateneo.png?w=79;157&as=picture'
-import uapsaLogo from '~/assets/images/community/UAPSA BISCAST Logo.png?w=80;160&as=picture'
-import acesLogo from '~/assets/images/community/ACES_LOGO.png?w=80;160&as=picture'
-import uapgaLogo from '~/assets/images/community/UAPGA CAMARINES-TERM LOGO.png?w=93;185&as=picture'
-import adnuLogo from '~/assets/images/community/UAPSA-ADNU-emblem.png?w=80;160&as=picture'
-import tospLogo from '~/assets/images/community/tosp-bikol-emblem.png?w=88;176&as=picture'
+import ateneoLogo from '~/assets/images/community/Ateneo.png?w=79;157&quality=60&as=picture'
+import uapsaLogo from '~/assets/images/community/UAPSA BISCAST Logo.png?w=80;160&quality=60&as=picture'
+import acesLogo from '~/assets/images/community/ACES_LOGO.png?w=80;160&quality=60&as=picture'
+import uapgaLogo from '~/assets/images/community/UAPGA CAMARINES-TERM LOGO.png?w=93;185&quality=60&as=picture'
+import adnuLogo from '~/assets/images/community/UAPSA-ADNU-emblem.png?w=80;160&quality=60&as=picture'
+import tospLogo from '~/assets/images/community/tosp-bikol-emblem.png?w=88;176&quality=60&as=picture'
 import type {
   CommunityData,
   CommunityRecord,

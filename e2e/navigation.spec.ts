@@ -8,10 +8,7 @@ test.describe('Navigation', () => {
     const nav = page.getByRole('navigation', { name: 'Main navigation' })
     await expect(nav.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
     await expect(nav.getByRole('link', { name: 'Coworking' })).toHaveAttribute('href', '/coworking')
-    await expect(nav.getByRole('link', { name: /Hilinga/ })).toHaveAttribute(
-      'href',
-      'https://www.hilinga.com'
-    )
+    await expect(nav.getByRole('link', { name: /Hilinga/ })).toHaveCount(0)
     await expect(nav.getByRole('link', { name: 'News' })).toHaveAttribute('href', '/announcements')
     await expect(nav.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/contact')
   })
@@ -38,10 +35,7 @@ test.describe('Navigation', () => {
     await expect(nav).toBeVisible()
     await expect(nav.getByRole('link', { name: 'Home' })).toBeVisible()
     await expect(nav.getByRole('link', { name: 'Coworking' })).toBeVisible()
-    const hilingaLink = nav.getByRole('link', { name: /Hilinga.*opens in a new tab/i })
-    await expect(hilingaLink).toBeVisible()
-    await expect(hilingaLink).toHaveAttribute('target', '_blank')
-    await expect(hilingaLink.locator('svg.lucide-external-link')).toBeVisible()
+    await expect(nav.getByRole('link', { name: /Hilinga/ })).toHaveCount(0)
     await expect(nav.getByRole('link', { name: 'Community' })).toBeVisible()
     await expect(nav.getByRole('button', { name: 'More' })).toBeVisible()
   })
@@ -80,10 +74,7 @@ test.describe('Navigation', () => {
 
     await expect(nav).toBeVisible()
     await expect(nav.getByRole('link', { name: 'Coworking' })).toHaveAttribute('href', '/coworking')
-    await expect(nav.getByRole('link', { name: /Hilinga/ })).toHaveAttribute(
-      'href',
-      'https://www.hilinga.com'
-    )
+    await expect(nav.getByRole('link', { name: /Hilinga/ })).toHaveCount(0)
     await expect(nav.getByRole('link', { name: 'News' })).toHaveAttribute('href', '/announcements')
     await expect(nav.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/contact')
   })

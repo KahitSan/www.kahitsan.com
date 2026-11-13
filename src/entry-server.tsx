@@ -1,5 +1,7 @@
 import { createHandler, StartServer } from '@solidjs/start/server'
 import { transformSync } from 'esbuild'
+import { getRequestEvent } from 'solid-js/web'
+import { entranceArea, homeEntranceSizes } from '~/lib/homeHero'
 
 const googleAnalyticsBootstrapSource = `(function(){
   if (window.__kahitSanAnalyticsBootstrap) return;
@@ -68,6 +70,11 @@ const googleAnalyticsBootstrap = transformSync(googleAnalyticsBootstrapSource, {
   target: 'es2017',
 }).code.trim()
 
+const isHomepage = () => {
+  const request = getRequestEvent()?.request
+  return request && new URL(request.url).pathname === '/'
+}
+
 export default createHandler(() => (
   <StartServer
     document={({ assets, children, scripts }) => (
@@ -75,6 +82,19 @@ export default createHandler(() => (
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          {/* Discover the hero before high-priority JavaScript module preloads. */}
+          {isHomepage() && (
+            <link
+              rel="preload"
+              as="image"
+              imagesrcset={entranceArea.sources?.avif}
+              imagesizes={homeEntranceSizes}
+              type="image/avif"
+              fetchpriority="high"
+            />
+          )}
+          <link rel="ard" href="/.well-known/ard.json" />
+          <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
           <link rel="dns-prefetch" href="https://maps.googleapis.com" />
           <link rel="icon" href="/favicon/favicon.ico" />
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />

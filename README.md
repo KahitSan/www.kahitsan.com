@@ -23,6 +23,18 @@ The contact proxy runs through the generated `_worker.js`. Configure these Cloud
 - `CONTACT_API_URL`: Base URL for the contact API.
 - `CONTACT_API_KEY`: Secret API key used only by the worker.
 
+## Performance checks
+
+```bash
+npm run audit:lighthouse          # builds and audits core routes on mobile and desktop
+npm run audit:lighthouse:mobile   # mobile only
+npm run audit:lighthouse:desktop  # desktop only
+```
+
+The audit budget requires 100 in Performance, Accessibility, Best Practices, and SEO, plus all applicable Agentic Browsing checks. JSON reports are saved in `.output/lighthouse`.
+
+The agent discovery manifests are served at `/.well-known/ard.json` and the compatible `/.well-known/ai-catalog.json` path. Keep both files identical. They link to the public visitor guide; they do not advertise a messaging or booking API. Release tests validate both manifests and `llms.txt` before deployment.
+
 ## Based On
 
 This project was bootstrapped with **[solidjs-crossplatform-starter](https://github.com/llupRisinglll/solidjs-crossplatform-starter)** -- a SolidJS starter for building cross-platform apps that share components across web, desktop, and mobile from a single codebase.

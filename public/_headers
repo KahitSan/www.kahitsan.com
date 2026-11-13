@@ -36,3 +36,7 @@
 # Service worker (if you add one later)
 /sw.js
   Cache-Control: public, max-age=0, must-revalidate
+
+# Agent guide linked from the resource discovery manifests.
+/agent-guide.md
+  Content-Type: text/markdown; charset=utf-8; profile="urn:air:agent-skills"

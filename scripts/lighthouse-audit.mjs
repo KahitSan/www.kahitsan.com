@@ -52,6 +52,16 @@ export const summarizeLighthouseResult = (lhr, budget) => {
     budget.categories.map(({ id, minimumScore }) => {
       const result = lhr.categories[id]
       const score = result?.score ?? null
+      const scoredAudits = (result?.auditRefs ?? [])
+        .map(({ id }) => lhr.audits[id])
+        .filter((audit) => audit && !ignoredScoreModes.has(audit.scoreDisplayMode))
+      const fraction =
+        result?.categoryScoreDisplayMode === 'fraction'
+          ? {
+              passed: scoredAudits.filter((audit) => audit.score === 1).length,
+              total: scoredAudits.length,
+            }
+          : null
       return [
         id,
         {
@@ -59,6 +69,7 @@ export const summarizeLighthouseResult = (lhr, budget) => {
           score,
           percent: score === null ? null : Math.round(score * 100),
           minimumScore,
+          fraction,
           passed: score !== null && score >= minimumScore,
         },
       ]
@@ -204,7 +215,10 @@ const runLighthouse = async ({ baseUrl, formFactor, route, reportPath }) => {
 
 const printResult = (formFactor, route, result) => {
   const scores = Object.values(result.categories)
-    .map((category) => `${category.title} ${category.percent ?? 'error'}`)
+    .map(
+      (category) =>
+        `${category.title} ${category.fraction ? `${category.fraction.passed}/${category.fraction.total}` : (category.percent ?? 'error')}`
+    )
     .join(', ')
   console.log(`${formFactor} ${route.path}: ${scores}`)
   for (const audit of result.failingAudits) {

@@ -1,5 +1,6 @@
 @import 'tailwindcss';
-@source "../../../node_modules/@kahitsan/ksui/src";
+/* Only the shared Button is used here. Scanning all of ksui emits unrelated utilities. */
+@source "../../../node_modules/@kahitsan/ksui/src/components/base/Button.tsx";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

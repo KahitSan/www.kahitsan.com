@@ -1,32 +1,27 @@
 import type { Component } from 'solid-js'
 import { For, Show, createEffect, createSignal, onCleanup } from 'solid-js'
 import { A, useLocation } from '@solidjs/router'
-import AppWindow from 'lucide-solid/icons/app-window'
 import Building2 from 'lucide-solid/icons/building-2'
 import Ellipsis from 'lucide-solid/icons/ellipsis'
-import ExternalLink from 'lucide-solid/icons/external-link'
 import Home from 'lucide-solid/icons/home'
 import Menu from 'lucide-solid/icons/menu'
 import Users from 'lucide-solid/icons/users'
 import X from 'lucide-solid/icons/x'
 import Sun from 'lucide-solid/icons/sun'
 import Moon from 'lucide-solid/icons/moon'
-import KahitSanLogoDark from '~/assets/kahitsan-corp-logo-dark.png?w=132;226;263;452&as=picture'
-import KahitSanLogoLight from '~/assets/kahitsan-corp-logo-light.png?w=132;226;263;452&as=picture'
+import KahitSanLogoDark from '~/assets/kahitsan-corp-logo-dark.png?w=132;226;263;452&quality=65&as=picture'
+import KahitSanLogoLight from '~/assets/kahitsan-corp-logo-light.png?w=132;226;263;452&quality=65&as=picture'
 import { Picture } from '~/components/ui'
-import Button from '~/components/ui/Button/Button'
 import { useTheme } from '~/lib/theme'
 
 interface NavItem {
   label: string
   href: string
-  external?: boolean
 }
 
 const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Coworking', href: '/coworking' },
-  { label: 'Hilinga', href: 'https://www.hilinga.com', external: true },
   { label: 'Community', href: '/community' },
   { label: 'News', href: '/announcements' },
   { label: 'About', href: '/about' },
@@ -150,9 +145,8 @@ const Header: Component = () => {
   const isActive = (href: string) =>
     href === '/' ? location.pathname === '/' : location.pathname.startsWith(href)
   const isNavItemActive = (item: NavItem) =>
-    !item.external &&
-    (isActive(item.href) ||
-      (item.href === '/announcements' && location.pathname.startsWith('/announcement/')))
+    isActive(item.href) ||
+    (item.href === '/announcements' && location.pathname.startsWith('/announcement/'))
   const isMoreActive = () =>
     ['/announcements', '/announcement', '/about', '/contact', '/privacy', '/terms'].some((path) =>
       location.pathname.startsWith(path)
@@ -181,41 +175,18 @@ const Header: Component = () => {
               <nav class="flex items-center gap-1" aria-label="Main navigation">
                 <For each={navItems}>
                   {(item) => (
-                    <Show
-                      when={item.external}
-                      fallback={
-                        <Button
-                          as={A}
-                          href={item.href}
-                          end={item.href === '/'}
-                          intent="secondary"
-                          variant="clip1"
-                          aria-current={isNavItemActive(item) ? 'page' : undefined}
-                          class={`px-3 py-2 ${
-                            isNavItemActive(item)
-                              ? 'ks-nav-active'
-                              : '!bg-transparent !border-transparent'
-                          }`}
-                        >
-                          {item.label}
-                        </Button>
-                      }
+                    <A
+                      href={item.href}
+                      end={item.href === '/'}
+                      aria-current={isNavItemActive(item) ? 'page' : undefined}
+                      class={`ks-nav-link select-none inline-flex items-center justify-center rounded px-4 py-2 text-sm gap-2 font-medium transition-all duration-200 text-slate-400 bg-slate-600/20 border-slate-600/60 hover:bg-slate-600/30 hover:border-slate-500 border ks-hud-clip-top-left-bottom-right ks-hud-scan-line px-3 ${
+                        isNavItemActive(item)
+                          ? 'ks-nav-active'
+                          : '!bg-transparent !border-transparent'
+                      }`}
                     >
-                      <Button
-                        as="a"
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        intent="secondary"
-                        variant="clip1"
-                        icon={() => <ExternalLink size={14} aria-hidden="true" />}
-                        iconPosition="right"
-                        class="!bg-transparent !border-transparent px-3 py-2"
-                      >
-                        {item.label}
-                        <span class="sr-only"> (opens in a new tab)</span>
-                      </Button>
-                    </Show>
+                      {item.label}
+                    </A>
                   )}
                 </For>
               </nav>
@@ -244,30 +215,14 @@ const Header: Component = () => {
                   <div class="max-w-7xl mx-auto grid grid-cols-2 gap-px bg-zinc-800 border border-zinc-800">
                     <For each={navItems}>
                       {(item) => (
-                        <Show
-                          when={item.external}
-                          fallback={
-                            <A
-                              href={item.href}
-                              onClick={() => closeMenu()}
-                              aria-current={isNavItemActive(item) ? 'page' : undefined}
-                              class="flex min-h-12 items-center justify-between bg-zinc-950 px-4 py-3 text-sm font-medium text-zinc-300 hover:bg-zinc-900 hover:text-white transition-colors"
-                            >
-                              {item.label}
-                            </A>
-                          }
+                        <A
+                          href={item.href}
+                          onClick={() => closeMenu()}
+                          aria-current={isNavItemActive(item) ? 'page' : undefined}
+                          class="flex min-h-12 items-center justify-between bg-zinc-950 px-4 py-3 text-sm font-medium text-zinc-300 hover:bg-zinc-900 hover:text-white transition-colors"
                         >
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="flex min-h-12 items-center justify-between bg-zinc-950 px-4 py-3 text-sm font-medium text-zinc-300 hover:bg-zinc-900 hover:text-white transition-colors"
-                          >
-                            {item.label}
-                            <ExternalLink size={14} aria-hidden="true" />
-                            <span class="sr-only"> (opens in a new tab)</span>
-                          </a>
-                        </Show>
+                          {item.label}
+                        </A>
                       )}
                     </For>
                   </div>
@@ -327,7 +282,7 @@ const Header: Component = () => {
         style={{ 'padding-bottom': 'env(safe-area-inset-bottom)' }}
         aria-label="Mobile navigation"
       >
-        <div class="grid h-[4.25rem] grid-cols-5">
+        <div class="grid h-[4.25rem] grid-cols-4">
           <A
             href="/"
             end
@@ -347,20 +302,6 @@ const Header: Component = () => {
             <Building2 size={20} aria-hidden="true" />
             Coworking
           </A>
-          <a
-            href="https://www.hilinga.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Open Hilinga in a new tab"
-            class="flex flex-col items-center justify-center gap-1 text-[10px] font-semibold text-zinc-500"
-          >
-            <AppWindow size={20} aria-hidden="true" />
-            <span class="inline-flex items-center gap-1">
-              Hilinga
-              <ExternalLink size={10} aria-hidden="true" />
-            </span>
-            <span class="sr-only"> (opens in a new tab)</span>
-          </a>
           <A
             href="/community"
             onClick={() => closeMenu()}
