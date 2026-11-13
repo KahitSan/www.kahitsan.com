@@ -1,0 +1,17 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "urn:air:www.kahitsan.com:guides:visitor-information",
+      "displayName": "KahitSan visitor information guide",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://www.kahitsan.com/agent-guide.md",
+      "description": "A read-only guide for finding company details, current coworking rates, location, and contact options on the KahitSan website.",
+      "representativeQueries": [
+        "What is KahitSan Solutions Corp.?",
+        "What are the current KahitSan Coworking rates and membership options?",
+        "Where is KahitSan Coworking and how can I contact the team?"
+      ]
+    }
+  ]
+}
