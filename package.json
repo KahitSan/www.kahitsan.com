@@ -63,6 +63,16 @@
     "vinxi": {
       "vite": "6.4.5",
       "zod": "4.6.7"
-    }
+    },
+    "h3": "^1.15.9",
+    "nitropack": "2.13.4",
+    "postcss": "8.5.26",
+    "nanoid": ">=3.3.18",
+    "brace-expansion": "^2.0.1",
+    "browserslist": "^4.28.8",
+    "source-map-js": "1.2.2",
+    "node-forge": "1.4.3",
+    "tar": "^7.5.11",
+    "sharp": "^0.34.5"
   }
 }
